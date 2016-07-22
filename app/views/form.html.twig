@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<!--<link href="css/styles.css" rel="stylesheet">-->
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<link href="{{ asset('css/styles.css') }}" rel="stylesheet">
+<title>{{page_title}}</title>
+</head>
+<body>
+<div class="container">
+<h2>{{page_title}}</h2>
+<form action="{{path}}" method="post" {{ form_enctype(form) }} role="form">
+<div class="form-group">
+{{ form_widget(form) }}
+</div>
+<input type="submit" name="OK" class="btn btn-default" />
+</form>
+</div>
+</body>
+</html>

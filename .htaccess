@@ -1,0 +1,66 @@
+# BEGIN Compress text files
+<ifModule mod_deflate.c>
+  <filesMatch ".(css|js|x?html?|php)$">
+    SetOutputFilter DEFLATE
+  </filesMatch>
+</ifModule>
+# END Compress text files
+
+# BEGIN EXPIRES
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresDefault "access plus 10 days"
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType text/plain "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 week"
+    ExpiresByType application/x-icon "access plus 1 year"
+</IfModule>
+# END EXPIRES
+
+# BEGIN Cache-Control Headers
+<ifModule mod_headers.c>
+  <filesMatch ".(ico|jpe?g|png|gif|swf)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </filesMatch>
+  <filesMatch ".(css)$">
+    Header set Cache-Control "max-age=604800, public"
+  </filesMatch>
+  <filesMatch ".(js)$">
+    Header set Cache-Control "max-age=216000, private"
+  </filesMatch>
+</ifModule>
+# END Cache-Control Headers
+
+# BEGIN Turn ETags Off
+<ifModule mod_headers.c>
+  Header unset ETag
+</ifModule>
+FileETag None
+# END Turn ETags Off
+ 
+# BEGIN Remove Last-Modified Header
+<ifModule mod_headers.c>
+  Header unset Last-Modified
+</ifModule>
+# END Remove Last-Modified Header
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+#next line is to be changed into app root directory name 
+RewriteBase /
+
+#RewriteCond %{REQUEST_URI} !(/$|\.) 
+#RewriteRule (.*) %{REQUEST_URI}/ [R=301,L] 
+
+RewriteCond %{HTTP_USER_AGENT} (.*facebookexternalhit.*|.*Twitterbot.*|.*Pinterest.*|.*Google.*|.*Slackbot.*|.*Facebot.*|.*Skype.*|.*facebook.*|.*FB_IAB.*|.*FBAN\/FBIOS.*|.*FBAV.*|.*FBBV.*|.*FBDV.*|.*FBMD.*|.*FBSN.*|.*FBCR.*|.*FBLC.*|.*Slackbot-LinkExpanding.*)$
+RewriteRule ^details/(.*)/(.*)$ /opengraph?sequence=$1&index=$2 [P]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+
+</IfModule>
+  

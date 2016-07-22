@@ -1,0 +1,54 @@
+//
+// Tablet
+// --------------------------------------------------
+@media (max-width: @screen-sm-max) {
+  
+  .container-fluid .row .col-md-8 {
+    padding-right: 10px;
+  }
+  
+  .container-fluid #mini-map {
+    margin-top: 15px;
+  }
+  
+  .container-fluid .col-md-4 > .row .col-sm-6:last-of-type {
+    margin-bottom: 36px;
+  }
+  
+  .pagination {
+    margin-bottom: 36px;
+  }
+  
+}
+
+//
+// Mobile
+// --------------------------------------------------
+@media (max-width: @screen-xs-max) {
+  
+  .navbar {
+    
+    .container-fluid > .navbar-collapse {
+      margin: 0;
+    }
+  
+    .howitworks {
+      max-width: 100% !important;
+    }
+    
+    li {
+    
+      > span {
+        display: block;
+        padding: 10px 15px;
+        line-height: 20px;
+      }
+    }
+    
+  }
+  
+  .container-fluid .col-md-4 > .row .col-sm-6:last-of-type {
+    padding-left: 10px;
+  }
+  
+}

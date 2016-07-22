@@ -1,0 +1,6 @@
+files/
+.DS_*
+cache/*
+tmp/*
+nbproject/
+desktop.ini

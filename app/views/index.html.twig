@@ -1,0 +1,736 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    
+	<base href="/">
+	
+	<title>{{page_title}}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    {% if app.minify %}
+	<!--<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">-->
+    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.theme.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/leaflet.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tooltipster.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tooltipster-light.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/marker-cluster.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/marker-cluster.default.min.css') }}" rel="stylesheet">
+    {% else %}
+    <!--<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">-->
+    <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/jquery-ui.theme.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/leaflet.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tooltipster.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/tooltipster-light.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/marker-cluster.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/marker-cluster.default.css') }}" rel="stylesheet">
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.5.9/slick.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+    {% if app.minify %}
+    
+    <script data-main="js/main-min.js" src="js/lib/require.js"></script>
+    {% else %}
+    <script data-main="js/main.js" src="js/lib/require.js"></script>
+    {% endif %}
+	<script>
+    var isSuperUser = 0;
+    {% if app.user %}
+		var osm_user_name =  "{{ app.user.username  }}";
+		var osm_user_id =  "{{ app.user.externalUserId  }}";
+        var osm_user_type =  "osm"; // TODO: removed from here, add in user class
+        isSuperUser = {{app.isSuperUser}};
+	{% endif %}
+	   var user_ip = {% if user_ip %}{ lat: '{{user_ip.latitude}}', lng: '{{user_ip.longitude}}' }{% else %}false{% endif %};
+	   var restore_user = {{app.restore}};
+	   var collect_email = {{app.collect_email}};
+	</script>
+	
+</head>
+<body>
+    
+    <!-- ADD class "profile" when on profile page! -->
+    <!-- ADD class "track-details" when on track details page! -->
+    <div id="MENU_SECTION" class="topbar">
+        <div class="container-fluid">
+            
+            <a class="navbar-brand" href="#"></a>
+            
+            <!-- START breadcrumb for profile page! -->
+            <ul class="breadcrumb hidden">
+                <li>
+                    <a class="map" href="javascript:void(0);">Home</a>
+                </li>
+                <li>
+                    <a class="profile" href="javascript:void(0);">Profile</a>
+                </li>
+            </ul>
+            <!-- END breadcrumb -->
+            
+            <ul class='nav navbar-nav inline navigation'>
+                <li><a class="leaderboard">Leaderboard</a></li>
+                <li><a href='#' data-toggle="modal" data-target="#getApp">Get the App</a></li>
+            </ul>
+            
+            <ul class="nav navbar-nav navbar-right navigation">
+                {% if app.user %}
+                <li class="loggedIn">
+                    <a class="profile"><span>{{ app.user.username }}</span><i class="fa fa-user" aria-hidden='true'></i></a>
+                </li>
+                <li>
+                    <a class="delete" href="javascript:void(0);" data-toggle="modal" data-target="#DELETE_ACCOUNT_MODAL">Delete account<i class="fa fa-trash" aria-hidden='true'></i></a>
+                </li>
+                <li>
+                    <a class="logout" href="{{ path('logout') }}"><span>Logout</span></a>
+                </li>
+                {% else %}
+                <li>
+                    <a class="login" href="{{ login_paths.openstreetmap }}"><span>Login with OSM</span></a>
+                </li>
+                {% endif %}
+            </ul>
+
+        </div>
+        
+        <div class="container-fluid hidden">
+            
+            <a class="close close-details"><i class="fa fa-close" aria-hidden="true"></i></a>
+            
+            <!-- START breadcrumb for track details page! -->
+            <ul class="breadcrumb">
+                <li class="details-back"  style="display:none;">
+                    <a>Tracks</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" >Track file No. <span id="trackId"></span></a>
+                </li>
+            </ul>
+            <!-- END breadcrumb -->
+
+        </div>
+    </div>
+    
+    <div class="mainContent">
+    
+        <!--* ***  INDEX PAGE  *** *-->
+    
+        <div id="indexPage">
+        <div>
+            <div class="container">
+                     
+    	 <div id="HOME" class="home hidden">
+    					<br />
+                        <h1>Welcome!</h1><br />
+                        <p>This is an internal <b>Alpha release</b> of OpenStreetView.</p><br />
+                        <p>For privacy, until face & licence plate blurring is implemented, you can only access the sequences uploaded by you.</p><br />
+                        <p>For this please log in with your OSM account...</p><br />
+                        <p>Enjoy, and we're looking forward to your feedback!</p>
+    
+                    </div>
+                    <div id="LEADERBOARD" class="howitworks hidden">
+
+                        <h1>Leaderboard</h1>
+                        <table class="table table-striped" style='width: 100%'>
+                            <thead>
+                                <tr>
+                                    <th width='1'>Rank</th>
+                                    <th>User</th>
+                                    <th width='150' class="text-right">Distance in km</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="ABOUT_US" class="aboutus hidden">
+                        			<br />
+                        <h1>About Us</h1><br />
+                        <p>OpenStreetView collects, stores and distributes georeferenced street view imagery with the purpose to help the OSM community improve <a href="https://www.openstreetmap.org/">OpenStreetMap</a>.</p>
+                        <p>The product consists of an iOS app [[App Store url]], an Android app [[Google Play url]] and a Website [[public url]]. </p>
+                        <p>The source code for the OpenStreetView project is available at:
+                        <ul>
+                            <li>web platform [[GIT url]]</li>
+                            <li>ios App [[GIT url]]</li>
+                            <li>android app [[GIT url]]</li>
+                        </ul>
+                        </p>
+                        <p>The code is licensed under <a href="http://www.gnu.org/licenses/lgpl-3.0.en.html" target="_blank">LGPL Version 3 license</a>.
+                        <p>The collected imagery is protected & available under the <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode" target="_blank">CC BY-SA version 4 International license</a>.</p>
+                        <p>Copyright ©[[release date]], Telenav, Inc.  All Rights Reserved</p>
+                    </div>
+    				 <div id="TERMS" class="terms hidden">
+                        <h1>Terms and Conditions of Use</h1>
+                        <h3>Effective as of <time datetime="2016-02-22">February 22, 2016</time></h3>
+    <p>Please read these terms and conditions of use <strong>(“Terms of Use”)</strong> carefully before you access and use OpenStreetView, an application developed by Telenav, Inc. <strong>(“Telenav”)</strong>.  Your access and use of OpenStreetView indicates that you accept these Terms of Use. If you do not accept these Terms of Use, do not access or otherwise use OpenStreetView.  These Terms of Use represent the agreement <strong>(“Agreement”)</strong> between you and Telenav with respect to OpenStreetView.  All references herein to “you” and “your” means you, your employees, agents, and contractors, and any other entity on whose behalf you accept these Terms of Use, all of whom shall also be bound by this Agreement.</p>
+    
+    <p>Telenav may revise these Terms of Use at any time, with or without notice to you. You should visit <a href='/terms' target='_blank'>this link</a> from time to time to review the then current Terms of Use for OpenStreetView.</p>
+    
+    <h5>OpenStreetView</h5>
+    <p>OpenStreetView is an application developed by Telenav that collects, stores and distributes georeferenced street view imagery with the purpose of helping the OpenStreetMap&reg; <strong>(“OSM”)</strong> community improve the quality of the map data.</p>
+    
+    <h5>Account Information</h5>
+    <p>You agree: (a) when signing up for OpenStreetView, to provide Telenav with true, accurate, current, and complete information about yourself, and (b) to inform Telenav promptly of any changes to such information to keep it true, accurate, current and complete. You further agree that you are 13 years of age or older and have the authority and rights to download and use OpenStreetView.</p>
+
+    <p>If you provide Telenav with any information that is untrue, inaccurate, not current or incomplete, or Telenav has reasonable grounds to suspect so, Telenav has the right to suspend or terminate your access to OpenStreetView.</p>
+
+    <p>All of your account information, as well as other personal information provided by you to Telenav, is subject to Telenav's privacy policy located at http://www.telenav.com/legal/policies.html.  Your use of OpenStreetView indicates that you accept the terms of this privacy policy, which may be updated from time to time.</p>
+
+    
+    <h5>Open Source License</h5>
+    <p>OpenStreetView consists of an iOS application, an Android application and a Website-based application (from <a href="http://www.openstreetview.org" target="_blank">www.openstreetview.org</a>).  OpenStreetView is launched by Telenav with the aim of creating the biggest possible repository of street level photography imagery, and thus Telenav would like to open source OpenStreetView’s data to the open source community by licensing its codes under GNU Lesser General Public License v3.0 (“<strong>LGPL License</strong>”), with the license terms available at <a href="http://www.gnu.org/licenses/lgpl-3.0.en.html" target="_blank">http://www.gnu.org/licenses/lgpl-3.0.en.html</a>, and by licensing its imagery under Creative Commons Attribution-ShareAlike 4.0 International (“<strong>CC-By-SA License</strong>”), with the license terms available at <a href="https://creativecommons.org/licenses/by-sa/4.0/legalcode" target="_blank">https://creativecommons.org/licenses/by-sa/4.0/legalcode</a>. The OpenStreetView codes can be found on github.</p>
+    
+    <p>You are free to copy, distribute, transmit and adapt data on OpenStreetView, as long as you comply with the applicable open source license and credit OpenStreetView and its contributors.  We require that you use the credit “&copy; OpenStreetView Contributors”.</p>
+    
+    <h5>User Contributed Content</h5>
+    <p>You are solely responsible for your conduct and any data, text, information, names, images, graphics, photos, imagery and other content (the <em>“Content”</em>) that you submit, post or display on or via OpenStreetView.  Telenav does not claim ownership of any Content that you post on or through OpenStreetView. You represent and warrant that (i) you own the Content posted by you on or through OpenStreetView or otherwise have the right to grant the rights and licenses set forth in these Terms of Use; (ii) the posting and use of your Content on or through OpenStreetView does not violate, misappropriate or infringe on the rights of any third party, including, without limitation, privacy rights, publicity rights, copyrights, trademark and/or other intellectual property rights; (iii) you agree to pay for all royalties, fees, and any other monies owed by reason of Content you post on or through OpenStreetView; and (iv) you have the legal right and capacity to enter into these Terms of Use in your jurisdiction.</p>
+    
+    <p>You hereby grant to Telenav a worldwide, royalty-free, non-exclusive, perpetual, irrevocable license to do any act that is restricted by copyright, database right or any related right over anything within the Content, whether in the original medium or any other.  These rights explicitly include commercial use, and do not exclude any field of endeavor.  These rights include, without limitation, the right to sub-license the Content through multiple tiers of sub-licensees and to sue for any copyright violation directly connected with Telenav’s rights under these Terms of Use.</p>
+
+    <p>You agree that Telenav may at any time filter, alter, modify, redact, crop or delete your Content in whole or in part in its discretion, including in order to render the Content suitable for use on OpenStreetView.  To the extent allowable under applicable local laws and copyright conventions, you also waive and/or agree not to assert against Telenav or its licensees any moral rights or other rights that you may have in your Content that would otherwise preclude Telenav from filtering, altering, deleting, or using, copying or distributing your Content.  You acknowledge and agree that we may continue to store, display and otherwise exercise the rights with respect to your Content after termination, deactivation, or archiving of your account.</p>
+    
+    <h5>Termination</h5>
+    <p>Telenav reserves the right to terminate your access to OpenStreetView at any time for any or no reason and without notice to you.</p>
+    
+    <p>You may request to delete your OpenStreetView application at any time by notifying Telenav via: (i) an email addressed to <a href="mailto:support@telenav.com">support@telenav.com</a>; or (ii) a letter addressed to Telenav, Inc., 4655 Great America Parkway, Suite 300, Santa Clara, CA 95054. Any such deletion by you shall be effected within a reasonable time after Telenav's receipt of your notice. Upon any termination of your OpenStreetView account and data, Telenav shall have no liability to you or any further obligations under this Agreement.</p>
+    
+    <h5>Disclaimers</h5>
+    <p>You must evaluate, and will bear all risks associated with, the use of any Content, including any reliance on the quality, integrity, accuracy, completeness, or usefulness of such Content. We may refuse or delete any Content, including Content of which we become aware that is in breach of these Terms of Use, is otherwise contrary to law, or is otherwise inappropriate in our discretion. We do not guarantee the accuracy, integrity or quality of any Content. Under no circumstances will we be liable in any way for any Content, including, but not limited to, liability for any errors, inaccuracies, or omissions in any Content, or for any loss or damage of any kind incurred as a result of the use of any Content. We will have no obligation or liability to you to maintain, store, or license Content, protect and maintain Content owners' intellectual property rights, or to enforce these Terms of Use. You hereby waive and release any claims you may have against us arising or resulting from use or misuse of Content or your inability to effectively use Content, your failure to comply with these Terms of Use, or for any act, omission, or conduct of any other OpenStreetView user.</p>
+    
+    <p>You are solely responsible for your interaction with other users of OpenStreetView. You agree that Telenav is not responsible or liable for the conduct of any user. Telenav reserves the right, but has no obligation, to monitor or become involved in disputes between you and other users. Exercise common sense and your best judgment when interacting with others, including when you submit or post Content.</p>
+    
+    <p>OpenStreetView is provided “as is” and without warranties of any kind either express or implied. Telenav disclaims all warranties, express or implied, including, but not limited to, implied warranties of merchantability and fitness for a particular purpose.</p>
+    <p>Applicable law may not allow certain warranty exclusions, so one or more of the above disclaimers may not apply to you.</p>
+    
+    <h5>Other Qualifications</h5>
+    <p>You understand and agree that OpenStreetView is downloaded to your wireless device at your own discretion and risk and that you will be solely responsible for any damages to your wireless device, or loss of data, that results from the download of such application.</p>
+    <p>Telenav does not warrant that OpenStreetView will not infringe on third party intellectual property rights. Telenav also does not warrant that your use of OpenStreetView will be uninterrupted or error-free.  Rather, temporary interruptions of OpenStreetView may occur from time to time. Telenav will exercise reasonable efforts to attempt to limit or prevent such occurrences, but in no event will Telenav be liable for any financial or other damages due to such interruptions.</p>
+    <p>Telenav has technological and operational security policies and procedures to protect your information from loss, misuse, alteration, or unintentional destruction, but Telenav makes no representations or warranties regarding the security of OpenStreetView or the transmission of data or information to and from Telenav and your wireless device. Telenav will not be liable to you or anyone else in the event of any unauthorized infiltration of any of its systems.</p>
+    
+    <h5>Limitation of liability</h5>
+    <p>To the extent permitted under applicable law, under no circumstances shall Telenav or its licensors (or their licensors and suppliers) be liable to you or anyone else for any loss, injury, or damages (including but not limited to any compensatory, punitive, special, incidental, indirect, exemplary or consequential damages) arising out of or in connection with the use by you or anyone else of OpenStreetView, any defects in OpenStreetView, or any breach of this Agreement, even if Telenav or its licensors have been advised of the possibility of such damages.</p>
+    <p>Applicable law may not allow the limitation or exclusion of liability or incidental or consequential damages, so the above exclusion may not apply to you.</p>
+    
+    <h5>Indemnification</h5>
+    <p>To the extent permitted by applicable law, you agree to indemnify, defend and hold Telenav and its licensors (including their respective licensors, suppliers, assignees, subsidiaries, affiliated companies, and the respective officers, directors, employees, shareholders, agents and representatives of each of them) free and harmless from and against any liability, loss, injury (including injuries resulting in death), demand, action, cost, expense, or claim of any kind or character, including but not limited to attorney's fees, arising out of or in connection with (i) your access to or use of OpenStreetView; (ii) your breach or alleged breach of these Terms of Use; (iii) your violation of any third-party right, including without limitation, any intellectual property right, publicity, confidentiality, property or privacy right; (iv) your violation of any laws, rules, regulations, codes, statutes, ordinances or orders of any governmental and quasi-governmental authorities, including, without limitation, all regulatory, administrative and legislative authorities; or (v) any misrepresentation made by you. You will cooperate as fully required by Telenav in the defense of any claim. Telenav reserves the right to assume the exclusive defense and control of any matter subject to indemnification by you, and you will not in any event settle any claim without the prior written consent of Telenav.</p>
+    
+    <h5>Attribution and Governing Law</h5>
+    <p>You agree that any dispute, claim or controversy arising out of or relating to this Agreement or OpenStreetView shall be settled by independent arbitration involving a neutral arbitrator and administered by the American Arbitration Association. The arbitrator shall apply the Commercial Arbitration Rules of the American Arbitration Association, and the judgment upon the award rendered by the arbitrator may be entered by any court having jurisdiction. Note that there is no judge or jury in an arbitration proceeding and the decision of the arbitrator shall be binding upon both parties.</p>
+    <p>This Agreement and performance hereunder will be governed by and construed in accordance with the laws of the State of California, without giving effect to its conflict of laws provisions. You agree to submit to the exclusive jurisdiction of the courts of the County of Santa Clara, California.</p>
+    
+    <h5>Miscellaneous</h5>
+    <p>This Agreement constitutes the entire agreement between Telenav and you with respect to the subject matter hereof. Telenav's or your failure to require performance of any provision shall not affect that party's right to require performance at any time thereafter, nor shall a waiver of any breach or default of this Agreement constitute a waiver of any subsequent breach or default or a waiver of the provision itself.</p>
+    <p>If any provision herein is held unenforceable, then such provision will be modified to reflect the intention of the parties, and the remaining provisions of this Agreement will remain in full force and effect.</p>
+    <p>You may not resell, assign, or transfer any of your rights hereunder. Any such attempt may result in termination of this Agreement, without liability to Telenav. Notwithstanding the foregoing, Telenav may assign this Agreement to any affiliate at any time without notice.</p>
+    <p>By using OpenStreetView, you consent to receive from Telenav all communications, including notices, agreements, legally required disclosures or other information in connection with OpenStreetView (collectively, <strong>“Notices”</strong>) electronically. Telenav may provide such Notices by posting them on Telenav's website or by downloading such Notices to your wireless device. If you desire to withdraw your consent to receive Notices electronically, you must discontinue your use of OpenStreetView. Telenav may email or send text messages to you from time to time to inform you about our products and services that we think will interest you, unless you inform us that you opt out from receiving such communications.</p>
+    <p>If you have any questions regarding the terms of this Agreement, please contact Telenav by sending an email to <a href="mailto:support@telenav.com">support@telenav.com</a> or by writing to Telenav Customer Service, 4655 Great America Parkway, Suite 300, Santa Clara, CA 95054. OpenStreetView and Telenav and their logos are registered and unregistered trademarks of Telenav. All other trademarks, service marks, logos and trade names used on the OpenStreetView app or on <a href="http://www.telenav.com" target="_blank">www.telenav.com</a>are the property of their respective owners.</p>
+    
+                    </div>
+                </div>
+        </div>
+
+        </div>
+
+        <!--* ***  PROFILE PAGE  *** *-->
+        <div id="listPage" class="hidden">
+            <div id="LIST_SECTION" class="hidden">
+                <div class="container-fluid header">
+                    <div class="row">
+                        <div class="col-md-12" id="userDetails">
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid total-info">
+                    <div class="row">
+                        <div class="col-md-12" id="userInfo">
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid tracks">
+                    <div class="row">
+                        <div id="userTracks">
+                        </div>
+                        <div class="container-fluid tracks" id="userTracksItems">
+                        </div>
+                        <div class="loading" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!--* ***  DETAILS PAGE  *** *-->
+        <div id="detailsPage" class="hidden">
+            <div id="DETAILS_SECTION" class="hidden">
+            </div>
+        </div>
+        
+        <!--* ***  MAP PAGE  *** *-->
+        <div id="mapPage" class="mapSection">
+            <div id="MAP_SECTION" class="show"></div>
+        </div>
+    
+    
+    </div>
+    <div id='FOOTER_SECTION' class="footerSection">
+        <div class="container-fluid">
+            <a class="terms">Terms & conditions</a>&nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp; 
+	   <a class="feedback" target="_blank" href="https://github.com/openstreetview/openstreetview.org/issues">Feedback</a>
+        </div>
+    </div>
+    <div class="modal fade" id="JOSM_MODAL" tabindex="-1" role="dialog">
+	<div class="modal-dialog" style="margin-top: 100px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">JOSM not detected</h4>
+			</div>
+			<div class="modal-body">
+			  <p>To edit the map with JOSM you need to have installed and launched the JOSM application on your computer. </p>
+			  <p>The 'remote control' JOSM plugin should be installed and activated as well.</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+		  </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+   </div>
+   <div class="modal fade" id="UNAVAILABLE_MODAL" tabindex="-1" role="dialog">
+	<div class="modal-dialog" style="margin-top: 100px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Feature not available</h4>
+			</div>
+			<div class="modal-body">
+			  <p>Sorry, this feature is not available yet, but we're working on it! Stay tuned for updates. </p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+		  </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+   </div>
+ <div class="modal fade" id="RESTORE_ACCOUNT_MODAL" tabindex="-1" role="dialog">
+	<div class="modal-dialog" style="margin-top: 100px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Account reactivated</h4>
+			</div>
+			<div class="modal-body">
+			  <p>Your account was reactivated. </p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  </div>
+		  </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+   </div>
+<div class="modal fade" id="DELETE_ACCOUNT_MODAL" tabindex="-1" role="dialog">
+	<div class="modal-dialog" style="margin-top: 100px;">
+		<div class="modal-content">
+			<div class="modal-header">
+				 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">Delete Account</h4>
+			</div>
+			<div class="modal-body">
+			  <p>Are you sure you want to delete your account? You won't be able to upload new data or view your tracks anymore.</p>
+			  <p><input type="checkbox" value="1" id="remove_data"/>&nbsp;Also, delete all data that I uploaded.</p>
+			</div>
+			<div class="modal-footer">
+			  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			  <button type="button" class="btn btn-default" data-dismiss="modal" id="deleteAccountBtn">Submit</button>
+			  </div>
+		  </div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+   </div>
+<div class="modal fade" id="COLLECT_EMAIL_MODAL" tabindex="-1" role="dialog">
+    <div class="modal-dialog collect-email">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4>OpenStreetView newsletter</h4>
+            </div>
+            <div class="modal-body">
+                <p>Signup to get fresh news about OpenStreetView and cool contributions from around the world! </p>
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="email" class="control-label col-sm-2">Email:</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-9">
+                            <div class="checkbox">
+                                <label><input  type="checkbox" value="1" id="unobtainable"/><small>Don't ask me again.</small></label>
+                            </div>
+                        </div>
+
+
+                        <div class="error hidden col-sm-offset-2 col-sm-9 small" id="emailErr"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> It looks like you didn't enter a valid email address</div>
+
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+                <button type="button" class="btn btn-default" data-dismiss="modal" id="collectEmailBtn">Submit</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+    <script type="text/html" id="tpl_issue_item">
+	<td>#<%= id %></td>
+        <td><%= date %></td>
+	<td class="text-center"><%= status %></td>
+        <td class="text-center"><%= photo_no %></td>
+        <td class="text-right"><%= location %></td>
+        <td class="text-right"><a class="btn btn-default delete" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+    </script>
+    	
+    <script type="text/html" id="tpl_my_issue_item">
+        <td><%= date %></td>
+        <td class="text-center"><%= status %></td>
+        <td class="text-center"><%= photo_no %></td>
+        <td class="text-right"><%= location %></td>
+        <td class="text-right"><a href="">upload OSM track</a></td>
+    </script>
+    
+    <script type="text/html" id="tpl_no_data">
+        <tr><td colspan="5" class="text-center"><br /><i>You don't have any data in this view...</i><br /><br /></td></tr>
+    </script>
+    
+    <!--<script type="text/html" id="tpl_details">
+        <div id="map" style="width: 100%; height: 100%;"></div>
+        
+        <a id="upload-track" href="#" style="display:none;">upload track</a>
+    </script>-->
+    
+    <script type="text/html" id="tpl_map">
+        <div id="map" style="width: 100%; height: 100%; position:relative;"></div>
+        <div id="nearSequences" class='closed'></div>
+        <div id="currentPosition" class="currentPosition"></div>
+    </script>
+    
+    <script type="text/html" id="tpl_dnearSequencesetails">
+        <div class="container-fluid">
+            <div class="row">
+                
+                <div class="col-lg-9 image-container">
+                    
+                    <h2>Track uploader: <span><%= user %></span></h2>
+                    <div class="image checkersBg" style="height: 80%;">
+                        <div class="actions">
+                            <ul>
+                                <li data-toggle="tooltip" data-placement="right" title="Adjust blurring">
+                                    <a href="javascript:void(0);" onclick="$('#UNAVAILABLE_MODAL').modal('show');"><i class="fa fa-magic" aria-hidden="true"></i></a>
+                                </li>
+                                <li data-toggle="tooltip" data-placement="right" title="Edit road signs">
+                                    <a href="javascript:void(0);" onclick="$('#UNAVAILABLE_MODAL').modal('show');"><i class="fa fa-map-signs" aria-hidden="true"></i></a>
+                                </li>
+                                <li data-toggle="tooltip" data-placement="right" title="Edit in JOSM">
+                                    <a href="javascript:void(0);" class="josm"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                </li>
+			   <% if(owner || isSuperUser) { %>
+                                <li data-toggle="tooltip" data-placement="right" title="Rotate">
+                                    <a href="javascript:void(0);" id="rotate-forward"><i class="fa fa-repeat" aria-hidden="true"></i></a>
+                                </li>
+                                <li data-toggle="tooltip" data-placement="right" title="Rotate">
+                                    <a href="javascript:void(0);" id="rotate-backward"><i class="fa fa-undo" aria-hidden="true"></i></a>
+                                </li>
+                                <li style="display:none" id="save-button-set" data-toggle="tooltip" data-placement="right" title="Save changes">
+                                    <a href="javascript:void(0);" data-toggle="modal" data-target="#save-rotation-dialog"><i class="fa fa-check" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li data-toggle="tooltip" data-placement="right" title="Delete photo">
+                                    <a href="javascript:void(0);" id="remove"  data-toggle="modal" data-target="#delete-photo-dialog"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+			<% } %>
+                        </div>
+                        <canvas id="streetGallery" class="streetGallery"></canvas>
+                        <div class="photo-count"><i class="fa fa-camera" aria-hidden="true"></i> <span class="marker-index"><%=markerIndex %></span> <span class="grey-color">/</span> <span class="grey-color"><%= totalPhotos %></span></div>
+                        <div class="move">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <a href="javascript:void(0);"><i class="fa fa-step-backward" aria-hidden="true"></i></a>
+                                    <a href="javascript:void(0);"><i class="fa fa-step-forward" aria-hidden="true"></i></a>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="progress float-right">
+                                      <div class="progress-edge left"></div>
+                                      <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                      </div>
+                                      <span class="progress-pointer"></span>
+                                      <div class="progress-edge right"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-3">
+                    <h2>Location: <span class="locationLat"><%=photos[markerIndex].lat%></span> | <span class="locationLng"><%= photos[markerIndex].lng %></span></h2>
+                    <div id="mini-map"></div>
+                    <div class="info">
+                        <h4>Info</h4>
+                        <div class="col-md-6">Track uploader:</div><div class="col-md-6"><%= user %></div>
+                        <div class="col-md-6">Date of recording:</div><div class="col-md-6"><%= date %></div>
+                        <div class="col-md-6">Track no.:</div><div class="col-md-6"><%= routeId %></div>
+                        <div class="col-md-6">Platform:</div><div class="col-md-6"><%= platform || 'Unknown' %></div>
+                        <div class="col-md-6">Total no. of images:</div><div class="col-md-6"><%= totalPhotos %></div>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </script>
+    
+    <script type="text/html" id="tpl_galleryThumb">
+        <div class="thumb_image">
+            <img src="/<%= thumb %>" />
+        </div>
+    </script>
+    <script type="text/html" id="tpl_nearsequences">
+        <div class='nearsequences_header container-fluid'>
+            <div class='close-btn'>
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+            Tracks
+        </div>
+        <div class='nearsequences container-fluid'>
+            <div class='previous'><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+            <% _.each(sequences, function(sequence){ %>
+            <div class="photo" data-sequence-id="<%= _.escape(sequence.sequence_id) %>"
+                 data-sequence-index="<%= _.escape(sequence.sequence_index) %>">
+                 <div class='infoPlaceholder'>
+                    <p><span class='highlight address'><%= _.escape(sequence.address) %></span></p>
+                    <p>
+                        <span class='highlight'><i class="fa fa-camera" aria-hidden="true"></i><%= _.escape(sequence.photo_no) %></span><span>IMG</span>
+                        <span class='highlight'><i class="fa fa-inr" aria-hidden="true"></i><%= _.escape(sequence.distance) %></span><span>KM</span>
+                        <span class='highlight'><%= _.escape(sequence.date) %></span><span> | <%= _.escape(sequence.hour) %></span>
+                    </p>
+                 </div>
+                 <div class='photoPlaceholder checkersBg'>
+                    <span class='helper'></span><img src="<%= _.escape(sequence.photo) %>" />
+                 </div>
+            </div>
+            <% }); %>
+            <div class='next'><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+        </div>
+    </script>
+    <script type="text/html" id="tpl_gallery">
+        <div id='fullimage' class='fullImage'>
+            <div id='fullImageContainer' class='fullImageContainer' style="background-image: url('/<%= photo %>')"></div>
+            <div class='fullimageControls'>
+                <div id='topControls' class='topControls'>
+                    <div class='control-elems close-icon_white'>X</div>
+                </div>
+                <div id='orderControls' class='orderControls'>
+                    <div id='prev' class='control-elems prev-icon_white'></div>
+                    <div id='next' class='control-elems next-icon_white'></div>                    
+                </div>
+            </div>
+            <div class="trackInfo">
+            	<p><strong>ID:</strong> <%= trackInfo.id %></p>
+            	<p><%= trackInfo.user %>, <%= trackInfo.dfate %></p>
+            </div>
+        </div>
+    </script>
+    <script id="tpl_leaderboard_table" type="text/html">
+        <% _.each(users, function(user){ %>
+            <tr   <% if (typeof(osm_user_name) !== "undefined" && user.username == osm_user_name){ %> class="info" <% } %>>
+                <td><%= user.rank %></td>
+                <td><%= user.username %></td>
+                <td class="text-right"><%= user.total_km %></td>
+            </tr>
+         <% }); %>
+    </script>
+    <script type="text/html" id="tpl_user_details">         
+        <h1><%=userDetails.username%></h1>
+        <ul>
+            <li>
+                <span>Overall rank</span>
+                <span><%=userDetails.overallRank || '-' %></span>
+            </li>
+            <li>
+                <span>Weekly rank</span>
+                <span><%=userDetails.weeeklyRank || '-' %></span>
+            </li>
+        </ul>
+    </script>
+    <script type="text/html" id="tpl_user_info">
+        <div class="total">
+<!--             <i class="fa fa-camera" aria-hidden="true"></i> -->
+            <span>Total images:</span>
+            <span><%=userDetails.totalPhotos%></span>
+        </div>
+        
+        <div class="total">
+<!--             <i class="fa fa-camera" aria-hidden="true"></i> -->
+            <span>Total tracks:</span>
+            <span><%=userDetails.totalTracks%></span>
+        </div>
+        
+        <div class="total">
+<!--             <i class="fa fa-camera" aria-hidden="true"></i> -->
+            <span>Total KM:</span>
+            <span><%=userDetails.totalDistance%></span>
+        </div>
+        
+        <div class="total">
+<!--             <i class="fa fa-camera" aria-hidden="true"></i> -->
+            <span>Total KM with OBD:</span>
+            <span><%=userDetails.obdDistance%></span>
+        </div>
+    </script>
+    <script type="text/html" id="tpl_user_tracks">  
+        <div class="col-md-12 header">
+            <h2>Upload tracks</h2>
+            <span class="upload"><%=trackStatus.uploading || 0%> tracks uploading</span>
+            <span class="processing"><%=trackStatus.processing || 0 %> tracks processing</span>
+        </div>
+    </script>
+    <script type="text/html" id="tpl_user_track_items">
+        <% _.each(trackList, function(sequence, j){ var date = new Date(sequence.date_added) %>
+            <% if (j == 0) { %>
+                <div class="row">
+            <% } %>
+            <% if (j != 0 && j%6 == 0) { %>
+                </div><div class="row">
+            <% } %>
+            <div class="col-md-4 col-lg-2 track track-item" data-id="<%=sequence.id%>">
+                <h3 class='address'><%=sequence.location%></h3>
+                <span><i class="fa fa-camera" aria-hidden="true"></i><%=sequence.photo_no%> <em>IMG</em></span>
+                <span><i class="fa fa-car" aria-hidden="true"></i><%=sequence.distance%> <em>KM</em></span>
+
+                <span><%=sequence.date_added%></span>
+                <div class="image checkersBg">
+                    <a href="javascript:void(0);" class="delete-photo" data-id="<%=sequence.id%>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+		<span class='helper'></span>
+                    <img src="<%=sequence.thumb_name%>">
+                </div>
+            </div>
+            
+            <% if (j == sequence.length - 1) { %>
+                </div>
+            <% } %>
+        <% }); %>
+    </script>
+    <div id="getApp" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>Get the OpenStreetView App!</h4>
+                </div>
+                <div class="modal-body">
+                    <h5>Available for iOS and Android</h5>
+                    <p>OpenStreetView is a free and open platform for street level imagery. Anyone can contribute images with a smartphone and our open source apps. OSV will detect salient features from the uploaded images such as signs, lanes and road curvature to improve OpenStreetMap.</p>
+                </div>
+                <div class="modal-footer">
+                    <div class='list-inline'>
+                        <a href='#' target='_blank'><img src='/images/appstore@2x.png' width='160' alt='AppStore badge' /></a>
+                        <a href='#' target='_blank'><img src='/images/google-play-badge.png' width='160' alt='Google Play badge' /></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="notification" class="modal fade notification" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Delete Track</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this track?</p>
+                    <input type="hidden" id="track_id"/>
+                </div>
+                <div class="modal-footer">
+                    <div class='list-inline'>
+                        <button class="btn btn-default" data-dismiss="modal">
+                             Cancel
+                        </button>
+                        <button class="btn btn-danger" id="delete-track">
+                             <i></i>
+                             Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="save-rotation-dialog" class="modal fade notification" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Save changes</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to save the changes?</p>
+                    <div class="checkbox" style="color:#6e707b">
+                        <label>
+                            <input type="checkbox" id="rotate-all" value="1"/>
+                            Apply change for all photos.
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class='list-inline'>
+                        <button class="btn btn-default" data-dismiss="modal">
+                             Cancel
+                        </button>
+                        <button class="btn btn-danger" id="save-rotation">
+                             Save <i class="loading fa fa-spinner fa-spin fa-3x fa-fw" style="display:none;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="delete-photo-dialog" class="modal fade notification" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Delete photo</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this photo?</p>
+                </div>
+                <div class="modal-footer">
+                    <div class='list-inline'>
+                        <button class="btn btn-default" data-dismiss="modal">
+                             Cancel
+                        </button>
+                        <button class="btn btn-danger" id="save-delete-photo">
+                             Delete <i class="loading fa fa-spinner fa-spin fa-3x fa-fw" style="display:none;"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

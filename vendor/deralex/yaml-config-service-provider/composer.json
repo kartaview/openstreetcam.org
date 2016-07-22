@@ -1,0 +1,32 @@
+{
+    "name": "deralex/yaml-config-service-provider",
+    "description": "Silex ServiceProvider for using YAML configuration files",
+    "keywords": ["silex"],
+    "license": "MIT",
+    "authors": [{
+        "name": "Alexander Kluth",
+        "email": "contact@alexanderkluth.com"
+    }],
+    "require": {
+        "silex/silex": ">=1.0",
+        "symfony/yaml": "~2.4"
+    },
+    "require-dev": {
+        "symfony/yaml": "~2.4",
+        "phpspec/phpspec": "2.0.*@dev"
+    },
+    "suggest": {
+        "symfony/yaml": "~2.4"
+    },
+    "autoload": {
+        "psr-0": { "DerAlex\\Silex": "src" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}

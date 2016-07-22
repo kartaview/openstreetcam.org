@@ -1,0 +1,18 @@
+{
+    "require": {
+        "silex/silex": "*",
+		"symfony/form": "*",
+		"symfony/validator": "*",
+		"symfony/config": "*",
+		"symfony/twig-bridge": "*",
+		"symfony/translation": "*",
+		"symfony/locale": "*",
+		"symfony/security": "*",
+                   "doctrine/dbal": "*",
+		"symfony/yaml": "*",
+		"deralex/yaml-config-service-provider": "*",
+		"symfony/intl": "~2.6",
+		"gigablah/silex-oauth": "*"
+    },
+	"autoload": { "psr-0": { "app": "./" } }
+}
