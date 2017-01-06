@@ -1,9 +1,9 @@
-OpenStreetView 
+OpenStreetCam 
 =============================
 
-This is OpenStreetView.org
+This is OpenStreetCam.org
 
-OpenStreetView collects, stores and distributes georeferenced street view imagery with the purpose to help the OSM community improve OpenStreetMap (https://www.openstreetmap.org/). 
+OpenStreetCam collects, stores and distributes georeferenced street view imagery with the purpose to help the OSM community improve OpenStreetMap (https://www.openstreetmap.org/). 
 
 Installation
 ------------
