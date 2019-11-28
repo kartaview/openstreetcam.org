@@ -1,0 +1,145 @@
+:host {
+  height: 100%;
+}
+
+.home-map-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  min-width: 320px;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 48px);
+  z-index: 0;
+  /*  width:100%;
+  height:100%;*/
+  /*position:absolute;
+  /*display: block;*/
+}
+
+.home-map-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.map-container-root {
+  display: block;
+}
+
+.home-map-filters {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  padding: 10px 15px;
+  box-shadow: 1px 1px 3px #888888;
+  z-index: 9999;
+}
+
+.footer-loading {
+  z-index: 9999;
+  padding: 10px 15px;
+  position: absolute;
+  bottom: 40px;
+  text-align: center;
+  width: 100%;
+}
+
+.loading {
+  cursor: wait;
+  background-image: url('/assets/images/loading.gif');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: 100%;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+.footer-section {
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(27, 27, 31, .8);
+  padding: 12px 0;
+  z-index: 1001;
+  font-size: 1em;
+}
+
+.footer-section a {
+  cursor: pointer;
+  text-decoration: none;
+  color: #b7bac5;
+}
+
+.footer-section .separator {
+  padding: 0 10px;
+}
+
+.footer-section>.mobile-row {
+  display: none;
+}
+
+.footer-section>.mobile-row .row {
+  margin: 0;
+}
+
+.dropup-wrapper {
+  position: relative;
+}
+
+.dropup-wrapper .icon {
+  color: #b7bac5;
+  letter-spacing: -0.1px;
+  font-size: 14px;
+}
+
+.dropup-wrapper .dropup {
+  position: absolute;
+  bottom: 30px;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 5px 0;
+  text-align: left;
+}
+
+.dropup-wrapper .dropup a {
+  display: block;
+  padding: 3px 20px;
+  line-height: 20px;
+  color: #333333;
+  white-space: nowrap;
+}
+
+.text-left .dropup-wrapper .dropup {
+  left: -10px;
+}
+
+.text-right .dropup-wrapper .dropup {
+  position: absolute;
+  bottom: 30px;
+  right: -10px;
+}
+
+@media (max-width: 900px) {
+  .footer-section>.container-fluid {
+    display: none;
+  }
+
+  .footer-section>.mobile-row {
+    display: block;
+  }
+}
+
+@media (max-width: 520px) {
+  .home-map-container.logged-in ::ng-deep .map-search-box {
+    max-width: calc(100% - 180px);
+  }
+
+  .home-map-container:not(.logged-in) ::ng-deep .map-search-box {
+    max-width: calc(100% - 20px);
+  }
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1200pt"
+   height="800pt"
+   id="svg1320"
+   sodipodi:version="0.32"
+   inkscape:version="0.47pre4 r22446"
+   version="1.0"
+   sodipodi:docname="Australian_Alphanumeric_State_Route_ALT.svg">
+  <defs
+     id="defs1322">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 375 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="1500 : 375 : 1"
+       inkscape:persp3d-origin="750 : 250 : 1"
+       id="perspective2872" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="578.08119"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="text2874"
+     inkscape:window-width="1680"
+     inkscape:window-height="957"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     showgrid="false"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata1325">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#408614;fill-opacity:1;stroke:#ffffff;stroke-width:1.15345514;stroke-opacity:1"
+       id="rect1328"
+       width="1505.5607"
+       height="999.84656"
+       x="0.076727539"
+       y="1.5052979" />
+    <g
+       transform="scale(1.2490243,0.80062494)"
+       style="font-size:284.9319458px;font-style:normal;font-weight:normal;line-height:125%;fill:#ffdd00;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       id="text2874">
+      <path
+         d="m 542.80054,244.45189 -90.60836,-190.904405 -36.18635,0 -90.32343,190.904405 40.1754,0 19.94524,-41.60007 97.16179,0 19.37538,41.60007 40.46033,0 m -77.21655,-78.35629 -62.96996,0 31.62744,-66.389139 31.34252,66.389139"
+         style="font-variant:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffdd00;font-family:Roadgeek 2005 Series F;-inkscape-font-specification:Roadgeek 2005 Series F"
+         id="path2951" />
+      <path
+         d="m 740.68578,244.45189 0,-36.18636 -127.93445,0 0,-154.718045 -36.18636,0 0,190.904405 164.12081,0"
+         style="font-variant:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffdd00;font-family:Roadgeek 2005 Series F;-inkscape-font-specification:Roadgeek 2005 Series F"
+         id="path2953" />
+      <path
+         d="m 919.42716,89.733842 0,-36.186357 -164.1208,0 0,36.186357 65.53435,0 0,154.718048 36.18636,0 0,-154.718048 62.40009,0"
+         style="font-variant:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;fill:#ffdd00;font-family:Roadgeek 2005 Series F;-inkscape-font-specification:Roadgeek 2005 Series F"
+         id="path2955" />
+    </g>
+  </g>
+</svg>

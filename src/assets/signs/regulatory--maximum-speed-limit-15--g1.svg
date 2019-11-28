@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+	 id="Layer_1" xmlns:svg="http://www.w3.org/2000/svg" inkscape:output_extension="org.inkscape.output.svg.inkscape" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" inkscape:version="0.46" sodipodi:docname="Signal_B14_15.svg" sodipodi:version="0.32"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="576px" height="576px"
+	 viewBox="0 0 576 576" style="enable-background:new 0 0 576 576;" xml:space="preserve">
+<defs>
+	
+	
+		<inkscape:perspective  id="perspective2469" inkscape:vp_z="576 : 288 : 1" inkscape:vp_x="0 : 288 : 1" sodipodi:type="inkscape:persp3d" inkscape:vp_y="0 : 1000 : 0" inkscape:persp3d-origin="288 : 192 : 1">
+		</inkscape:perspective>
+</defs>
+<sodipodi:namedview  id="base" gridtolerance="10.0" borderopacity="1.0" showgrid="false" guidetolerance="10.0" bordercolor="#666666" inkscape:cy="311.23092" pagecolor="#ffffff" inkscape:zoom="0.54954702" objecttolerance="10.0" inkscape:cx="123.15811" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:window-width="1280" inkscape:window-height="948" inkscape:current-layer="Layer_1" inkscape:window-y="25" inkscape:window-x="0">
+	</sodipodi:namedview>
+<circle id="circle2448" style="fill:#FFFFFF;stroke:#000000;stroke-linecap:round;stroke-linejoin:round;" cx="287.057" cy="287.057" r="286.969"/>
+<circle id="circle2450" style="fill:#FF0000;stroke:#FF0000;stroke-width:0.1764;stroke-linecap:round;stroke-linejoin:round;" cx="287.057" cy="287.057" r="273.982"/>
+<circle id="circle2452" style="fill:#FFFFFF;stroke:#FF0000;stroke-width:0.1764;stroke-linecap:round;stroke-linejoin:round;" cx="287.057" cy="287.057" r="192.438"/>
+<g>
+	<rect x="80.619" y="200.259" style="fill:none;" width="384.875" height="266.448"/>
+	<path d="M218.338,200.522v192.95h-38.469l0.138-136.208h-0.552c-0.275,1.14-3.585,3.635-9.927,7.487l-11.996,6.042l-10.755,3.94
+		c-4.322,0.876-6.666,1.533-7.032,1.97v-40.717l8.549-3.81c14.248-8.669,24.496-19.22,30.748-31.655H218.338z"/>
+	<path d="M425.121,200.391l-0.138,36.908h-68.114l-4.688,32.838c6.434-1.751,13.237-2.496,20.407-2.233
+		c6.709-0.175,13.558,0.525,20.545,2.102c10.11,3.066,19.118,8.451,27.024,16.155c10.938,11.385,17.144,23.994,18.614,37.828
+		c0.091,2.016,0.139,3.986,0.139,5.911c0,8.406-1.15,15.676-3.447,21.804c-4.229,9.371-10.021,17.777-17.373,25.219
+		c-12.134,10.858-26.936,16.287-44.399,16.287h-2.757l-12.686-0.788c-13.237-1.399-24.729-5.822-34.471-13.267
+		c-12.595-11.033-20.361-22.372-23.303-34.019l39.711-9.589c1.193,5.168,4.319,9.809,9.376,13.924
+		c7.629,5.342,18.384,6.436,32.265,3.283c11.489-4.466,16.867-12.259,16.132-23.38c0.276-10.068-4.505-17.206-14.34-21.409
+		c-6.804-1.926-14.478-2.451-23.026-1.576c-6.527,1.313-12.364,3.723-17.511,7.224L308.748,288l10.203-87.609H425.121z"/>
+</g>
+</svg>

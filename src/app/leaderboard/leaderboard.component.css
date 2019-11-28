@@ -1,0 +1,99 @@
+:host {
+  flex: 2;
+  overflow: auto;
+  background-color: #f8f8fa;
+}
+
+.leaderboard-page {
+  background: white;
+  padding: 40px;
+  box-shadow: 3px 0 3px -1px #eeeeee, -3px 0 2px -1px #eeeeee;
+  margin-top: 40px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  min-height: calc(100vh - 104px);
+  margin-bottom: 70px;
+}
+
+h1 {
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 30px;
+  font-size: 2.4em;
+}
+
+.nav-bar-item {
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.nav-bar-item.active {
+  border-bottom: 2px solid #1daa63;
+}
+
+table {
+  width: 100%;
+}
+
+thead td {
+  font-weight: bold;
+}
+
+thead>tr>th {
+  border-bottom: 1px solid #d9e0e3;
+}
+
+td {
+  padding: 5px;
+}
+
+tbody tr:nth-child(2n) td {
+  background-color: #f8f8fa;
+}
+
+tbody tr:hover td {
+  background-color: #e8e8ea;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+th,
+td {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+th {
+  color: #b7bac5;
+  font-weight: normal;
+  padding-bottom: 10px;
+}
+
+td:first-child,
+tr th:first-child {
+  text-align: center;
+}
+
+.points-column {
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+.username-column a {
+  word-break: normal;
+}
+
+@media (max-width: 480px) {
+  .mobile-column {
+    display: none;
+  }
+}
+
+@media (max-width: 580px) {
+  .leaderboard-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}

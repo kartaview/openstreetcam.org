@@ -1,0 +1,93 @@
+h4 {
+  font-size: 30px;
+  margin: 10px 0 5px 0;
+}
+
+h5 {
+  font-size: 20px;
+  margin: 10px 0 10px 0;
+}
+
+.modal-content .modal-body {
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.modal-content,
+.modal-footer {
+  background-color: #fff;
+}
+
+.modal-body p,
+label {
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0 0 10px 0;
+  letter-spacing: normal;
+}
+
+.modal-content .modal-header .modal-title {
+  font-size: 30px;
+  text-transform: none;
+  text-align: center;
+  font-weight: normal;
+}
+
+.modal-content {
+  border: 0;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+
+.modal-title {
+  text-align: center;
+  width: 100%;
+}
+
+.modal-header,
+.modal-body {
+  border-bottom: none;
+  background: #019ed3;
+  padding: 25px;
+}
+
+.modal-header {
+  display: block;
+  padding-bottom: 0;
+}
+
+.modal-footer {
+  justify-content: center;
+  border-top: 0;
+}
+
+.modal-footer .list-inline>div {
+  padding: 10px 20px;
+}
+
+.modal-footer .list-inline i {
+  margin-right: 5px;
+}
+
+.modal-footer button {
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.modal-footer button:hover {
+  color: #333;
+  background-color: #d4d4d4;
+  border-color: #8c8c8c;
+}
+
+.modal-header .close span {
+  float: right;
+  color: white;
+}
+
+.modal-body p,
+label {
+  opacity: .6;
+  padding-bottom: 0;
+}

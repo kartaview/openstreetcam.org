@@ -1,0 +1,73 @@
+.row,
+.col,
+.col-auto {
+  margin: 0;
+  padding: 0;
+}
+
+.row.statistics {
+  padding: 15px 0;
+}
+
+.track-details-wrapper {
+  overflow: hidden;
+  color: #6e707b;
+  padding: 15px 0 20px;
+}
+
+.track-details-wrapper .section-subtitle {
+  padding: 0 0 10px;
+}
+
+.row.track-details .col {
+  padding: 6px 0;
+}
+
+.row.track-details .label {
+  font-size: 13px;
+  color: #5e626b;
+  padding-right: 5px;
+}
+
+.row.track-details .details {
+  font-size: 13px;
+  color: #ebecf0;
+  padding-left: 5px;
+}
+
+.obd-status {
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+
+.obd-status.available {
+  background-image: url('/assets/images/sequence/v2/obd-available.png');
+}
+
+.obd-status.not-available {
+  background-image: url('/assets/images/sequence/v2/obd-not-available.png');
+}
+
+.track-details-count {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ebecf0;
+  padding: 6px 0;
+}
+
+.track-details-type {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  text-align: left;
+  color: #5e626b;
+  text-transform: uppercase;
+  padding: 6px 0;
+}
+
+.track-details-count .small-count {
+  font-size: 14px;
+  font-weight: normal;
+}

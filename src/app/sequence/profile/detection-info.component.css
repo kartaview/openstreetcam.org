@@ -1,0 +1,59 @@
+h4 {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.detection-info-box {
+  background-color: #3b3e47;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 2px;
+  min-height: 73px;
+}
+
+.detection-info {
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.detection-info .row {
+  margin: 0;
+}
+
+.row {
+  margin-right: -5px;
+  margin-left: -5px;
+}
+
+.col-md-8,
+.col-md-4,
+.col-sm-12,
+.col {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.text-blue {
+  color: #2bace2;
+}
+
+.text-white {
+  color: white;
+}
+
+.loader {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.loader em {
+  position: absolute;
+  top: 25px;
+  left: 50%;
+  margin-left: -50px;
+  width: 100px;
+  z-index: 99;
+}

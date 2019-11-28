@@ -1,0 +1,47 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+</div>
+<div class="modal-body">
+  <ngb-alert type="danger" [dismissible]="false" *ngIf="error">{{errorMessage}}</ngb-alert>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="radio" name="editStatus" id="editStatus1" [value]="EditStatus.FIXED" [(ngModel)]="editStatus"
+        (change)="hideSubGroup()"> I fixed the issue in OSM
+    </label>
+  </div>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="radio" name="editStatus" id="editStatus2" [value]="EditStatus.ALREADY_FIXED" [(ngModel)]="editStatus"
+        (change)="hideSubGroup()"> The issue was mapped already
+    </label>
+  </div>
+  <div class="form-check">
+    <label class="form-check-label">
+      <input class="form-check-input" type="radio" name="editStatus" id="editStatus3" (change)="showSubGroup()"> I could not fix the issue
+    </label>
+  </div>
+  <div class="form-radio-subgroup ml-3" *ngIf="subGroup">
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="subEditStatus" id="editStatus4" [value]="EditStatus.BAD_SIGN" [(ngModel)]="editStatus"> Bad sign detection
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input class="form-check-input" type="radio" name="subEditStatus" id="editStatus5" [value]="EditStatus.OTHER" [(ngModel)]="editStatus"> Other
+      </label>
+    </div>
+  </div>
+  <textarea *ngIf="editStatus == EditStatus.OTHER" class="form-control" id="subEditStatusText" [(ngModel)]="editStatusReason"
+    rows="3" placeholder="Can you share some details why this couldn’t be fixed?"></textarea>
+</div>
+<div class="modal-footer">
+  <div class="row w-100">
+    <div class="col">
+      <button type="button" class="btn btn-secondary w-100" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+    <div class="col">
+      <button type="button" class="btn btn-success w-100" (click)="onSave()">Save</button>
+    </div>
+  </div>
+</div>

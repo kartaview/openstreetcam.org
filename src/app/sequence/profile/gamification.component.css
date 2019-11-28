@@ -1,0 +1,68 @@
+.row {
+  margin: 0;
+}
+
+.row .col {
+  padding: 0;
+}
+
+.title-wrapper {
+  margin-bottom: 28px;
+}
+
+.title-wrapper .subtitle {
+  line-height: 22px;
+}
+
+.highlight-points {
+  background-color: #2bace2;
+  border-radius: 11px;
+  color: #fefefe;
+  line-height: 22px;
+  padding: 0 10px;
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.gamification-info {
+  font-size: 13px;
+  color: #6e707b;
+  line-height: 1.5;
+}
+
+table {
+  margin: 0 0 0 -15px;
+  width: calc(100% + 30px);
+}
+
+th {
+  padding: 10px 5px;
+  font-size: 13px;
+  text-align: left;
+  color: #8b919e;
+  font-weight: normal;
+}
+
+table tr th:first-child {
+  padding-left: 16px;
+}
+
+td {
+  box-sizing: border-box;
+  padding: 10px 5px;
+  height: 20px;
+  border-bottom: 1px solid #26282b;
+}
+
+table tr td {
+  background-color: #3d3f45;
+}
+
+table tr td:first-child {
+  padding-left: 16px;
+}
+
+table tr:hover td {
+  background-color: #484a52;
+}

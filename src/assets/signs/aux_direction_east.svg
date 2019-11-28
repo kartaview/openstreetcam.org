@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="52" viewBox="0 0 300 52">
+  <defs>
+    <rect id="aux_direction_east-a" width="150" height="52" rx="6"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(75)">
+    <use fill="#FFF" xlink:href="#aux_direction_east-a"/>
+    <rect width="148" height="50" x="1" y="1" stroke="#000" stroke-width="2" rx="6"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="40" font-weight="bold" letter-spacing=".952">
+      <tspan x="34.25" y="39">East</tspan>
+    </text>
+  </g>
+</svg>

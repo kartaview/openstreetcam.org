@@ -1,0 +1,38 @@
+<div *ngIf="userSequences.length>0" class="card-group" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="300"
+  (scrolled)="onScrollDown()">
+  <div class="card" *ngFor="let sequence of userSequences; let i = index">
+    <div class="card-inner">
+      <a class="image-link" [routerLink]="['/details',sequence.id]">
+        <span class="img-replacement" [ngStyle]="{'background-image': 'url('+sequence.thumbName+')'}">
+        </span>
+        <img class="card-img-bottom" src="{{sequence.thumbName}}" alt="{{sequence.address}}">
+        <div *ngIf="sequence.imageProcessingStatus == 'NEW' || sequence.imageProcessingStatus == 'UPLOAD_FINISHED' || sequence.imageProcessingStatus == 'VIDEO_SPLIT'">
+          <div *ngIf="sequence.imageProcessingStatus == 'NEW'">
+            <div class="track-status uploading">UPLOADING</div>
+          </div>
+          <div *ngIf="sequence.imageProcessingStatus == 'UPLOAD_FINISHED' || sequence.imageProcessingStatus == 'VIDEO_SPLIT'">
+            <div class="track-status processing">PROCESSING</div>
+          </div>
+        </div>
+        <div *ngIf="sequence.uploadHistory && sequence.uploadHistory.points" class="highlight-points">{{sequence.uploadHistory.points.total | integerNumberDraw}} Points</div>
+        <a *ngIf="sequence | aclPermission : 'delete'" href="javascript:void(0);" class="delete-photo" data-id="<%=sequence.id%>"
+          (click)="deleteSequence($event, sequence)">
+          <em class="fa fa-trash" aria-hidden="true"></em>
+        </a>
+      </a>
+      <div class="card-block align-text-top">
+        <div class="card-text location">
+          <div class="location-inner">{{sequence.address}}</div>
+        </div>
+        <div class="card-text">
+          <em class="fa fa-camera" aria-hidden="true"></em> {{sequence.countActivePhotos | integerNumberDraw}}
+          <em class="property-title">IMG</em>
+          <em class="fa fa-car" aria-hidden="true"></em> {{sequence.distance || 0 | floatNumberDraw}}
+          <em class="property-title">KM</em> {{sequence.dateAdded}}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="userSequences.length==0">
+  <osc-error title="No sequences found!" level="warning" [backButtonEnabled]="false"></osc-error>
+</div>

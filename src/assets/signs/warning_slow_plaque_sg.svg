@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="606mm"
+   height="456mm"
+   viewBox="0 0 605.99999 455.99998"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   sodipodi:docname="Singapore_road_sign_-_Warning_-_Slow.svg">
+  <defs
+     id="defs2">
+    <pattern
+       y="0"
+       x="0"
+       height="6"
+       width="6"
+       patternUnits="userSpaceOnUse"
+       id="EMFhbasepattern" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.26155811"
+     inkscape:cx="2141.1835"
+     inkscape:cy="391.12003"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     scale-x="1"
+     inkscape:window-width="1920"
+     inkscape:window-height="1057"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showguides="false"
+     inkscape:snap-global="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-32.000069,191.00015)">
+    <rect
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect815"
+       width="604"
+       height="454"
+       x="33.000069"
+       y="-190.00015"
+       rx="52"
+       ry="52" />
+    <rect
+       ry="50"
+       rx="50"
+       y="-188.00024"
+       x="35.000069"
+       height="450"
+       width="600"
+       id="rect827"
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke" />
+    <rect
+       style="opacity:1;fill:#dc0000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0;stroke-linecap:square;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1;paint-order:fill markers stroke"
+       id="rect826"
+       width="570"
+       height="420"
+       x="50.000069"
+       y="-173.00015"
+       rx="35"
+       ry="35" />
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:5.05243444;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="m 197.50007,-68.000307 h 30 V 111.99969 h 60 v 30 h -90 z"
+       id="rect815-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.2627694;stroke-linejoin:bevel;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1"
+       d="m 602.50027,-67.999827 -30,209.999517 h -30 L 527.50017,37.000173 512.50007,141.99969 h -30 l -30,-209.999517 h 30 l 15,105 15,-105 h 30.0002 l 15,105 15,-105 z"
+       id="rect1760-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccccccccccc" />
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:30.12023354;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 352.49987,141.99969 c -24.93,0 -44.9998,-20.06983 -44.9998,-44.999827 v -119.99991 c 0,-24.93 20.0698,-45.00036 44.9998,-45.00036 h 30.0003 c 24.93,0 44.9998,20.07036 44.9998,45.00036 v 119.99991 c 0,24.929997 -20.0698,44.999827 -44.9998,44.999827 z m 0,-29.99972 h 30.0003 c 8.31,0 15.0001,-6.69012 15.0001,-15.000107 v -119.99991 c 0,-8.31001 -6.6901,-15.00013 -15.0001,-15.00013 h -30.0003 c -8.31,0 -14.9996,6.69012 -14.9996,15.00013 v 119.99991 c 0,8.309987 6.6896,15.000107 14.9996,15.000107 z"
+       id="rect857"
+       inkscape:connector-curvature="0" />
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:38.40690613;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+       d="m 112.49987,-68.000257 c -24.930002,0 -44.999802,20.07036 -44.999802,45.00035 v 8.00159 c 1e-4,13.7142794 6.2541,26.67971 16.9871,35.21696 l 52.350802,41.6419 c 3.5776,2.84565 5.662,7.16754 5.6622,11.73883 v 23.40012 c 0,8.309997 -6.6902,15.000127 -15.0002,15.000127 h -15.0001 c -8.31,0 -14.999602,-6.69013 -14.999602,-15.000127 v -15.00013 h -30.0002 v 15.00013 c 0,24.929987 20.0698,45.000357 44.999802,45.000357 h 15.0001 c 24.93,0 44.9999,-20.07037 44.9999,-45.000357 l 5e-4,-23.39959 c -1e-4,-13.71426 -6.2541,-26.68025 -16.9871,-35.21751 l -52.3508,-41.6418906 c -3.577702,-2.84575 -5.662102,-7.1673304 -5.662202,-11.7388194 l -5e-4,-8.00159 c 0,-8.31 6.690102,-15.00012 15.000102,-15.00012 h 15.0001 c 8.31,0 14.9996,6.69012 14.9996,15.00012 v 14.9995994 h 30.0003 V -22.999907 c 0,-24.92999 -20.0699,-45.00035 -44.9999,-45.00035 z"
+       id="rect940"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ssccccssssccssssccccssssccsss" />
+  </g>
+</svg>

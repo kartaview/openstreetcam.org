@@ -1,0 +1,27 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Delete Account</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true" (click)="closeModal()">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete your account? You won't be able to upload new data or view your tracks anymore.</p>
+    <form>
+      <div class="form-check">
+        <label class="form-check-label">
+          <input checked type="checkbox" class="form-check-input" #answer (change)="deleteModalCheckbox(answer.checked)">Also, delete all data that I uploaded.</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="row w-100">
+      <div class="col">
+        <button type="button" class="btn btn-secondary w-100" (click)="closeModal()">Close</button>
+      </div>
+      <div class="col">
+        <button type="button" class="btn btn-danger w-100" (click)="submitModal()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

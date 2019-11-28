@@ -1,0 +1,35 @@
+:host ::ng-deep .loading-overlay .rotating-plane-spinner {
+  background-color: #eee;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .005em;
+  margin-bottom: 0;
+  margin-top: .83em;
+}
+
+.header {
+  padding: 45px 10px;
+}
+
+.header .row {
+  margin: 0;
+}
+
+.header .upload,
+.header .processing {
+  display: inline-block;
+  padding: 4px 10px;
+  margin: 10px;
+  text-transform: uppercase;
+  background: #e6a100;
+  border-radius: 15px;
+  background-clip: padding-box;
+  color: white;
+}
+
+.header .processing {
+  background: #1daa63;
+}

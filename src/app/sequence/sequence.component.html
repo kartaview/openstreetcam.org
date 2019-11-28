@@ -1,0 +1,144 @@
+<div *ngIf="!isLoading && !errorFound" class="flexbox-vbox flexbox-viewport">
+  <osc-sequence-topbar [sequenceData]="sequenceData" [photosIterator]="photosIterator"></osc-sequence-topbar>
+  <div class="flexbox-vbox flexbox-viewport signv2-root-wrapper">
+    <osc-error *ngIf="photosIterator.currentStats.photosCount==0" title="This sequence has no photos..."
+      level="warning"></osc-error>
+    <div *ngIf="photosIterator.currentStats.photosCount>0" class="flexbox-main flexbox-hbox signv2-firefox-heightfix">
+      <div class="flexbox-aside signsv2-left-tabs-root">
+        <div class="left-tab-element" [class.active]="sidebarTab=='track-info'"
+          (click)="switchSidebarTab('track-info');" data-toggle="popover" popoverTitle="TRACK INFO"
+          ngbPopover="View track details" data-placement="right" triggers="mouseenter:mouseleave">
+          <div class="left-tab-element-icon track-info"></div>
+        </div>
+        <div class="left-tab-element" [class.active]="sidebarTab=='edit-osm'" (click)="switchSidebarTab('edit-osm');"
+          data-toggle="popover" popoverTitle="OSM EDITING" ngbPopover="Work with iD or JOSM to edit OpenStreetCam"
+          data-placement="right" triggers="mouseenter:mouseleave">
+          <div class="left-tab-element-icon edit-osm">
+            <div *ngIf="photosIterator.filtersCounts.osmComparison.notVerified" class="tab-badge">
+              {{photosIterator.filtersCounts.osmComparison.notVerified}}</div>
+          </div>
+        </div>
+        <div class="left-tab-element" [class.active]="sidebarTab=='detections'"
+          (click)="switchSidebarTab('detections');" data-toggle="popover" popoverTitle="DETECTIONS"
+          ngbPopover="Review detections and tag new traffic signs" data-placement="right"
+          triggers="mouseenter:mouseleave">
+          <div class="left-tab-element-icon detections">
+            <div *ngIf="photosIterator.filtersCounts.validation.notVerified" class="tab-badge">
+              {{photosIterator.filtersCounts.validation.notVerified}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="flexbox-aside signsv2-left-sidebar-root">
+        <div [hidden]="sidebarTab!=='track-info'" class="left-tab-content">
+          <div class="flexbox-vbox">
+            <div class="flexbox-content">
+              <div class="left-tab-content-scrollable-parent">
+                <div class="left-tab-content-scrollable">
+                  <perfect-scrollbar [config]="perfectScrollbarOptions">
+                    <osc-sequence-tab-track-details [photosIterator]="photosIterator" [sequenceData]="sequenceData"
+                      [uploadHistory]="uploadHistory"></osc-sequence-tab-track-details>
+                  </perfect-scrollbar>
+                </div>
+              </div>
+            </div>
+            <div class="profile-map">
+              <osc-map [hiddenCheck]="sidebarTab==='track-info'" [disableKeyboard]="true"
+                [lat]="currentPhotoCache ? currentPhotoCache.lat : 0"
+                [lng]="currentPhotoCache ? currentPhotoCache.lng : 0" zoom="19" zoomControlPosition="topleft"
+                [marker]="currentMarker" [trackData]="photosIterator.trackData"
+                [elementId]="'sequence-trackdetails-map'" [markerRotationDelta]="currentMarkerRendererRotationDelta"
+                [baseTilesEnabled]="mapLayers.baseTilesEnabled" [baseTilesUrl]="mapLayers.baseTilesUrl"
+                [baseTilesType]="mapLayers.baseTilesType" [baseTilesToken]="mapLayers.baseTilesToken"
+                [coverageTilesEnabled]="mapLayers.coverageTilesEnabled"
+                [coverageTilesType]="mapLayers.coverageTilesType" [coverageTilesUrl]="mapLayers.coverageTilesUrl">
+              </osc-map>
+            </div>
+          </div>
+        </div>
+        <div [hidden]="sidebarTab!=='edit-osm'" class="left-tab-content">
+          <div class="flexbox-vbox">
+            <div class="flexbox-content">
+              <div class="left-tab-content-scrollable-parent">
+                <div class="left-tab-content-scrollable">
+                  <perfect-scrollbar [config]="perfectScrollbarOptions">
+                    <osc-sequence-tab-osm-edit [photosIterator]="photosIterator"
+                      (imageGalleryEvent)="imageGalleryEvent($event)"></osc-sequence-tab-osm-edit>
+                  </perfect-scrollbar>
+                </div>
+              </div>
+            </div>
+            <div class="profile-map">
+              <osc-map [hiddenCheck]="sidebarTab==='edit-osm'" [disableKeyboard]="true"
+                [lat]="currentPhotoCache ? currentPhotoCache.lat : 0"
+                [lng]="currentPhotoCache ? currentPhotoCache.lng : 0" zoom="19" zoomControlPosition="topleft"
+                [marker]="currentMarker" [trackData]="photosIterator.trackData" [elementId]="'sequence-osmedit-map'"
+                [markers]="detectionsMarkers" [markerRotationDelta]="currentMarkerRendererRotationDelta"
+                [baseTilesEnabled]="mapLayers.baseTilesEnabled" [baseTilesUrl]="mapLayers.baseTilesUrl"
+                [baseTilesType]="mapLayers.baseTilesType" [baseTilesToken]="mapLayers.baseTilesToken"
+                [coverageTilesEnabled]="mapLayers.coverageTilesEnabled"
+                [coverageTilesType]="mapLayers.coverageTilesType" [coverageTilesUrl]="mapLayers.coverageTilesUrl">
+              </osc-map>
+            </div>
+          </div>
+        </div>
+        <div [hidden]="sidebarTab!=='detections'" class="left-tab-content">
+          <perfect-scrollbar [config]="perfectScrollbarOptions">
+            <osc-sequence-tab-detections [photosIterator]="photosIterator" [signsList]="signsList"
+              [addSelectionInProgress]="addSelectionInProgress" (imageGalleryEvent)="imageGalleryEvent($event)"
+              [selectionInProgressRegion]="selectionInProgressRegion"
+              [addSelectionInProgressParent]="addSelectionInProgressParent"
+              [contributors]="currentDetectionContributorsCache" [defaultCountryCode]="sequenceCountryCode">
+            </osc-sequence-tab-detections>
+          </perfect-scrollbar>
+        </div>
+      </div>
+      <div class="flexbox-content signv2-content-wrapper">
+        <div class="flexbox-vbox">
+          <div class="flexbox-hbox">
+            <div class="flexbox-content">
+              <osc-sequence-image-gallery #imageGallery [photosIterator]="photosIterator" [sequenceData]="sequenceData"
+                [showFullSizePhotos]="showFullSizePhotos" [showFullSizeWrapped360]="showFullSizeWrapped360"
+                (imageGalleryEvent)="imageGalleryEvent($event)" [signsList]="signsList"
+                [rotationDirection]="rotationDirection" [selectDetectionByClick]="true" [showSignIcon]="true"
+                [panAndZoomToDetectionEnabled]="panAndZoomToDetectionEnabled"
+                (updateMarkerRenderRotationDelta)="setCurrentMarkerRotationDelta($event)"></osc-sequence-image-gallery>
+            </div>
+          </div>
+          <div>
+            <osc-sequence-image-trackbar [photosIterator]="photosIterator" [sequenceData]="sequenceData"
+              [showFullSizePhotos]="showFullSizePhotos" [showFullSizeWrapped360]="showFullSizeWrapped360"
+              [rotationStarted]="rotationStarted" (imageGalleryEvent)="imageGalleryEvent($event)"
+              [panAndZoomToDetectionEnabled]="panAndZoomToDetectionEnabled"></osc-sequence-image-trackbar>
+            <div
+              *ngIf="!mobileScreenEnabled && (sidebarTab!=='track-info' && (sidebarTab!=='edit-osm' || (sidebarTab=='edit-osm' && photosIterator.filtersCounts.osmComparison.total>0))) && detectionsEnabled && photosIterator.currentStats.detectionsCount>0"
+              class="signv2-carousel-wrapper">
+              <osc-detections-carousel [photosIterator]="photosIterator"></osc-detections-carousel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="mobileScreenEnabled" class="mobile-bottom-details">
+    <div class="mobile-profile-map">
+      <osc-map [disableKeyboard]="true" [lat]="currentPhotoCache ? currentPhotoCache.lat : 0"
+        [lng]="currentPhotoCache ? currentPhotoCache.lng : 0" zoom="19" zoomControlPosition="topleft"
+        [marker]="currentMarker" [trackData]="photosIterator.trackData" [elementId]="'sequence-trackdetails-mobile-map'"
+        [markers]="detectionsMarkers" [markerRotationDelta]="currentMarkerRendererRotationDelta"
+        [baseTilesEnabled]="mapLayers.baseTilesEnabled" [baseTilesUrl]="mapLayers.baseTilesUrl"
+        [baseTilesType]="mapLayers.baseTilesType" [baseTilesToken]="mapLayers.baseTilesToken"
+        [coverageTilesEnabled]="mapLayers.coverageTilesEnabled" [coverageTilesType]="mapLayers.coverageTilesType"
+        [coverageTilesUrl]="mapLayers.coverageTilesUrl">
+      </osc-map>
+    </div>
+    <div class="mobile-track-details-container">
+      <osc-sequence-tab-track-details [photosIterator]="photosIterator" [sequenceData]="sequenceData"
+        [uploadHistory]="uploadHistory"></osc-sequence-tab-track-details>
+    </div>
+  </div>
+</div>
+<div *ngIf="temporaryLoading" class="temporary-loading-page">
+  <div class="loading"></div>
+</div>
+<osc-loading *ngIf="isLoading && !errorFound" title="Loading sequence..."></osc-loading>
+<osc-error *ngIf="errorFound" title="Sequence cannot be loaded..." (reload)="getSequenceData()"></osc-error>

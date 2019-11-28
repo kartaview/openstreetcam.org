@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="566.53461"
+   id="svg4682"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="Indonesia Prohibitory Road Sign 1b.svg">
+  <defs
+     id="defs4684">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5652">
+      <path
+         inkscape:connector-curvature="0"
+         d="M -1.315e-6,655.89 612.09,655.89 l 0,185.46 -612.0900013149996,0 0,-185.46 z"
+         clip-rule="evenodd"
+         id="path5654" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5662">
+      <path
+         inkscape:connector-curvature="0"
+         d="m 0,0 189.83,0 0,185.89 L 0,185.89 0,0 z"
+         id="path5664" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="168.50286"
+     inkscape:cy="365.22639"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1024"
+     inkscape:window-height="578"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4687">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-26.811164,-104.29982)">
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 326.85381,104.29982 -278.000641,0 c -13.89163,0 -28.28842,17.06286 -19.19574,34.05106 L 307.48895,657.22241 c 9.68245,18.14936 28.87816,18.14936 38.64344,0 L 623.95425,138.35088 c 9.11287,-16.9882 -5.28134,-34.05106 -19.19228,-34.05106 l -277.90816,0 z"
+       id="path5666" />
+    <path
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 604.76197,110.60971 -555.908801,0 c -4.20955,0 -8.33518,2.27753 -11.36592,5.37649 -5.13566,5.3018 -6.48289,12.50779 -2.86261,19.26571 L 312.45617,654.11973 c 7.49395,13.95645 21.13221,13.95645 28.70901,0 L 618.91456,135.25191 c 2.4508,-4.40571 2.76147,-9.33416 0.82842,-13.88923 -2.58888,-6.01121 -8.83673,-10.75297 -14.98101,-10.75297 z"
+       id="path3773" />
+    <path
+       id="path5668"
+       style="fill:#bb1122;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 326.26354,491.31314 152.22989,-285.38287 -304.53225,0 152.30236,285.38287 z m -9.85155,107.35417 c 8.75732,16.32733 15.913,7.11263 18.86089,1.45985 L 569.31151,161.31293 c 8.59511,-16.24146 -2.2437,-18.33232 -8.31894,-18.33232 l -468.022051,0 c -17.34554,0 -13.55539,11.42502 -10.52469,16.9882 l 233.966161,438.6985 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path5672"
+       style="fill:#fefefe;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 325.4213,110.60971 2.69414,0 0,-1.09449 -2.69414,0 0,1.09449 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path5686"
+       style="fill:#fefefe;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 481.18588,393.44625 1.34621,-2.46049 -18.36383,-11.49222 18.01865,11.12631 -1.41525,2.55383 0.41422,0.27257 z"
+       inkscape:connector-curvature="0" />
+    <path
+       id="path5698"
+       style="fill:#fefefe;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       d="m 169.91908,390.98576 1.34968,2.46049 1.25991,-0.72806 -1.42906,-2.55383 -1.18053,0.8214 z"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

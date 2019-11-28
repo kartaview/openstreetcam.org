@@ -1,0 +1,22 @@
+<a *ngIf="mobile && auth.loggedIn && !switchToLogout" [routerLink]="['/user/'+auth.getFullname()]" [routerLinkActive]="['router-link-active']"
+  [routerLinkActiveOptions]="{exact:true}">
+  <span class="profile-button-mobile">Profile</span>
+</a>
+<a *ngIf="mobile && auth.loggedIn && switchToLogout" (click)="logout()" href="javascript:void(0);">
+  <span class="logout-button-mobile">Logout</span>
+</a>
+<a *ngIf="!mobile && auth.loggedIn && !switchToLogout" [routerLink]="['/user',this.auth.getUsername()]" [routerLinkActive]="['router-link-active']"
+  [routerLinkActiveOptions]="{exact:true}" class="profile-button">
+  <span class="username">{{auth.getFullname()}}</span>
+  <span class="avatar-icon"></span>
+</a>
+<a *ngIf="!mobile && auth.loggedIn && switchToLogout" (click)="logout()" href="javascript:void(0);">
+  <span class="logout-button">Logout</span>
+</a>
+
+<a *ngIf="mobile && !auth.loggedIn" (click)="showLoginModal()" href="javascript:void(0);">
+  <span class="profile-button-mobile">Login</span>
+</a>
+<a *ngIf="!mobile && !auth.loggedIn" (click)="showLoginModal()" href="javascript:void(0);">
+  <span class="login-button">Login</span>
+</a>

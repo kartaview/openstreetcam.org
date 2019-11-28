@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="630"
+   height="630"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.47pre4 r22446"
+   version="1.0"
+   sodipodi:docname="Australian_Metroad_Route_1.svg">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 315 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="630 : 315 : 1"
+       inkscape:persp3d-origin="315 : 210 : 1"
+       id="perspective3117" />
+    <inkscape:perspective
+       id="perspective3903"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.86507937"
+     inkscape:cx="109.81651"
+     inkscape:cy="315.00027"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1280"
+     inkscape:window-height="751"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     showgrid="false"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path3134"
+       d="M 314.4793,2.1590042 L 627.81628,158.48574 L 627.84053,472.11609 C 627.84053,472.11609 314.38889,628.18167 313.2158,627.83989 L 2.4045834,473.17545 L 2.1594667,158.3242 C 2.1594667,158.3242 313.43222,2.1590042 314.4793,2.1590042 z "
+       style="fill:#ffffff;fill-opacity:1;stroke:#31009c;stroke-width:4.31855202;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cccsccs" />
+    <path
+       id="path1382"
+       d="M 313.92422,29.876806 L 599.03354,172.1205 L 599.0556,457.49679 C 599.0556,457.49679 313.84197,599.50284 312.77453,599.19186 L 29.963426,458.46071 L 29.740394,171.97353 C 29.740394,171.97353 312.97142,29.876806 313.92422,29.876806 z "
+       style="fill:#ffffff;fill-opacity:1;stroke:#31009c;stroke-width:10.29096127;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       sodipodi:nodetypes="cccsccs" />
+    <text
+       xml:space="preserve"
+       style="font-size:450px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:100%;writing-mode:lr;text-anchor:middle;color:#000000;fill:#30009c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;font-family:Roadgeek 2005 Series D;-inkscape-font-specification:Roadgeek 2005 Series D"
+       x="314.90497"
+       y="459.923"
+       id="text3119"
+       sodipodi:linespacing="100%"><tspan
+         sodipodi:role="line"
+         id="tspan3922">XXX</tspan></text>
+  </g>
+</svg>

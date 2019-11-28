@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1440"
+   height="1350"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.47pre4 r22446"
+   version="1.0"
+   sodipodi:docname="Australian_State_Route_10.svg">
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 675 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="1440 : 675 : 1"
+       inkscape:persp3d-origin="720 : 450 : 1"
+       id="perspective2878" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.4037037"
+     inkscape:cx="720.00001"
+     inkscape:cy="792.92461"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1024"
+     inkscape:window-height="712"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     showgrid="false"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:nodetypes="cccscc"
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:7.14798641;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="M 18.073786,170.56971 C 18.073786,132.0504 34.583256,41.192757 36.597331,3.5739868 L 1395.5796,5.6924668 C 1397.5937,43.311257 1409.8907,102.08885 1415.563,140.18175 C 1509.5818,771.57667 1286.3586,1285.5997 735.17949,1346.426 C 244.27135,1292.3475 -68.984278,761.47692 18.073786,170.56971 z "
+       id="path1690" />
+    <path
+       sodipodi:nodetypes="cccscc"
+       style="fill:#007bcf;fill-opacity:0.94117647"
+       d="M 71.781499,210.94623 C 71.781499,175.50651 86.971049,91.912917 88.824099,57.301767 L 1333.0353,59.250867 C 1334.8884,93.862027 1352.3231,147.94038 1357.542,182.98776 C 1444.044,763.90289 1238.6674,1236.8299 731.55487,1292.7933 C 279.89466,1243.0385 -8.3162958,754.6106 71.781499,210.94623 z "
+       id="path1479" />
+  </g>
+</svg>

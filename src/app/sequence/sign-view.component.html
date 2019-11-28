@@ -1,0 +1,47 @@
+<div *ngIf="!isLoading && !errorFound" class="flexbox-vbox flexbox-viewport">
+  <osc-sequence-topbar [sequenceData]="sequenceData" [photosIterator]="photosIterator"></osc-sequence-topbar>
+  <div class="flexbox-vbox flexbox-viewport signv2-root-wrapper">
+    <div class="flexbox-main flexbox-hbox signv2-firefox-heightfix">
+      <div class="flexbox-aside signsv2-left-sidebar-root">
+        <div class="left-tab-content">
+          <perfect-scrollbar [config]="perfectScrollbarOptions">
+            <osc-sequence-tab-detections [photosIterator]="photosIterator" [signsList]="signsList"
+              [addSelectionInProgress]="addSelectionInProgress" (imageGalleryEvent)="imageGalleryEvent($event)"
+              [selectionInProgressRegion]="selectionInProgressRegion" [signFilterEnabled]="true"
+              [addSelectionInProgressParent]="addSelectionInProgressParent"
+              [contributors]="currentDetectionContributorsCache"></osc-sequence-tab-detections>
+          </perfect-scrollbar>
+        </div>
+      </div>
+      <div class="flexbox-content signv2-content-wrapper">
+        <div class="flexbox-vbox">
+          <div class="flexbox-hbox">
+            <div class="flexbox-content">
+              <osc-sequence-image-gallery #imageGallery [photosIterator]="photosIterator" [sequenceData]="sequenceData"
+                [showFullSizePhotos]="showFullSizePhotos" [showFullSizeWrapped360]="showFullSizeWrapped360"
+                (imageGalleryEvent)="imageGalleryEvent($event)" [signsList]="signsList"
+                [rotationDirection]="rotationDirection" [selectDetectionByClick]="true" [showSignIcon]="true"
+                [panAndZoomToDetectionEnabled]="panAndZoomToDetectionEnabled"></osc-sequence-image-gallery>
+            </div>
+          </div>
+          <div>
+            <osc-sequence-image-trackbar [photosIterator]="photosIterator" [sequenceData]="sequenceData"
+              [showFullSizePhotos]="showFullSizePhotos" [showFullSizeWrapped360]="showFullSizeWrapped360"
+              [rotationStarted]="rotationStarted" (imageGalleryEvent)="imageGalleryEvent($event)"
+              [panAndZoomToDetectionEnabled]="panAndZoomToDetectionEnabled"></osc-sequence-image-trackbar>
+            <div *ngIf="!mobileScreenEnabled && detectionsEnabled && photosIterator.currentStats.detectionsCount>0"
+              class="signv2-carousel-wrapper">
+              <osc-detections-carousel [photosIterator]="photosIterator" (onScrollXEnd)="onDetectionsScrollEnd()"
+                [detectionsCountEstimation]="true"></osc-detections-carousel>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="temporaryLoading" class="temporary-loading-page">
+  <div class="loading"></div>
+</div>
+<osc-loading *ngIf="isLoading && !errorFound" title="Loading sequence..."></osc-loading>
+<osc-error *ngIf="errorFound" title="Sequence cannot be loaded..." (reload)="_loadSignsData()"></osc-error>

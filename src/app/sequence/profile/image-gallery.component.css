@@ -1,0 +1,263 @@
+.gallery-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+:host.add-sign-selection .gallery-wrapper {
+  cursor: crosshair;
+}
+
+.street-gallery-renderer {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.photo-controls {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.photo-controls em:first-child,
+.photo-controls a:first-child {
+  margin-bottom: 10px;
+}
+
+.photo-controls em,
+.photo-controls a {
+  cursor: pointer;
+  display: block;
+  font-size: 10px;
+  background-color: #3b3e47;
+  line-height: 10px;
+  padding: 10px;
+  color: white;
+}
+
+em:not(.last):not(.single-control),
+.photo-controls a:not(.last):not(.single-control) {
+  border-bottom: 1px solid #505561;
+}
+
+em.first,
+.photo-controls a.first {
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+em:last-child,
+.photo-controls a:last-child {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+}
+
+.photo-controls em.single-control,
+.photo-controls a.single-control {
+  margin-bottom: 10px;
+  border-radius: 2px;
+}
+
+.photo-controls em:hover,
+.photo-controls a:hover {
+  background-color: #31333b;
+}
+
+.street-gallery-loading-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -12px;
+  background: #1e1f22;
+  border: 1px solid #31333b;
+  border-radius: 2px;
+  text-align: center;
+}
+
+.loading {
+  cursor: wait;
+  background-image: url('/assets/images/loading.gif');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.rotation-modal-wrapper {
+  opacity: 0.9;
+  background-color: #1b1c1f;
+  max-width: 320px;
+  position: absolute;
+  width: 100%;
+  margin-left: -160px;
+  left: 50%;
+  top: 0;
+}
+
+.street-gallery-images-loading {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 5px;
+  color: #fff;
+  background-color: #1b1c1f;
+  overflow: hidden;
+  padding: 5px;
+  line-height: 20px;
+}
+
+.street-gallery-images-loading .loading {
+  float: left;
+  margin-right: 5px;
+}
+
+.new-selection-viewport {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+}
+
+.detection-region {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, .2);
+  border: solid .5px #ffffff;
+}
+
+.detection-region:hover {
+  background-color: rgba(110, 112, 123, .2);
+  border: solid .5px #6e707b;
+}
+
+.detection-region.selected:hover,
+.detection-region.selected {
+  background-color: rgba(110, 112, 123, .2);
+  border: solid .5px #6e707b;
+}
+
+.detection-region.confirmed {
+  border: solid .5px #1daa63;
+}
+
+.detection-region.confirmed:hover {
+  background-color: rgba(110, 112, 123, .2);
+  border: solid .5px #1daa63;
+}
+
+.detection-region.confirmed.selected:hover,
+.detection-region.confirmed.selected {
+  background-color: rgba(110, 112, 123, .2);
+  border: solid 1px #1daa63;
+}
+
+.detection-region.invalid {
+  border: solid .5px #e9214c;
+  background: url('/assets/images/sequence/sign-selection-background.png');
+}
+
+.detection-region.invalid:hover {
+  background-color: rgba(110, 112, 123, .2);
+  border: solid .5px #e9214c;
+}
+
+.detection-region.invalid.selected:hover,
+.detection-region.invalid.selected {
+  background-color: rgba(110, 112, 123, .2);
+  border: solid 1px #e9214c;
+}
+
+.vertical-debug-line {
+  top: 50%;
+  left: 50%;
+  height: 32px;
+  border-left: 1px solid #ff0000;
+  margin-top: -16px;
+  position: absolute;
+}
+
+.horizontal-debug-line {
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  border-top: 1px solid #ff0000;
+  margin-left: -16px;
+  position: absolute;
+}
+
+::ng-deep .confirm-detection-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  color: #1daa63;
+  line-height: 30px;
+  text-align: center;
+}
+
+::ng-deep .invalid-detection-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 2px;
+  background-color: #ffffff;
+  color: #e9214c;
+  line-height: 30px;
+  text-align: center;
+}
+
+.no-image-error-message-wrapper {
+  top: 50%;
+  left: 50%;
+  position: absolute;
+}
+
+.no-image-error-message {
+  position: relative;
+  left: -50%;
+  margin-top: -25%;
+  padding: 20px;
+  opacity: 0.9;
+  border-radius: 1px;
+  background-color: #1b1c1f;
+  color: #e7e7e9;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  max-width: 200px;
+}
+
+::ng-deep .ps>.ps__scrollbar-y-rail {
+  opacity: .9 !important;
+  background: none !important;
+  width: 10px !important;
+  margin-right: 3px;
+}
+
+::ng-deep .ps>.ps__scrollbar-y-rail>.ps__scrollbar-y {
+  max-width: 6px;
+}
+
+@media (max-width: 959px) {
+  .photo-controls {
+    display: none;
+  }
+}

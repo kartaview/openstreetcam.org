@@ -1,0 +1,155 @@
+<div class="image-track-bar-wrapper">
+  <div class="row first-row">
+    <div class="col-auto mobile-hidden arrows-column">
+      <div class="row">
+        <div class="col-auto arrow-wrapper">
+          <a href="javascript:void(0);" (click)="prevPhoto()">
+            <em class="trackbar-icon fa fa-angle-left" [class.inactive]="photosIterator.currentStats.photoIndex==0"
+              aria-hidden="true"></em>
+          </a>
+        </div>
+        <div class="col-auto arrow-wrapper">
+          <a href="javascript:void(0);" (click)="nextPhoto()">
+            <em class="trackbar-icon fa fa-angle-right"
+              [class.inactive]="photosIterator.currentStats.photoIndex==photosIterator.currentStats.photosCount-1"
+              aria-hidden="true"></em>
+          </a>
+        </div>
+        <div class="col-auto">
+          <span class="image-counter">
+            <span>{{photosIterator.currentStats.photosCount>0?(photosIterator.currentStats.photoIndex+1 | integerNumberDraw):0}}
+              / {{photosIterator.currentStats.photosCount
+              | integerNumberDraw}}
+            </span>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col progressbar-column">
+      <div #progressBarLine class="progress-bar-line-wrapper" (click)="trackbarClick($event,progressBarLine)">
+        <div id="progress-bar-line" class="progress">
+          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+            [style.width]="photosIterator.currentStats.progress+'%'"></div>
+          <div #dragCursorElement class="progress-pointer"
+            [style.left]="dragCursor ? dragCursorPercent+'%' : photosIterator.currentStats.progress+'%'"
+            (mousedown)="mouseDown($event)" (window:mousemove)="mouseMove($event)" (window:mouseup)="mouseUp($event)"
+            (touchstart)="touchDown($event)" (touchmove)="touchMove($event)" (touchend)="touchUp($event)"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-auto mobile-hidden right-icons-column">
+      <div class="row">
+        <div *ngIf="photosIterator.currentStats.detectionId!=null && photosIterator.currentStats.detectionId>=0"
+          class="col right-icon-wrapper">
+          <!-- <div *ngIf="hint" class="col-auto pl-2"> -->
+          <a href="javascript:void(0);" (click)="callImageGalleryEvent({type:'detection-auto-zoom'})"
+            class="detection-zoom-icon" [class.active]="panAndZoomToDetectionEnabled"
+            ngbPopover="Zoom to traffic signs." triggers="mouseenter:mouseleave" placement="top">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Layer_1-2" data-name="Layer 1">
+                  <path class="cls-1"
+                    d="M27.26,0H4.74A4.74,4.74,0,0,0,0,4.74V27.26A4.74,4.74,0,0,0,4.74,32H27.26A4.74,4.74,0,0,0,32,27.26V4.74A4.74,4.74,0,0,0,27.26,0ZM25.54,25.54a1.44,1.44,0,0,1-1.08.46,1.41,1.41,0,0,1-1.08-.46l-4.12-4.11a8.22,8.22,0,0,1-4.8,1.49,8.44,8.44,0,0,1-3.29-.66,8.6,8.6,0,0,1-2.7-1.81,8.58,8.58,0,0,1-2.47-6,8.27,8.27,0,0,1,.67-3.29,8.27,8.27,0,0,1,4.5-4.5,8.41,8.41,0,0,1,6.58,0,8.3,8.3,0,0,1,2.7,1.8,8.6,8.6,0,0,1,1.81,2.7,8.44,8.44,0,0,1,.66,3.29,8.22,8.22,0,0,1-1.49,4.8l4.13,4.12A1.5,1.5,0,0,1,26,24.46,1.44,1.44,0,0,1,25.54,25.54Z" />
+                  <path class="cls-1"
+                    d="M14.46,9.08a5.15,5.15,0,0,0-3.8,1.58,5.15,5.15,0,0,0-1.58,3.8,5.39,5.39,0,0,0,5.38,5.39,5.39,5.39,0,0,0,5.39-5.39,5.39,5.39,0,0,0-5.39-5.38Z" />
+                </g>
+              </g>
+            </svg>
+          </a>
+        </div>
+        <div *ngIf="enabled360Button && currentPhotoValue && currentPhotoValue.projection=='SPHERE'"
+          class="col right-icon-wrapper">
+          <a href="javascript:void(0);" (click)="callImageGalleryEvent({type:'wrapped-360'})" class="p360-icon"
+            [class.active]="showFullSizeWrapped360" ngbPopover="Show panorama photos" triggers="mouseenter:mouseleave"
+            placement="top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18">
+              <path class="cls-1" fill="#FFF" fill-rule="evenodd"
+                d="M2,0 L23,0 C24.1045695,-2.02906125e-16 25,0.8954305 25,2 L25,16 C25,17.1045695 24.1045695,18 23,18 L2,18 C0.8954305,18 1.3527075e-16,17.1045695 0,16 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z M4.51877455,3.00464148 C4.21948537,3.04697334 3.99727134,3.31286397 4.00002532,3.62535189 L4.00002532,14.384342 C4.00164349,14.5873762 4.09913735,14.7767591 4.26108744,14.8914581 C4.42303752,15.0061571 4.628972,15.0316733 4.81252411,14.9597835 C7.03795241,14.0759834 9.89227616,13.5373282 13.0000119,13.5373282 C16.1077475,13.5373282 18.9620711,14.0759834 21.1874998,14.9597835 C21.3710519,15.0316733 21.5769864,15.0061571 21.7389365,14.8914581 C21.9008865,14.7767591 21.9983804,14.5873762 21.9999986,14.384342 L21.9999986,3.62535189 C22.0004279,3.42117169 21.903775,3.22982916 21.7415009,3.11360734 C21.5792268,2.99738552 21.3720845,2.97114776 21.1874998,3.04343459 C18.9620719,3.92724917 16.1077483,4.46589819 13.0000119,4.46589819 C9.89227536,4.46589819 7.03795161,3.92724917 4.81252411,3.04343459 C4.71927798,3.00531882 4.61828617,2.99198166 4.51877455,3.00464148 Z M5.20002354,4.47236371 C7.4450152,5.2435231 10.1059848,5.70731902 13.0000119,5.70731902 C15.8940388,5.70731902 18.5550087,5.2435231 20.8000004,4.47236371 L20.8000004,13.5308523 C18.5551685,12.7598729 15.8937004,12.2959073 13.0000119,12.2959073 C10.1063232,12.2959073 7.4448552,12.7598729 5.20002354,13.5308523 L5.20002354,4.47236371 Z M9.253,11.072 C10.213,11.072 10.831,10.586 10.831,9.896 C10.831,9.296 10.303,8.978 9.895,8.936 C10.339,8.858 10.771,8.528 10.771,8.024 C10.771,7.358 10.195,6.938 9.259,6.938 C8.557,6.938 8.053,7.208 7.729,7.574 L8.155,8.108 C8.437,7.838 8.785,7.694 9.175,7.694 C9.589,7.694 9.919,7.85 9.919,8.168 C9.919,8.462 9.619,8.594 9.175,8.594 C9.025,8.594 8.749,8.594 8.677,8.588 L8.677,9.356 C8.737,9.35 9.007,9.344 9.175,9.344 C9.733,9.344 9.979,9.488 9.979,9.806 C9.979,10.106 9.709,10.316 9.223,10.316 C8.833,10.316 8.395,10.148 8.125,9.86 L7.675,10.43 C7.969,10.79 8.521,11.072 9.253,11.072 Z M13.009,11.072 C13.921,11.072 14.545,10.478 14.545,9.698 C14.545,8.846 13.897,8.396 13.177,8.396 C12.739,8.396 12.337,8.642 12.151,8.912 C12.145,8.882 12.145,8.858 12.145,8.828 C12.145,8.192 12.559,7.694 13.147,7.694 C13.501,7.694 13.729,7.802 13.945,8.006 L14.329,7.352 C14.041,7.1 13.633,6.938 13.147,6.938 C11.965,6.938 11.281,7.796 11.281,9.008 C11.281,10.136 11.791,11.072 13.009,11.072 Z M12.961,10.316 C12.403,10.316 12.187,9.89 12.151,9.506 C12.343,9.266 12.637,9.128 12.937,9.128 C13.315,9.128 13.675,9.308 13.675,9.728 C13.675,10.004 13.423,10.316 12.961,10.316 Z M16.585,11.072 C17.731,11.072 18.241,10.034 18.241,9.002 C18.241,7.97 17.731,6.938 16.585,6.938 C15.439,6.938 14.929,7.97 14.929,9.002 C14.929,10.034 15.439,11.072 16.585,11.072 Z M16.585,10.316 C16.015,10.316 15.799,9.74 15.799,9.002 C15.799,8.264 16.015,7.694 16.585,7.694 C17.161,7.694 17.371,8.264 17.371,9.002 C17.371,9.74 17.155,10.316 16.585,10.316 Z" />
+            </svg>
+          </a>
+        </div>
+        <div class="col right-icon-wrapper">
+          <a href="javascript:void(0);" (click)="callImageGalleryEvent({type:'hq'})" class="hq-icon"
+            [class.active]="showFullSizePhotos">
+            <!-- ngbPopover="Load full resolution image to help." triggers="mouseenter:mouseleave" placement="left" -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Layer_1-2" data-name="Layer 1">
+                  <path class="cls-1"
+                    d="M27.26,0H4.74A4.74,4.74,0,0,0,0,4.74V27.26A4.74,4.74,0,0,0,4.74,32H27.26A4.74,4.74,0,0,0,32,27.26V4.74A4.74,4.74,0,0,0,27.26,0ZM14,22H11V18H7v4H4V10H7v5h4V10h3Zm13-2.91c0,.48,0,1.91-2,1.91H24v3H21V21H19c-2,0-2-1.43-2-1.91v-6.7c0-.48,0-2.39,2-2.39h6c2,0,2,1.91,2,2.39Z" />
+                  <rect class="cls-1" x="20" y="13" width="4" height="6" />
+                </g>
+              </g>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="image-track-bar-mobile-wrapper">
+  <div class="row arrows-row">
+    <div class="col-auto">
+      <span class="image-counter">
+        <span
+          class="current-index">{{photosIterator.currentStats.photosCount>0?photosIterator.currentStats.photoIndex+1:0}}</span>
+        <span class="max-index">/{{photosIterator.currentStats.photosCount}}</span>
+      </span>
+    </div>
+    <div class="col text-right">
+      <a href="javascript:void(0);" (click)="prevPhoto()">
+        <em class="arrow-icon fa fa-angle-left" [class.inactive]="photosIterator.currentStats.photoIndex==0"
+          aria-hidden="true"></em>
+      </a>
+    </div>
+    <div class="col text-left">
+      <a href="javascript:void(0);" (click)="nextPhoto()">
+        <em class="arrow-icon fa fa-angle-right"
+          [class.inactive]="photosIterator.currentStats.photoIndex==photosIterator.currentStats.photosCount-1"
+          aria-hidden="true"></em>
+      </a>
+    </div>
+    <div class="col-auto">
+      <div class="dropup-menu-wrapper">
+        <a href="javascript:void(0);" (click)="openDropUpMenu()">
+          <em class="icon fa fa-cog"></em>
+        </a>
+        <div *ngIf="mobileDropDownVisible" class="dropup-menu">
+          <em
+            *ngIf="!rotationStarted && sequenceData!=null?(currentPhotoValue | aclPermission:'delete':sequenceData.userId):false"
+            class="fa fa-trash-o first" aria-hidden="true" (click)="callImageGalleryEvent({type:'delete'})"></em>
+          <a class="fa fa-download" aria-hidden="true" target="_blank"
+            [href]="currentPhotoValue? (currentPhotoValue.isUnwrapped && showFullSizeWrapped360 ? currentPhotoValue.wrappedUrl.replace('wrapped_lth','wrapped'):currentPhotoValue.procUrl) : 'javascript:void(0);'"
+            download></a>
+          <em *ngIf="sequenceData!=null?(currentPhotoValue | aclPermission:'rotate':sequenceData.userId):false"
+            class="fa fa-repeat" aria-hidden="true" [class.active]="rotationDirection==1"
+            (click)="callImageGalleryEvent({type:'rotate-right'})"></em>
+          <em *ngIf="sequenceData!=null?(currentPhotoValue | aclPermission:'rotate':sequenceData.userId):false"
+            class="fa fa-undo" aria-hidden="true" [class.active]="rotationDirection==-1"
+            (click)="callImageGalleryEvent({type:'rotate-left'})"></em>
+          <em aria-hidden="true" (click)="!rotationStarted ? callImageGalleryEvent({type:'hq'}): false" class="hq-icon"
+            [class.active]="showFullSizePhotos" [style.opacity]="!rotationStarted?1:0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+              <g id="Layer_2" data-name="Layer 2">
+                <g id="Layer_1-2" data-name="Layer 1">
+                  <path class="cls-1"
+                    d="M27.26,0H4.74A4.74,4.74,0,0,0,0,4.74V27.26A4.74,4.74,0,0,0,4.74,32H27.26A4.74,4.74,0,0,0,32,27.26V4.74A4.74,4.74,0,0,0,27.26,0ZM14,22H11V18H7v4H4V10H7v5h4V10h3Zm13-2.91c0,.48,0,1.91-2,1.91H24v3H21V21H19c-2,0-2-1.43-2-1.91v-6.7c0-.48,0-2.39,2-2.39h6c2,0,2,1.91,2,2.39Z" />
+                  <rect class="cls-1" x="20" y="13" width="4" height="6" />
+                </g>
+              </g>
+            </svg>
+          </em>
+          <em *ngIf="enabled360Button && currentPhotoValue && currentPhotoValue.projection=='SPHERE'" aria-hidden="true"
+            (click)="!rotationStarted ? callImageGalleryEvent({type:'wrapped-360'}): false" class="p360-icon"
+            [class.active]="showFullSizeWrapped360" [style.opacity]="!rotationStarted?1:0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="18" viewBox="0 0 25 18">
+              <path class="cls-1" fill="#FFF" fill-rule="evenodd"
+                d="M2,0 L23,0 C24.1045695,-2.02906125e-16 25,0.8954305 25,2 L25,16 C25,17.1045695 24.1045695,18 23,18 L2,18 C0.8954305,18 1.3527075e-16,17.1045695 0,16 L0,2 C-1.3527075e-16,0.8954305 0.8954305,2.02906125e-16 2,0 Z M4.51877455,3.00464148 C4.21948537,3.04697334 3.99727134,3.31286397 4.00002532,3.62535189 L4.00002532,14.384342 C4.00164349,14.5873762 4.09913735,14.7767591 4.26108744,14.8914581 C4.42303752,15.0061571 4.628972,15.0316733 4.81252411,14.9597835 C7.03795241,14.0759834 9.89227616,13.5373282 13.0000119,13.5373282 C16.1077475,13.5373282 18.9620711,14.0759834 21.1874998,14.9597835 C21.3710519,15.0316733 21.5769864,15.0061571 21.7389365,14.8914581 C21.9008865,14.7767591 21.9983804,14.5873762 21.9999986,14.384342 L21.9999986,3.62535189 C22.0004279,3.42117169 21.903775,3.22982916 21.7415009,3.11360734 C21.5792268,2.99738552 21.3720845,2.97114776 21.1874998,3.04343459 C18.9620719,3.92724917 16.1077483,4.46589819 13.0000119,4.46589819 C9.89227536,4.46589819 7.03795161,3.92724917 4.81252411,3.04343459 C4.71927798,3.00531882 4.61828617,2.99198166 4.51877455,3.00464148 Z M5.20002354,4.47236371 C7.4450152,5.2435231 10.1059848,5.70731902 13.0000119,5.70731902 C15.8940388,5.70731902 18.5550087,5.2435231 20.8000004,4.47236371 L20.8000004,13.5308523 C18.5551685,12.7598729 15.8937004,12.2959073 13.0000119,12.2959073 C10.1063232,12.2959073 7.4448552,12.7598729 5.20002354,13.5308523 L5.20002354,4.47236371 Z M9.253,11.072 C10.213,11.072 10.831,10.586 10.831,9.896 C10.831,9.296 10.303,8.978 9.895,8.936 C10.339,8.858 10.771,8.528 10.771,8.024 C10.771,7.358 10.195,6.938 9.259,6.938 C8.557,6.938 8.053,7.208 7.729,7.574 L8.155,8.108 C8.437,7.838 8.785,7.694 9.175,7.694 C9.589,7.694 9.919,7.85 9.919,8.168 C9.919,8.462 9.619,8.594 9.175,8.594 C9.025,8.594 8.749,8.594 8.677,8.588 L8.677,9.356 C8.737,9.35 9.007,9.344 9.175,9.344 C9.733,9.344 9.979,9.488 9.979,9.806 C9.979,10.106 9.709,10.316 9.223,10.316 C8.833,10.316 8.395,10.148 8.125,9.86 L7.675,10.43 C7.969,10.79 8.521,11.072 9.253,11.072 Z M13.009,11.072 C13.921,11.072 14.545,10.478 14.545,9.698 C14.545,8.846 13.897,8.396 13.177,8.396 C12.739,8.396 12.337,8.642 12.151,8.912 C12.145,8.882 12.145,8.858 12.145,8.828 C12.145,8.192 12.559,7.694 13.147,7.694 C13.501,7.694 13.729,7.802 13.945,8.006 L14.329,7.352 C14.041,7.1 13.633,6.938 13.147,6.938 C11.965,6.938 11.281,7.796 11.281,9.008 C11.281,10.136 11.791,11.072 13.009,11.072 Z M12.961,10.316 C12.403,10.316 12.187,9.89 12.151,9.506 C12.343,9.266 12.637,9.128 12.937,9.128 C13.315,9.128 13.675,9.308 13.675,9.728 C13.675,10.004 13.423,10.316 12.961,10.316 Z M16.585,11.072 C17.731,11.072 18.241,10.034 18.241,9.002 C18.241,7.97 17.731,6.938 16.585,6.938 C15.439,6.938 14.929,7.97 14.929,9.002 C14.929,10.034 15.439,11.072 16.585,11.072 Z M16.585,10.316 C16.015,10.316 15.799,9.74 15.799,9.002 C15.799,8.264 16.015,7.694 16.585,7.694 C17.161,7.694 17.371,8.264 17.371,9.002 C17.371,9.74 17.155,10.316 16.585,10.316 Z" />
+            </svg>
+          </em>
+          <em class="fa fa-times last" aria-hidden="true" (click)="closeDropUpMenu()"></em>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="near-by-tracks-wrapper" [class.data-available]="photos && photos.length>0 && !isLoading"
+  [class.flexbox-parent]="photos.length>0 && !isLoading">
+  <div class="near-by-tracks-header">
+    <div class="row">
+      <div class="col-auto">
+        <div class="close-btn" (click)="closeModal()">
+          <em class="fa fa-times" aria-hidden="true"></em>
+        </div>
+      </div>
+      <div class="col">
+        <div class="title">Nearby tracks</div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="photos.length>0 && !isLoading" class="flexbox-content">
+    <div class="near-by-tracks-inner flexbox-main flexbox-hbox">
+      <div class="flexbox-nav arrow-wrapper" (click)="moveSliderRight()">
+        <div class="previous">
+          <em class="fa fa-angle-left" aria-hidden="true"></em>
+        </div>
+      </div>
+      <div class="flexbox-content flexbox-hbox tracks-wrapper" [style.width]="(width-sliderControlsWidth)+'px'">
+        <div #trackItems class="row flex-row flex-nowrap">
+
+
+
+          <div class="card" *ngFor="let photo of photos; let i = index">
+            <div class="align-text-top">
+              <div class="card-text location">
+                <div class="location-inner">{{photo.sequence.address}}</div>
+              </div>
+              <div class="card-text">
+                <em class="fa fa-camera" aria-hidden="true"></em> {{photo.sequence.countActivePhotos}}
+                <em>IMG</em>
+                <em class="fa fa-car" aria-hidden="true"></em> {{photo.sequence.distance}}
+                <em>KM</em> {{photo.sequence.dateAdded}}</div>
+            </div>
+            <a class="image-thumb" [routerLink]="['/details',photo.sequenceId,photo.sequenceIndex]">
+              <span class="img-replacement" [ngStyle]="{'background-image': 'url('+photo.thUrl+')'}">
+              </span>
+              <img class="card-img-bottom" src="{{photo.thUrl}}" alt="{{photo.sequence.address}}">
+            </a>
+          </div>
+
+
+
+        </div>
+      </div>
+      <div class="flexbox-nav arrow-wrapper">
+        <div class="next" (click)="moveSliderLeft()">
+          <em class="fa fa-angle-right" aria-hidden="true"></em>
+        </div>
+      </div>
+    </div>
+  </div>
+  <osc-loading *ngIf="isLoading && !errorFound" title="Loading nearby photos..."></osc-loading>
+  <osc-error *ngIf="errorFound" title="Nearby photos cannot be loaded..." [backButtonEnabled]="false"></osc-error>
+  <osc-error *ngIf="!errorFound && !isLoading && photos.length==0" title="Cannot find nearby photos..." level="warning"
+    [backButtonEnabled]="false"></osc-error>
+
+</div>

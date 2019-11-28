@@ -1,0 +1,61 @@
+.social-login-button {
+  width: 100%;
+  max-width: 350px;
+  height: 45px;
+  border-radius: 2px;
+  margin: 10px auto;
+  display: table;
+}
+
+.social-login-button .social-login-button-icon {
+  display: table-cell;
+  width: 80px;
+  max-width: 80px;
+  min-width: 80px;
+}
+
+.social-login-button .social-login-button-text {
+  display: table-cell;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: .6px;
+  vertical-align: middle;
+  text-align: left;
+}
+
+.social-login-button.facebook {
+  background-color: #3c66c4;
+  color: white;
+}
+.social-login-button.facebook:hover {
+  background-color: #3457a8;
+}
+.social-login-button.facebook .social-login-button-icon {
+  background: url('/assets/images/social-login/facebook-icon.svg') no-repeat center center;
+}
+
+.social-login-button.google {
+  background-color: #cf4332;
+  color: white;
+}
+.social-login-button.google:hover {
+  background-color: #b53d2d;
+}
+
+.social-login-button.google .social-login-button-icon {
+  background: url('/assets/images/social-login/google-icon.svg') no-repeat center center;
+}
+
+.social-login-button.openstreetmap {
+  background-color: #d9e0e3;
+  color: #000;
+}
+.social-login-button.openstreetmap:hover {
+  background-color: #c1c7c9;
+}
+
+.social-login-button.openstreetmap .social-login-button-icon {
+  background: url('/assets/images/social-login/osm-icon.png') no-repeat center center;
+}

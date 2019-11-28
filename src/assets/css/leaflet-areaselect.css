@@ -1,0 +1,13 @@
+.leaflet-areaselect-shade {
+    position: absolute;
+    background: rgba(0,0,0, .4);
+}
+.leaflet-areaselect-handle {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #666;
+    box-shadow: 1px 1px rgba(0,0,0, .2);
+    width: 14px;
+    height: 14px;
+    cursor: move;
+}

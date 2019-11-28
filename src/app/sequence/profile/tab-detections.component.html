@@ -1,0 +1,274 @@
+<div class="tab-wrapper" [class.no-padding-top]="addSelectionInProgress">
+  <h2 *ngIf="!addSelectionInProgress" class="section-title">Traffic signs</h2>
+  <div *ngIf="!currentDetection && !addSignFlowEnabled">
+    <div class="section-description">Tag traffic signs and check automatic detections to improve OpenStreetCam’s
+      training sets.</div>
+    <div class="section-spacing"></div>
+    <div class="section-subtitle">Tag signs</div>
+    <!--<div class="section-description">Add traffic signs or confirm there’s no sign to add in this photo.</div>-->
+  </div>
+  <div *ngIf="!addSelectionInProgress && !photosIterator.panoramaViewerEnabled.value">
+    <div *ngIf="addSignFlowEnabled" class="section-button-wrapper">
+      <div class="section-button" [class.disabled]="!addSignFlowEnabled" [class.gray]="!addSignFlowEnabled"
+        (click)="startAddSignFlow()">New traffic sign (A)</div>
+    </div>
+
+    <div *ngIf="!currentDetection" class="filters-root">
+      <!--<div class="section-button-wrapper">
+        <div class="section-button gray">Marked as image without signs</div>
+      </div>-->
+
+      <!--<div class="section-filters-wrapper">
+        <osc-detections-filter-item [value]="photosIterator.filters.imagesValidation.notVerified" label="Images to be checked" [count]="photosIterator.filtersCounts.imagesValidation.notVerified"
+          (change)="photosIterator.filters.switchImagesValidationStatus('not-verified');" [notVerifiedCount]="true" [disabled]="photosIterator.filtersCounts.imagesValidation.total == 0"
+          hint="Photos with no added traffic signs but not marked as without visible signs."></osc-detections-filter-item>
+        <osc-detections-filter-item [value]="photosIterator.filters.imagesValidation.verified.confirmed && photosIterator.filters.imagesValidation.verified.removed && photosIterator.filters.imagesValidation.verified.edited"
+          label="Checked images" [partialValue]="photosIterator.filters.imagesValidation.verified.confirmed || photosIterator.filters.imagesValidation.verified.removed || photosIterator.filters.imagesValidation.verified.edited"
+          [hasPartialValue]="true" [hasExpand]="true" [expandStatus]="imagesValidationVerifiedVisible" (expandCallback)="imagesValidationVerifiedVisible=!imagesValidationVerifiedVisible"
+          [count]="photosIterator.filtersCounts.imagesValidation.verified.total" (change)="photosIterator.filters.switchImagesValidationStatus('verified');"
+          [autoDisable]="true" hint="Photos with added traffic signs or marked as without visible traffic signs."></osc-detections-filter-item>
+
+        <div *ngIf="imagesValidationVerifiedVisible" class="ident-left">
+          <osc-detections-filter-item [value]="photosIterator.filters.imagesValidation.verified.confirmed" label="Images with added signs"
+            [count]="photosIterator.filtersCounts.imagesValidation.verified.confirmed" (change)="photosIterator.filters.switchImagesValidationStatus('confirmed');"
+            [autoDisable]="true" hint="Photos with tagged traffic signs."></osc-detections-filter-item>
+          <osc-detections-filter-item [value]="photosIterator.filters.imagesValidation.verified.removed" label="Images without signs"
+            [count]="photosIterator.filtersCounts.imagesValidation.verified.removed" (change)="photosIterator.filters.switchImagesValidationStatus('removed');"
+            [autoDisable]="true" hint="Photos marked as without visible traffic signs."></osc-detections-filter-item>
+        </div>
+      </div>-->
+
+
+
+      <div *ngIf="addSignFlowEnabled" class="section-separator-wrapper">
+        <div class="section-separator"></div>
+      </div>
+
+
+      <div class="section-subtitle">Validate detections
+        <span *ngIf="photosIterator.filtersCounts.validation.total > 0"> -
+          {{photosIterator.filtersCounts.validation.total | integerNumberDraw}} signs</span>
+      </div>
+      <div *ngIf="photosIterator.filtersCounts.validation.total === 0" class="section-warning-wrapper">
+        <div class="row section-warning">
+          <div class="col-auto icon-wrapper">
+            <div class="icon"></div>
+          </div>
+          <div class="col description">
+            Traffic sign detection is not yet available for this track.
+          </div>
+        </div>
+      </div>
+      <div *ngIf="photosIterator.filtersCounts.validation.total > 0">
+        <div class="section-description">Check the automatic detection for errors.</div>
+
+        <div *ngIf="signFilterEnabled" class="section-filters-wrapper">
+          <osc-detections-filter-sign [signsList]="signsList" [objectValue]="photosIterator.filters.signSelection"
+            [arrayValue]="photosIterator.filters.signSelectionArray"
+            (change)="photosIterator.filters.switchSignSelection($event);"
+            [allPhotosSelectionValue]="photosIterator.filters.allPhotoDetections"
+            [signFilterSelectedRegion]="photosIterator.filters.signViewRegion"
+            (signFilterSelectedRegionChange)="photosIterator.filters.setSignViewRegion($event.signRegion)">
+          </osc-detections-filter-sign>
+          <osc-detections-filter-item [value]="photosIterator.filters.allPhotoDetections"
+            label="All adjacent detections"
+            (change)="photosIterator.filters.switchAllPhotoDetections(!photosIterator.filters.allPhotoDetections);"
+            [hasCount]="false"></osc-detections-filter-item>
+        </div>
+        <div *ngIf="photosIterator.filtersCounts.validation.total>0">
+          <div class="section-filters-wrapper">
+            <osc-detections-filter-item [value]="photosIterator.filters.validation.notVerified" label="Need review"
+              [count]="photosIterator.filtersCounts.validation.notVerified"
+              (change)="photosIterator.filters.switchValidationStatus('not-verified');" [notVerifiedCount]="true"
+              [disabled]="photosIterator.filtersCounts.validation.total == 0"
+              hint="Automatic detections to be checked by a reviewer."></osc-detections-filter-item>
+            <osc-detections-filter-item
+              [value]="photosIterator.filters.validation.verified.confirmed && photosIterator.filters.validation.verified.removed &&photosIterator.filters.validation.verified.notSure &&  photosIterator.filters.validation.verified.edited"
+              label="Reviewed"
+              [partialValue]="photosIterator.filters.validation.verified.confirmed || photosIterator.filters.validation.verified.removed || photosIterator.filters.validation.verified.notSure || photosIterator.filters.validation.verified.edited"
+              [hasPartialValue]="true" [hasExpand]="true" [expandStatus]="validationVerifiedVisible"
+              (expandCallback)="validationVerifiedVisible=!validationVerifiedVisible"
+              [count]="photosIterator.filtersCounts.validation.verified.total"
+              (change)="photosIterator.filters.switchValidationStatus('verified');" [autoDisable]="true">
+            </osc-detections-filter-item>
+
+            <div *ngIf="validationVerifiedVisible" class="ident-left">
+              <osc-detections-filter-item [value]="photosIterator.filters.validation.verified.confirmed"
+                label="Confirmed" [count]="photosIterator.filtersCounts.validation.verified.confirmed"
+                (change)="photosIterator.filters.switchValidationStatus('confirmed');" [autoDisable]="true"
+                hint="Detections confirmed as valid by a reviewer."></osc-detections-filter-item>
+              <osc-detections-filter-item [value]="photosIterator.filters.validation.verified.removed" label="Removed"
+                [count]="photosIterator.filtersCounts.validation.verified.removed"
+                (change)="photosIterator.filters.switchValidationStatus('removed');" [autoDisable]="true"
+                hint="Detections determined to be false positives by a reviewer."></osc-detections-filter-item>
+              <osc-detections-filter-item [value]="photosIterator.filters.validation.verified.notSure" label="Not sure"
+                [count]="photosIterator.filtersCounts.validation.verified.notSure"
+                (change)="photosIterator.filters.switchValidationStatus('notSure');" [autoDisable]="true"
+                hint="Not sure."></osc-detections-filter-item>
+              <osc-detections-filter-item [value]="photosIterator.filters.validation.verified.edited" label="Edited"
+                [count]="photosIterator.filtersCounts.validation.verified.edited"
+                (change)="photosIterator.filters.switchValidationStatus('edited');" [autoDisable]="true"
+                hint="Detections with the traffic sign type changed by a reviewer."></osc-detections-filter-item>
+            </div>
+          </div>
+
+          <div *ngIf="photosIterator.filtersCounts.validation.total>0" class="section-separator-wrapper">
+            <div class="section-separator"></div>
+          </div>
+
+          <osc-detections-filter-item [value]="photosIterator.filters.detectionType.automatic"
+            label="Automatic detection" [count]="photosIterator.filtersCounts.detectionType.automatic"
+            (change)="photosIterator.filters.switchDetectionType('automatic');" [autoDisable]="true">
+          </osc-detections-filter-item>
+          <osc-detections-filter-item [value]="photosIterator.filters.detectionType.manual" label="Manually tagged"
+            [count]="photosIterator.filtersCounts.detectionType.manual"
+            (change)="photosIterator.filters.switchDetectionType('manual');" [autoDisable]="true">
+          </osc-detections-filter-item>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="currentDetection" class="tab-modal-wrapper">
+      <div class="row">
+        <div class="col tab-modal-title pl-3">Details</div>
+        <div class="col-auto">
+          <div class="tab-modal-close pr-3" (click)="closeDetectionDetails()">
+            <em class="fa fa-times"></em>
+          </div>
+        </div>
+      </div>
+      <div class="tab-modal-content">
+        <div class="track-details-wrapper">
+          <div class="track-details-wrapper-inner">
+            <div class="row track-details">
+              <div class="col label">Status</div>
+              <div class="col details">
+                {{currentDetectionLabels.validationStatus}}
+              </div>
+            </div>
+            <div class="row track-details">
+              <div class="col label">Id</div>
+              <div class="col details">
+                {{currentDetection.id}}
+              </div>
+            </div>
+            <div *ngIf="currentDetection.componentValue" class="row track-details">
+              <div class="col label">Text</div>
+              <div class="col details">
+                {{currentDetection.componentValue}}
+              </div>
+            </div>
+            <div *ngIf="currentDetection.author.username && currentDetection.mode==='MANUAL'" class="row track-details">
+              <div class="col label">Author</div>
+              <div class="col details">
+                {{currentDetection.author.username}},
+                {{currentDetection.creationTimestamp?(currentDetection.creationTimestamp+'000' | date:'shortDate'):''}}
+              </div>
+            </div>
+            <div *ngIf="oscContribution" class="row track-details">
+              <div class="col label">Reviewer</div>
+              <div class="col details">
+                {{oscContribution.author.username}}, {{oscContribution.creationTimestamp | date:'shortDate'}}
+              </div>
+            </div>
+          </div>
+          <div *ngIf="signsList && signsList.components[currentDetection.sign.internalName]">
+            <div *ngIf="addSignFlowEnabled" class="section-subtitle pt-5">Subcomponents</div>
+            <div *ngIf="!editSignFlowStarted && !addSignFlowStarted && addSignFlowEnabled"
+              class="section-button-wrapper">
+              <div class="section-button gray" (click)="startAddSignComponentFlow()">New subcomponent(?)</div>
+            </div>
+
+          </div>
+          <div class="section-subtitle pt-5">Review detection</div>
+
+          <div *ngIf="!editSignFlowStarted" class="row multiple-buttons"
+            [class.no-border]="currentDetection.validationStatus=='CONFIRMED' || currentDetection.validationStatus=='REMOVED' || currentDetection.validationStatus=='TO_BE_REVIEWED_LATER'">
+            <div class="col">
+              <div class="multiple-buttons-item" [class.green]="currentDetection.validationStatus=='CONFIRMED'"
+                (click)="validateDetection()">
+                Correct<br />(Cmd + &uarr;)
+              </div>
+            </div>
+            <div class="col">
+              <div class="multiple-buttons-item" [class.red]="currentDetection.validationStatus=='REMOVED'"
+                (click)="invalidateDetection()">
+                Incorrect<br />(Cmd + &darr;)
+              </div>
+            </div>
+            <div class="col">
+              <div class="multiple-buttons-item" [class.not-sure]="currentDetection.validationStatus=='TO_BE_REVIEWED_LATER'"
+                (click)="reviewLaterDetection()">
+                Not sure<br />(Cmd + ?)
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="!editSignFlowStarted && editSignFlowEnabled" class="section-button-wrapper">
+            <div class="section-button gray" (click)="startEditSignFlow()">Edit sign type (E)</div>
+          </div>
+        </div>
+        <osc-sequence-add-sign *ngIf="editSignFlowStarted && !currentDetection.parentId" [signsList]="signsList"
+          [currentSign]="currentDetection.sign" (signChange)="editSignChange($event)"></osc-sequence-add-sign>
+        <osc-sequence-add-sign-component *ngIf="editSignFlowStarted && currentDetection.parentId"
+          [signComponentsList]="signsList.components[currentDetection.parentDetection.sign.internalName]"
+          [currentSign]="currentDetection.sign" (signChange)="editSignChange($event)"></osc-sequence-add-sign-component>
+
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="addSelectionInProgress && !photosIterator.panoramaViewerEnabled.value" class="tab-modal-wrapper">
+    <div *ngIf="!addSelectionInProgressParent">
+      <div class="row big-section-title">
+        <div class="col pl-3">
+          <h2 class="section-title">New traffic sign</h2>
+        </div>
+        <div class="col-auto">
+          <div class="tab-modal-close pr-3" (click)="closeAddSignFlow()">
+            <em class="fa fa-times"></em>
+          </div>
+        </div>
+      </div>
+      <div class="tab-modal-content">
+        <div *ngIf="selectionInProgressRegion" class="tab-wrapper-side">
+          <div class="section-description">Select existing or create a new one if you can’t find what you’re looking
+            for.</div>
+          <div *ngIf="addSignTypeFlowEnabled && selectionInProgressRegion">
+            <div class="section-button-wrapper">
+              <div class="section-button" (click)="startAddSignTypeFlow()">Create Sign (Shift+N)</div>
+            </div>
+            <div class="section-separator-wrapper">
+              <div class="section-separator"></div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!selectionInProgressRegion" class="tab-wrapper-side">
+          <div class="section-description">Select a traffic sign from the photo.</div>
+        </div>
+        <osc-sequence-add-sign *ngIf="selectionInProgressRegion" [signsList]="signsList"
+          (signChange)="addSignEvent($event)" [defaultCountryCode]="defaultCountryCode"></osc-sequence-add-sign>
+      </div>
+    </div>
+    <div *ngIf="addSelectionInProgressParent">
+      <div class="row">
+        <div class="col pl-3">
+          <h2 class="section-title">New sign component</h2>
+        </div>
+        <div class="col-auto">
+          <div class="tab-modal-close pr-3" (click)="closeAddSignFlow()">
+            <em class="fa fa-times"></em>
+          </div>
+        </div>
+      </div>
+      <div class="tab-modal-content">
+        <div *ngIf="!selectionInProgressRegion" class="tab-wrapper-side">
+          <div class="section-description">Select a component of the signpost.</div>
+        </div>
+        <osc-sequence-add-sign-component *ngIf="selectionInProgressRegion"
+          [signComponentsList]="signsList.components[addSelectionInProgressParent.sign.internalName]"
+          (signChange)="addSignEvent($event)"></osc-sequence-add-sign-component>
+      </div>
+    </div>
+  </div>
+</div>

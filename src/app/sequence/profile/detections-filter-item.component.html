@@ -1,0 +1,30 @@
+<div class="row" [class.disabled]="disabled">
+  <div class="col">
+    <div class="osc-checkbox-row">
+      <div class="row" (click)="checkboxClick()">
+        <div class="col-auto">
+          <div class="osc-checkbox" [class.checked]="value" [class.partial-checked]="!value && partialValue && hasPartialValue"></div>
+        </div>
+        <div class="col-auto">
+          <div class="osc-checkbox-label">
+            {{label}}
+          </div>
+        </div>
+        <div *ngIf="hint" class="col-auto pl-2">
+          <div class="hint-icon" [ngbTooltip]="hint"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="hasCount" class="col-auto">
+    <span class="badge badge-pill" [class.blue-badge]="!disabled && notVerifiedCount && _count>0" [class.green-badge]="!disabled && notVerifiedCount && _count===0">{{disabled ? '-': (notVerifiedCount && _count===0?'DONE':(_count | integerNumberDraw))}}</span>
+  </div>
+  <div *ngIf="hasExpand" class="col-auto" (click)="expandCallback.emit();">
+    <div class="osc-checkbox-expand">
+      <em class="fa" [class.fa-angle-down]="expandStatus" [class.fa-angle-left]="!expandStatus"></em>
+    </div>
+  </div>
+  <div *ngIf="!hasExpand" class="col-auto">
+    <div class="osc-checkbox-expand-space"></div>
+  </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="row title-wrapper">
+  <div class="col">
+    <div class="section-subtitle">Points breakdown</div>
+  </div>
+  <div class="col">
+    <div class="highlight-points float-right">{{uploadHistory.points?(uploadHistory.points.total | integerNumberDraw): 'invalid'}} pts.</div>
+  </div>
+</div>
+<div class="gamification-info">
+  You receive between 1 and 10 points per photo. New roads receive most points!
+</div>
+
+
+<table style="border:none; margin-top: 15px; clear: both">
+  <tbody>
+    <tr>
+      <th>Coverage</th>
+      <th>Photos</th>
+      <th>Distance</th>
+      <th>Points</th>
+    </tr>
+
+
+    <tr *ngFor="let coverageItem of uploadHistory.coverage; let i = index">
+      <td>{{coverageItem.coverageValue === '-'?'New road':coverageItem.coverageValue}}</td>
+      <td>{{coverageItem.coveragePhotosCount | integerNumberDraw}}</td>
+      <td>{{coverageItem.coverageDistance | floatNumberDraw}}km</td>
+      <td>{{coverageItem.coveragePoints | integerNumberDraw}}</td>
+    </tr>
+  </tbody>
+</table>

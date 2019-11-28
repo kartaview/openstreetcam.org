@@ -1,0 +1,49 @@
+<div *ngIf="userData.gamification" class="top-header">
+  <div id="userDetails">
+    <ul class="list-inline user-info">
+      <li>
+        <h1>{{userData.fullName}}</h1>
+      </li>
+
+      <li class="gamification-level" [attr.data-pct]="userData.gamification.level">
+        <span>Level</span>
+        <svg id="svg" width="100" height="100" viewport="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+          <circle stroke="#80cee9" stroke-width="6px" [attr.r]="levelGaugeRadius" cx="50" cy="50" fill="transparent" stroke-dasharray="251.33"
+            stroke-dashoffset="0"></circle>
+          <circle stroke="#fff" stroke-width="6px" class="gauge-fill" [attr.r]="levelGaugeRadius" cx="50" cy="50" fill="transparent"
+            stroke-dasharray="251.33" [attr.stroke-dashoffset]="levelPercentage" transform="rotate(-90 50 50)"></circle>
+        </svg>
+      </li>
+
+      <li>
+        <span>Total points</span>
+        <span>{{userData.gamification.totalUserPoints | integerNumberDraw}}</span>
+      </li>
+      <li>
+        <span>Points to next level</span>
+        <span>
+          <div *ngIf="(userData.gamification.levelTarget - userData.gamification.totalUserPoints) > 0">
+            {{userData.gamification.levelTarget - userData.gamification.totalUserPoints | integerNumberDraw}}
+          </div>
+          <div *ngIf="!((userData.gamification.levelTarget - userData.gamification.totalUserPoints) > 0)">-</div>
+        </span>
+      </li>
+      <li *ngIf="userData.gamification.totalUserWaylensPoints>0">
+        <span>Points with waylens</span>
+        <span>{{userData.gamification.totalUserWaylensPoints | integerNumberDraw}}</span>
+      </li>
+      <li>
+        <a class="overall-rank">
+          <span>Overall rank</span>
+          <span>{{userData.gamification.rank || '-'}}</span>
+        </a>
+      </li>
+      <li>
+        <a class="weekly-rank">
+          <span>Weekly rank</span>
+          <span>{{userData.gamification.rankWeekly || '-'}}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

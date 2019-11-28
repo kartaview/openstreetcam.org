@@ -1,0 +1,59 @@
+<div #galleryWrapper class="gallery-wrapper">
+  <div id="streetGalleryRenderer" class="street-gallery-renderer" (mousedown)="addSignMouseDown($event)"
+    (window:mousemove)="addSignMouseMove($event)" (touchstart)="addSignTouchStart($event)"
+    (window:touchmove)="addSignTouchMove($event)" (window:touchend)="addSignTouchUp($event)"
+    (click)="proceedDetectionSelectionByClick($event)">
+    <div *ngIf="addSignStarted" class="add-sign-selection-rectangle detection-region" [style.left.px]="addSignX"
+      [style.top.px]="addSignY" [style.width.px]="addSignWidth" [style.height.px]="addSignHeight">
+    </div>
+    <div *ngIf="addSignStarted" class="new-selection-viewport" (window:mouseup)="addSignMouseUp($event)">
+    </div>
+    <div *ngIf="imagesLoading>imagesLoaded+imagesLoadedErrors" class="street-gallery-images-loading">
+      <div class="loading"></div>
+      <span class="marker-index">{{imagesLoaded}}</span>
+      <span class="grey-color">/</span>
+      <span class="grey-color">{{imagesLoading}}</span>
+    </div>
+    <div *ngIf="debugScreenCenter" class="vertical-debug-line"></div>
+    <div *ngIf="debugScreenCenter" class="horizontal-debug-line"></div>
+    <div *ngIf="noImageError" class="no-image-error-message-wrapper">
+      <div class="no-image-error-message">{{noImageErrorMessage}}</div>
+    </div>
+  </div>
+  <div *ngIf="loadingPhoto" class="street-gallery-loading-wrapper">
+    <div class="loading">
+    </div>
+  </div>
+  <div *ngIf="rotationDirection!==0" class="rotation-modal-wrapper">
+    <div class="modal-content">
+      <div class="modal-body">
+        Rotate image
+      </div>
+      <div class="modal-footer">
+        <div class="row w-100">
+          <div class="col">
+            <button class="btn btn-secondary w-100" type="button" (click)="cancelRotation()">Cancel</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-danger w-100" (click)="saveRotation()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="controlsVisible" class="photo-controls">
+    <em *ngIf="sequenceData!=null?(currentPhotoValue | aclPermission:'delete':sequenceData.userId):false"
+      class="fa fa-trash-o single-control" aria-hidden="true" (click)="callImageGalleryEvent({type:'delete'})"></em>
+    <a class="fa fa-download first" aria-hidden="true" target="_blank"
+      [href]="currentPhotoValue? (currentPhotoValue.isUnwrapped && showFullSizeWrapped360? currentPhotoValue.wrappedUrl.replace('wrapped_lth','wrapped'):currentPhotoValue.procUrl) : 'javascript:void(0);'"
+      download></a>
+    <em *ngIf="sequenceData!=null?(currentPhotoValue | aclPermission:'rotate':sequenceData.userId):false"
+      class="fa fa-repeat" aria-hidden="true" [class.active]="rotationDirection==1"
+      (click)="callImageGalleryEvent({type:'rotate-right'})"></em>
+    <em *ngIf="sequenceData!=null?(currentPhotoValue | aclPermission:'rotate':sequenceData.userId):false"
+      class="fa fa-undo" aria-hidden="true" [class.active]="rotationDirection==-1"
+      (click)="callImageGalleryEvent({type:'rotate-left'})"></em>
+    <em class="fa fa-plus" aria-hidden="true" (click)="frameRenderer.zoomIn()"></em>
+    <em class="fa fa-minus last" aria-hidden="true" (click)="frameRenderer.zoomOut()"></em>
+  </div>
+</div>

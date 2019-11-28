@@ -1,0 +1,22 @@
+.total-info {
+  background-color: #fff;
+}
+
+.total-info .total {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.total-info .total span {
+  font-size: 14px;
+  margin-right: 5px;
+  color: #6e707b;
+  opacity: .7;
+}
+
+.total-info .total .total-value {
+  margin: 0;
+  color: #1b1c1f;
+  opacity: 1;
+}

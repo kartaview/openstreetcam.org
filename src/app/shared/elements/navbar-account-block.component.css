@@ -1,0 +1,45 @@
+a {
+  display: flex;
+}
+
+.login-button,
+.logout-button {
+  padding: 6px 25px;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #d9e0e3;
+  border-radius: 2px;
+  background-clip: padding-box;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.logout-button-mobile {
+  color: white;
+  font-size: 1em;
+  line-height: 2em;
+}
+
+.profile-button-mobile {
+  font-size: 1em;
+  line-height: 2em;
+}
+
+.profile-button:hover {
+  text-decoration: none;
+}
+
+.username {
+  margin-right: 10px;
+  font-size: 14px;
+  text-align: left;
+  line-height: 30px;
+}
+
+.avatar-icon {
+  background: url('/assets/images/avatar.png') no-repeat center center;
+  background-size: contain;
+  width: 30px;
+  height: 30px;
+  float: right;
+}

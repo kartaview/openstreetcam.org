@@ -1,0 +1,190 @@
+:host {
+  flex: 1;
+}
+
+:host ::ng-deep .loading-overlay .rotating-plane-spinner {
+  background-color: #eee;
+}
+
+.signsv2-left-sidebar-root h2.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.33;
+  color: #ebecf0;
+  text-transform: uppercase;
+  margin-bottom: 40px;
+}
+
+.signv2-root-wrapper {
+  width: 100%;
+  height: calc(100vh - 49px);
+}
+
+.signv2-firefox-heightfix {
+  height: calc(100vh - 49px);
+  overflow: hidden;
+}
+
+.signv2-content-wrapper {
+  height: 100%;
+  overflow: hidden;
+}
+
+.signv2-content-wrapper>.flexbox-vbox {
+  height: 100%;
+}
+
+.signv2-content-wrapper .flexbox-hbox {
+  height: 100%;
+}
+
+.signsv2-left-tabs-root {
+  background-color: #26272b;
+  padding-top: 30px;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.signsv2-left-tabs-root .left-tab-element {
+  padding: 30px;
+  cursor: pointer;
+}
+
+.signsv2-left-tabs-root .left-tab-element.active,
+.signsv2-left-tabs-root .left-tab-element:hover {
+  background-color: #222326;
+}
+
+.signsv2-left-tabs-root .left-tab-element-icon {
+  width: 30px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+  position: relative;
+}
+
+.signsv2-left-tabs-root .left-tab-element-icon .tab-badge {
+  padding: 0 5px;
+  line-height: 20px;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #2bace2;
+  position: absolute;
+  top: -50%;
+  right: -50%;
+}
+
+.signsv2-left-tabs-root .left-tab-element-icon.track-info {
+  background-image: url('/assets/images/sequence/v2/tabs/icon-track-info.png');
+}
+
+.signsv2-left-tabs-root .active .left-tab-element-icon.track-info,
+.signsv2-left-tabs-root .left-tab-element:hover .left-tab-element-icon.track-info {
+  background-image: url('/assets/images/sequence/v2/tabs/icon-track-info-active.png');
+}
+
+.signsv2-left-tabs-root .left-tab-element-icon.edit-osm {
+  background-image: url('/assets/images/sequence/v2/tabs/icon-edit-osm.png');
+}
+
+.signsv2-left-tabs-root .active .left-tab-element-icon.edit-osm,
+.signsv2-left-tabs-root .left-tab-element:hover .left-tab-element-icon.edit-osm {
+  background-image: url('/assets/images/sequence/v2/tabs/icon-edit-osm-active.png');
+}
+
+.signsv2-left-tabs-root .left-tab-element-icon.detections {
+  background-image: url('/assets/images/sequence/v2/tabs/icon-detections.png');
+}
+
+.signsv2-left-tabs-root .active .left-tab-element-icon.detections,
+.signsv2-left-tabs-root .left-tab-element:hover .left-tab-element-icon.detections {
+  background-image: url('/assets/images/sequence/v2/tabs/icon-detections-active.png');
+}
+
+.signsv2-left-sidebar-root {
+  width: 335px;
+  min-width: 335px;
+  border-left: 1px solid #1b1c1f;
+  border-right: 1px solid #1b1c1f;
+  background-color: #313338;
+}
+
+.signsv2-left-sidebar-root .left-tab-content,
+.signsv2-left-sidebar-root .left-tab-content .flexbox-vbox {
+  height: 100%;
+  width: 100%;
+}
+
+.signsv2-left-sidebar-root .left-tab-content-scrollable-parent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.signsv2-left-sidebar-root .left-tab-content-scrollable {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.signv2-carousel-wrapper {
+  width: calc(100vw - 425px);
+}
+
+.profile-map {
+  width: 100%;
+  height: 330px;
+  max-height: calc(100vh - 378px);
+  min-height: 100px;
+}
+
+.temporary-loading-page {
+  z-index: 10000;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 31, 34, .5);
+  text-align: center;
+}
+
+.temporary-loading-page .loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  cursor: wait;
+  background-image: url('/assets/images/loading.gif');
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-bottom-details {
+  padding: 0 15px 15px;
+}
+
+.mobile-profile-map {
+  padding: 15px 0;
+  width: 100%;
+  height: 330px;
+}
+
+.mobile-track-details-container {
+  border-radius: 2px;
+  background-color: #313338;
+}
+
+.mobile-track-details-container ::ng-deep .track-details-wrapper {
+  padding-left: 0;
+  padding-right: 0;
+}

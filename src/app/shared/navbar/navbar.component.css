@@ -1,0 +1,107 @@
+:host {
+  border: 0 solid #e1e1e1;
+  border-bottom-width: 1px;
+  display: block;
+  min-height: 48px;
+  padding: 0;
+  z-index: 10;
+  background: #fff;
+}
+
+:host.blue {
+  background: #019ed3;
+  border: 0 solid transparent;
+}
+
+:host ::ng-deep .login-button,
+:host ::ng-deep .username,
+:host ::ng-deep .profile-button-mobile,
+:host ::ng-deep .logout-button {
+  color: #000;
+}
+
+:host.blue ::ng-deep .login-button,
+:host.blue ::ng-deep .username,
+:host.blue ::ng-deep .profile-button-mobile,
+:host.blue ::ng-deep .logout-button {
+  color: #ffffff;
+}
+
+:host.hidden {
+  display: none;
+}
+
+:host nav {
+  background: #fff;
+  z-index: 1;
+  padding: 0 10px;
+}
+
+:host.blue nav {
+  background: #019ed3;
+}
+
+nav.mobile-nav {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+nav a {
+  color: #1b1c1f;
+  font-weight: 500;
+  line-height: 48px;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  float: left;
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+nav.mobile-nav a {
+  font-size: 1em;
+  margin-right: 0;
+  line-height: 2em;
+}
+
+:host.blue nav a {
+  color: white;
+}
+
+nav a.profile::before {
+  content: '\f0da';
+  font-family: FontAwesome;
+  color: #fff;
+  padding: 0 .8em 0 0;
+}
+
+nav .router-link-active,
+nav a.profile.active {
+  color: orange !important;
+}
+
+nav .right-button {
+  float: right;
+}
+
+nav .logo-button {
+  float: left;
+  height: 48px;
+}
+
+nav.mobile-nav .logo-button {
+  height: 3em;
+}
+
+nav .small-logo-button {
+  height: 2em;
+  margin: 6px 0;
+}
+
+nav .account-wrapper {
+  padding: 7px 0 0 0;
+}
+
+.navbar-dark .navbar-toggler {
+  border-color: #fff;
+}

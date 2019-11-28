@@ -1,0 +1,72 @@
+<div class="sign-selection-header" [class.sign-list-visible]="signSelectionVisible">
+  <div class="row" (click)="switchSignsList()">
+    <div class="col dropdown-left">
+      <div *ngIf="signSelectionVisible">
+        <div *ngIf="arrayValueTemp.length==0">{{'Select signs'}}</div>
+        <div *ngIf="arrayValueTemp.length>0">{{arrayValueTemp.length}} sign types selected</div>
+      </div>
+      <div *ngIf="!signSelectionVisible">
+        <div *ngIf="arrayValue.length==0">{{'Select signs'}}</div>
+        <div *ngIf="arrayValue.length>0">{{arrayValue.length}} sign types selected</div>
+      </div>
+    </div>
+    <div class="col-auto dropdown-right">
+      <em class="fa" [class.fa-angle-down]="!signSelectionVisible" [class.fa-angle-up]="signSelectionVisible"></em>
+    </div>
+  </div>
+  <div #signsWrapper *ngIf="signSelectionVisible" class="sign-selection-wrapper flexbox-vbox">
+    <div class="sign-selection-bottom">
+      <!-- <div class="row">
+        <div class="col">
+        </div>
+      </div> -->
+      <div class="row">
+        <!--<div class="col">
+          <a class="sign-selection-button cancel" (click)="selectAll()">Select all</a>
+        </div>-->
+        <div class="col">
+          <a class="sign-selection-button cancel" (click)="selectNone()">Deselect all</a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div *ngIf="signsList && signsList.regionsArray">
+            <div class="row filter-sign-regions">
+              <div *ngFor="let signRegion of signsList.regionsArray" class="col-auto" [class.disabled]="!signRegion.enabled"
+                [class.selected]="signRegion.name===_signFilterSelectedRegion" (click)="switchToSignRegionUI(signRegion)">
+                <span>{{signRegion.title}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flexbox-content">
+      <div class="sign-selection-content-outer">
+        <perfect-scrollbar [config]="perfectScrollbarOptions" class="sign-selection-content-wrapper">
+          <div class="sign-selection-content">
+            <div *ngFor="let signCategory of signsList.regions[_signFilterSelectedRegion].ALL; let icat = index" class="signs-group">
+              <div class="sign-group-title">{{signCategory.name}}</div>
+              <a *ngFor="let sign of signCategory.signs; let isign = index" class="sign-selection-item" [id]="'sign-dropdown-selection-id-'+sign.internalName"
+                [class.selected]="objectValueTemp[sign.internalName]" (click)="selectSign(sign)" [title]="sign.description?sign.description:sign.name">
+                <div class="sign-image" [style.background-image]="'url('+(sign | roadSignUrl)+')'"></div>
+              </a>
+            </div>
+            <!--<osc-detections-filter-item [value]="allPhotosSelectionValueTemp" label="All adjacent detections" (change)="changeAllPhotosSelectionValue()"
+              [hasCount]="false"></osc-detections-filter-item>-->
+          </div>
+        </perfect-scrollbar>
+      </div>
+    </div>
+    <div class="sign-selection-bottom">
+      <div class="row">
+        <div class="col">
+          <a class="sign-selection-button cancel" (click)="cancelSignSelection()">Cancel</a>
+        </div>
+        <div class="col">
+          <a class="sign-selection-button save" (click)="saveSignSelection()">Ok</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

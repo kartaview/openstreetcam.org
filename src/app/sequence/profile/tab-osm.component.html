@@ -1,0 +1,105 @@
+<div class="tab-wrapper">
+  <h2 class="section-title">Edit OSM</h2>
+  <div class="section-description">Edit OSM from OpenStreetCam imagery and detections.</div>
+  <div class="section-subtitle">Edit in</div>
+  <div class="edit-options">
+    <div class="edit-buttons row">
+      <div class="col edit-button-wrapper">
+        <a class="edit-button" href="javascript:void(0);" (click)="callImageGalleryEvent({type:'id'})">ID (I)</a>
+      </div>
+      <div class="col edit-button-wrapper">
+        <a class="edit-button" href="javascript:void(0);" (click)="callImageGalleryEvent({type:'josm'})">JOSM (J)</a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!currentDetection" class="filters-root">
+    <div class="section-subtitle">OSM check status
+      <span *ngIf="photosIterator.filtersCounts.osmComparison.total > 0"> - {{photosIterator.filtersCounts.osmComparison.total}} signs</span>
+    </div>
+    <div *ngIf="photosIterator.filtersCounts.osmComparison.total === 0" class="section-warning-wrapper">
+      <div class="row section-warning">
+        <div class="col-auto icon-wrapper">
+          <div class="icon"></div>
+        </div>
+        <div class="col description">
+          This track is not yet processed for automatic suggestions to be edited. You can still visually check the photos for things
+          to do in OSM!
+        </div>
+      </div>
+    </div>
+    <div *ngIf="photosIterator.filtersCounts.osmComparison.total > 0">
+      <osc-detections-filter-item [value]="photosIterator.filters.osmComparison.notVerified" label="Need review in OSM" [count]="photosIterator.filtersCounts.osmComparison.notVerified"
+        (change)="photosIterator.filters.switchOSMComparison('not-verified');" [notVerifiedCount]="true" [disabled]="photosIterator.filtersCounts.osmComparison.total == 0"
+        hint="Traffic signs detected to be different than the corresponding tag in OSM. Can be either missing or different value."></osc-detections-filter-item>
+      <osc-detections-filter-item [value]="photosIterator.filters.osmComparison.sameData" label="Same data with OSM" [count]="photosIterator.filtersCounts.osmComparison.sameData"
+        (change)="photosIterator.filters.switchOSMComparison('same-data');" [autoDisable]="true" hint="Traffic sign is consistent with the OSM tag at the specific location."></osc-detections-filter-item>
+      <osc-detections-filter-item [value]="photosIterator.filters.osmComparison.reviewed.fixed && photosIterator.filters.osmComparison.reviewed.alreadyFixed && photosIterator.filters.osmComparison.reviewed.notFixed"
+        label="Reviewed" [partialValue]="photosIterator.filters.osmComparison.reviewed.fixed || photosIterator.filters.osmComparison.reviewed.alreadyFixed || photosIterator.filters.osmComparison.reviewed.notFixed"
+        [hasPartialValue]="true" [hasExpand]="true" [expandStatus]="osmComparisonReviewedVisible" (expandCallback)="osmComparisonReviewedVisible=!osmComparisonReviewedVisible"
+        [count]="photosIterator.filtersCounts.osmComparison.reviewed.total" (change)="photosIterator.filters.switchOSMComparison('reviewed');"
+        [autoDisable]="true" hint="Manually reviewed signs in OSM with a specific status set afterwards."></osc-detections-filter-item>
+
+      <div *ngIf="osmComparisonReviewedVisible" class="ident-left">
+        <osc-detections-filter-item [value]="photosIterator.filters.osmComparison.reviewed.mapped" label="Mapped" [count]="photosIterator.filtersCounts.osmComparison.reviewed.mapped"
+          (change)="photosIterator.filters.switchOSMComparison('mapped');" [autoDisable]="true" hint="Traffic signs reviewed and mapped in OSM."></osc-detections-filter-item>
+        <!--<osc-detections-filter-item [value]="photosIterator.filters.osmComparison.reviewed.fixed" label="Fixed" [count]="photosIterator.filtersCounts.osmComparison.reviewed.fixed"
+          (change)="photosIterator.filters.switchOSMComparison('fixed');" [autoDisable]="true" hint="Traffic signs marked as fixed in OSM after checking sigs that required review."></osc-detections-filter-item>
+        <osc-detections-filter-item [value]="photosIterator.filters.osmComparison.reviewed.alreadyFixed" label="Mapped already" [count]="photosIterator.filtersCounts.osmComparison.reviewed.alreadyFixed"
+          (change)="photosIterator.filters.switchOSMComparison('already-fixed');" [autoDisable]="true" hint="Traffic signs that were already reflected in OSM at the time of checking."></osc-detections-filter-item>-->
+        <osc-detections-filter-item [value]="photosIterator.filters.osmComparison.reviewed.notFixed" label="Couldn't be fixed" [count]="photosIterator.filtersCounts.osmComparison.reviewed.notFixed"
+          (change)="photosIterator.filters.switchOSMComparison('not-fixed');" [autoDisable]="true" hint="Couldn't add the information to OSM. Can be due to a bad detection, bad match to the OSM feature or other reasons."></osc-detections-filter-item>
+      </div>
+      <osc-detections-filter-item [value]="photosIterator.filters.osmComparison.unknown" label="Unclear" [count]="photosIterator.filtersCounts.osmComparison.unknown"
+        (change)="photosIterator.filters.switchOSMComparison('unknown');" [autoDisable]="true" hint="Automatic comparison to OSM wasn't successful. Best to check manually."></osc-detections-filter-item>
+
+    </div>
+  </div>
+  <div *ngIf="currentDetection" class="tab-modal-wrapper">
+    <div class="row">
+      <div class="col tab-modal-title pl-3">OSM Compare</div>
+      <div class="col-auto">
+        <div class="tab-modal-close pr-3" (click)="closeOSMCompare()">
+          <em class="fa fa-times"></em>
+        </div>
+      </div>
+    </div>
+    <div class="tab-modal-content">
+      <div class="track-details-wrapper">
+        <div class="row track-details">
+          <div class="col label">Detected sign</div>
+          <div class="col details">
+            {{currentDetection.sign.name}}
+          </div>
+        </div>
+        <div *ngIf="currentDetectionLabels">
+          <div class="row track-details">
+            <div class="col label">OSM data</div>
+            <div class="col details">
+              {{currentDetectionLabels.osmComparison}}
+            </div>
+          </div>
+          <div class="row track-details">
+            <div class="col label">Status</div>
+            <div class="col details">
+              {{currentDetectionLabels.editStatus}}
+            </div>
+          </div>
+        </div>
+        <div *ngIf="osmContribution">
+          <div class="row track-details">
+            <div class="col label">User</div>
+            <div class="col details">
+              {{currentDetectionContribution.author.username}}
+            </div>
+          </div>
+          <div class="row track-details">
+            <div class="col label">Date</div>
+            <div class="col details">
+              {{currentDetectionContribution.creationTimestamp | date:'shortDate'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

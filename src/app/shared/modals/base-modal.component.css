@@ -1,0 +1,112 @@
+:host {
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+}
+
+.input-error {
+  color: red!important;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+.modal-md {
+  max-width: 450px;
+}
+
+.modal-header .close {
+  color: white;
+  opacity: 1;
+  font-weight: normal;
+}
+
+.modal-header .close span {
+  float: right;
+  color: white;
+}
+
+.modal-header .close:hover {
+  border-radius: 2px;
+  background-color: #ebecf0;
+}
+
+.modal-header .close:hover span {
+  color: black;
+}
+
+.modal-content.modal-design-v2 {
+  background: #FFFFFF;
+}
+
+.modal-design-v2 .modal-header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  background: rgba(216, 222, 225, 0.2);
+  padding-top: 13px;
+}
+
+.modal-design-v2 .modal-header .modal-title,
+.modal-design-v2 .modal-header button.close span {
+  opacity: 0.6;
+  color: #0A101B;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.modal-design-v2 .modal-header button.close {
+  padding-bottom: 11px;
+  padding-top: 10px;
+  margin-top: -14px;
+}
+
+.modal-design-v2 .modal-header button.close span {
+  font-size: 30px;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+.modal-design-v2 .modal-body {
+  color: #212B36;
+}
+
+.modal-design-v2 .modal-body label {
+  opacity: 0.7;
+  color: #212B36;
+  font-size: 15px;
+  line-height: 20px;
+}
+
+.modal-design-v2 input::placeholder,
+.modal-design-v2 textarea::placeholder {
+  color: #B5B7BA;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.modal-design-v2 .btn.btn-submit {
+  background-color: #2BACE2;
+  color: #FFFFFF;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 39px;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.modal-design-v2 .modal-footer {
+  background: #FFFFFF;
+  padding-top: 0;
+}
+
+.modal-design-v2 .form-input-description {
+  opacity: 0.4;
+  color: #212B36;
+  font-size: 13px;
+  line-height: 20px;
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="52" viewBox="0 0 300 52">
+  <defs>
+    <rect id="exit_direction_advisory_speed_ramp_xx_mph-a" width="300" height="52" rx="6"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <use fill="#FFD11E" xlink:href="#exit_direction_advisory_speed_ramp_xx_mph-a"/>
+    <rect width="298" height="50" x="1" y="1" stroke="#000" stroke-width="2" rx="6"/>
+    <text fill="#000" font-family="Roboto-Bold, Roboto" font-size="40" font-weight="bold" letter-spacing=".952">
+      <tspan x="33" y="40">RAMP Speed</tspan>
+    </text>
+  </g>
+</svg>

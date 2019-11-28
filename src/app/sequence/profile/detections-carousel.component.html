@@ -1,0 +1,79 @@
+<div class="detections-carousel">
+  <div class="row">
+    <div class="col">
+      <div class="pagination-left">
+        <span class="sign-index-wrapper">
+          <span>{{photosIterator.currentStats.detectionIndex===null ? '-' :
+            photosIterator.currentStats.detectionIndex+1 | integerNumberDraw}}
+            / {{(photosIterator.currentStats.detectionsCount |
+            integerNumberDraw)}}{{(detectionsCountEstimation?'+':'')}}</span>
+        </span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="pagination-right">
+        <em class="detections-carousel-pagination-right fa fa-angle-right" aria-hidden="true" (click)="photosIterator.switchToNextDetection()"></em>
+        <em class="detections-carousel-pagination-left fa fa-angle-left" aria-hidden="true" (click)="photosIterator.switchToPrevDetection()"></em>
+      </div>
+    </div>
+  </div>
+  <perfect-scrollbar id="carousel-detections-scrollbar" *ngIf="photosIterator.currentStats.detectionsCount>0" class="detections-carousel-container"
+    [config]="perfectScrollbarOptions" (psXReachEnd)="scrollToXEnd();">
+    <div class="detections-carousel-content">
+      <div *ngFor="let detection of currentDetections; let i = index" class="detections-carousel-cell-group" [class.hasChilds]="detection.components && detection.components.length>0">
+        <div class="detections-carousel-cell" [id]="'carousel-detection-'+detection.id" [class.selected]="!photosIterator.currentStats.childDetectionId && photosIterator.currentStats.detectionId == detection.id"
+          [class.current-image]="photosIterator.currentStats.sequenceId==detection.sequenceId && photosIterator.currentStats.sequenceIndex == detection.sequenceIndex"
+          (click)="photosIterator.switchToDetectionId(detection.id, true)" [title]="detection.sign.description ? detection.sign.description : detection.sign.name">
+          <div class="detections-carousel-cell-image-wrapper">
+            <div class="detections-carousel-cell-image" [style.background-image]="'url('+(detection.sign | roadSignUrl)+')'"></div>
+          </div>
+          <div class="detections-carousel-cell-details">
+            <div class="row">
+              <div class="col detection-validation">
+                <div *ngIf="detection.validationStatus==='CONFIRMED'" class="detection-validation-status fixed">
+                  <em class="fa fa-check"></em>
+                </div>
+                <div *ngIf="detection.validationStatus==='REMOVED'" class="detection-validation-status removed">
+                  <em class="fa fa-times"></em>
+                </div>
+                <div *ngIf="detection.validationStatus==='TO_BE_REVIEWED_LATER'" class="detection-validation-status not-sure">
+                  <em class="fa fa-question-circle"></em>
+                </div>
+              </div>
+              <div class="col detection-index">
+                {{photosIterator.currentStats.streamDetectionsIndexStart+i+1}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let component of detection.components; let j = index" class="detections-carousel-cell" [id]="'carousel-detection-'+component.id"
+          [class.selected]="photosIterator.currentStats.childDetectionId == component.id" [class.current-image]="photosIterator.currentStats.sequenceId==component.sequenceId && photosIterator.currentStats.sequenceIndex == component.sequenceIndex"
+          (click)="photosIterator.switchToDetectionId(detection.id, true, component)" [title]="component.sign.description ? component.sign.description : component.sign.name">
+          <div class="detections-carousel-cell-image-wrapper">
+            <div class="detections-carousel-cell-image" [style.background-image]="'url('+(component.sign | roadSignUrl)+')'"></div>
+          </div>
+          <div class="detections-carousel-cell-details">
+            <div class="row">
+              <div class="col detection-validation">
+                <div *ngIf="component.validationStatus==='CONFIRMED'" class="detection-validation-status fixed">
+                  <em class="fa fa-check"></em>
+                </div>
+                <div *ngIf="component.validationStatus==='REMOVED'" class="detection-validation-status removed">
+                  <em class="fa fa-times"></em>
+                </div>
+                <div *ngIf="component.validationStatus==='TO_BE_REVIEWED_LATER'" class="detection-validation-status not-sure">
+                  <em class="fa fa-question-circle"></em>
+                </div>
+              </div>
+              <div class="col detection-index">
+                {{photosIterator.currentStats.streamDetectionsIndexStart+i+1}}.{{j+1}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </perfect-scrollbar>
+  <osc-error *ngIf="photosIterator.currentStats.detectionsCount===0" title="Cannot find detections..." level="warning"
+    [backButtonEnabled]="false"></osc-error>
+</div>

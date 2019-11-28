@@ -1,0 +1,14 @@
+@media (max-width: 959px) {
+  .signsv2-left-tabs-root {
+    display: none;
+  }
+  .signsv2-left-sidebar-root {
+    display: none;
+  }
+  .signv2-carousel-wrapper {
+    width: 100vw;
+  }
+  :host.mobile-screen-enabled ::ng-deep .gallery-wrapper {
+    height: calc(100vh - 115px);
+  }
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="109" height="191" viewBox="0 0 109 191">
+  <defs>
+    <rect id="ic-temporary-a" width="107" height="28" x="1" y="125" rx="4"/>
+    <rect id="ic-temporary-b" width="76" height="76" x="16.104" y="22.104" rx="4"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <rect width="6" height="191" x="51" fill="#606060"/>
+    <rect width="104" height="25" x="2.5" y="126.5" fill="#FFD801" stroke="#000" stroke-linejoin="square" stroke-width="3" rx="4"/>
+    <use stroke="#FFD801" stroke-width="2" xlink:href="#ic-temporary-a"/>
+    <g transform="rotate(45 54.104 60.104)">
+      <rect width="73" height="73" x="17.604" y="23.604" fill="#FFD801" stroke="#000" stroke-linejoin="square" stroke-width="3" rx="4"/>
+      <use stroke="#FFD801" stroke-width="2" xlink:href="#ic-temporary-b"/>
+    </g>
+  </g>
+</svg>

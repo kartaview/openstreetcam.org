@@ -1,0 +1,5 @@
+<div *ngIf="sequenceData" class="tab-wrapper">
+  <h2 class="section-title">Track info</h2>
+  <osc-sequence-info [sequenceData]="sequenceData" [uploadHistory]="uploadHistory" [photosIterator]="photosIterator"></osc-sequence-info>
+  <osc-sequence-gamification *ngIf="uploadHistory!=null" [sequenceData]="sequenceData" [uploadHistory]="uploadHistory"></osc-sequence-gamification>
+</div>

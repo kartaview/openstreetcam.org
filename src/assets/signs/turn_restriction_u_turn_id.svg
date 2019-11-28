@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="600"
+   height="600"
+   id="svg3796"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="Indonesia Prohibitory Road Sign 4e.svg">
+  <defs
+     id="defs3798" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="77.142857"
+     inkscape:cy="315.74776"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1024"
+     inkscape:window-height="578"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3801">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-774.28572,-669.50504)">
+    <path
+       sodipodi:type="arc"
+       style="fill:#bb1122;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path2990"
+       sodipodi:cx="-550.7948"
+       sodipodi:cy="267.20129"
+       sodipodi:rx="290.23145"
+       sodipodi:ry="304.42053"
+       d="m -260.56335,267.20129 a 290.23145,304.42053 0 1 1 -580.4629,0 290.23145,304.42053 0 1 1 580.4629,0 z"
+       transform="matrix(1.0336578,0,0,0.98547891,1643.6191,706.18379)" />
+    <path
+       transform="matrix(0.82692625,0,0,0.78838313,1529.7524,758.84809)"
+       d="m -260.56335,267.20129 a 290.23145,304.42053 0 1 1 -580.4629,0 290.23145,304.42053 0 1 1 580.4629,0 z"
+       sodipodi:ry="304.42053"
+       sodipodi:rx="290.23145"
+       sodipodi:cy="267.20129"
+       sodipodi:cx="-550.7948"
+       id="path3760"
+       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       sodipodi:type="arc" />
+    <path
+       inkscape:connector-curvature="0"
+       d="m 1075.715,760.93519 c 78.8992,0 142.8572,63.95792 142.8572,142.85729 l 0,91.07166 42.1802,-12.65726 c 1.3417,-0.41787 2.7687,-0.64352 4.2476,-0.64352 7.8884,0 14.2857,6.39732 14.2857,14.28588 0,3.0431 -0.9514,5.86666 -2.5736,8.18386 l -93.8527,135.4719 -93.8558,-135.4719 c -1.6221,-2.3174 -2.5735,-5.13786 -2.5735,-8.18386 0,-7.88856 6.3943,-14.28588 14.2857,-14.28588 1.4789,0 2.9059,0.22443 4.2476,0.64352 l 42.1802,12.65726 0,-91.07166 c 0,-39.44821 -31.9805,-71.42872 -71.4286,-71.42872 -39.4481,0 -71.4285,31.98051 -71.4285,71.42872 l 0,235.71252 -71.42858,0 0,-235.71252 c 0,-78.89937 63.9579,-142.85729 142.85708,-142.85729"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="path3842" />
+    <rect
+       style="fill:#bb1122;fill-opacity:1;fill-rule:nonzero;stroke:none"
+       id="rect3762"
+       width="550"
+       height="60"
+       x="-1720.1783"
+       y="44.091183"
+       transform="matrix(-0.70710678,-0.70710678,0.70710678,-0.70710678,0,0)" />
+  </g>
+</svg>

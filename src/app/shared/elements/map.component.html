@@ -1,0 +1,10 @@
+<osc-searchbox *ngIf="searchBoxControl" class="map-search-box" [searchString]="searchString" [isLoading]="searchLoading"
+  (onSubmit)="onSearch($event)" (onResultSelected)="onResultSelected($event)" [results]="searchResults"
+  [resultsErrorType]="searchResultsErrorType"></osc-searchbox>
+<div #mapContainer leaflet (leafletMapReady)="onMapReady($event)" class="map-container"></div>
+<div *ngIf="locationControl" class="map-my-location" [class.location-loading]="locationLoading"
+  [class.active]="locationLoaded" (click)="useMyLocation()">
+  <div class="map-my-location-wrapper">
+    <div class="map-my-location-icon"></div>
+  </div>
+</div>

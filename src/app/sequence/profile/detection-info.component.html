@@ -1,0 +1,62 @@
+<osc-error *ngIf="error" title="Ups! Server error has occured!" [level]="danger"></osc-error>
+<div *ngIf="isLoading && !error" class="loader text-center">
+  <em class="fa fa-spinner fa-spin fa-2x fa-fw"></em>
+</div>
+<div class="detection-info" *ngIf="detection && !error">
+  <div class="row">
+    <div class="col-md-8 col-sm-12">
+      <div class="detection-info-box">
+        <h4>OSM details</h4>
+        <div class="row">
+          <div class="col-md-4 col-sm-12">
+            <div class="text-muted">Detected sign:</div>
+            <div class="detection-text">
+              {{detection.sign.name}}
+            </div>
+          </div>
+          <div *ngIf="detection.osmComparison" class="col-md-4 col-sm-12">
+            <div class="text-muted">OSM:</div>
+            <div class="detection-text">
+              {{detection.getOsmComparisonLabel()}}
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <div class="text-muted">Status:
+              <span class="text-blue"> {{detection.getEditStatusLabel()}}</span>
+            </div>
+            <div *ngIf="osmContribution" class="detection-text">
+              {{osmContribution.author.username}}, {{osmContribution.creationTimestamp | date:'shortDate'}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <div class="detection-info-box">
+        <h4>Detection review</h4>
+        <div class="row">
+          <div class="col">
+            <div class="text-muted">Status:
+              <span class="text-blue">{{detection.getValidationStatusLabel()}}</span>
+            </div>
+            <div class="detection-text">
+              <div class="row">
+                <div  *ngIf="detection.mode==='MANUAL'" class="col-auto">
+                  <div class="text-muted">Author:
+                    <span class="text-white">{{detection.author.username}}, {{detection.creationTimestamp+'000' | date:'shortDate'}}</span>
+                  </div>
+
+                </div>
+                <div *ngIf="oscContribution" class="col-auto">
+                  <div class="text-muted">&nbsp;&nbsp;Reviewer:
+                    <span class="text-white">{{oscContribution.author.username}}, {{oscContribution.creationTimestamp | date:'shortDate'}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

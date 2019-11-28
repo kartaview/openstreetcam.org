@@ -1,0 +1,109 @@
+:host {
+  background: #25282f;
+  border-bottom: 1px solid #1b1c1f;
+}
+
+:host ::ng-deep .login-button,
+:host ::ng-deep .logout-button {
+  color: #ffffff;
+}
+
+:host ::ng-deep .username {
+  color: #f5f5f5;
+}
+
+.row,
+.col,
+.col-auto {
+  margin: 0;
+  padding: 0;
+}
+
+.logo-button {
+  float: left;
+  width: 175px;
+  height: 30px;
+  margin: 14px 0 14px 10px;
+}
+
+.go-back {
+  cursor: pointer;
+  line-height: 48px;
+  font-size: 12px;
+  display: block;
+  width: 90px;
+  text-align: center;
+  border-right: 1px solid #1b1c1f;
+}
+
+.go-back .icon {
+  font-size: 14px;
+  color: #5e626b;
+}
+
+.go-back:hover .icon {
+  color: #ebecf0
+}
+
+.go-back .text {
+  float: right;
+  padding-left: 10px;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-id-column {
+  padding: 5px 10px 0;
+}
+
+.track-address-column {
+  padding: 5px 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.user-account-column {
+  padding: 8px 10px 0;
+}
+
+.top-title {
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
+  color: #ebecf0;
+  padding: 0 5px;
+  line-height: 1.4;
+}
+
+.top-subtitle,
+.top-subtitle-white {
+  font-size: 13px;
+  font-weight: normal;
+  text-align: center;
+  padding: 0 5px;
+  line-height: 1.4;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.top-subtitle {
+  color: #5e626b;
+}
+
+.top-subtitle-white {
+  color: #ebecf0;
+}
+
+a {
+  cursor: pointer;
+}
+
+@media (max-width: 720px) {
+  .go-back .text {
+    display: none;
+  }
+  .go-back {
+    width: 48px;
+  }
+}

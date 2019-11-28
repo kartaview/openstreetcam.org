@@ -1,0 +1,6 @@
+<div class="global-page-size">
+  <div class="alert" [class.alert-danger]="level=='fatal' || level=='error'" [class.alert-warning]="level=='warning'" [class.alert-info]="level=='info'" [class.alert-success]="level=='debug'" role="alert">
+    <strong *ngIf="level=='fatal' || level=='error'">Ups! </strong>{{title}} 
+    <a *ngIf="hasReload" href="javascript:void(0);" (click)="reloadCallback()" class="alert-link">Reload</a><span *ngIf="hasReload && hasBack"> or </span><a *ngIf="hasBack" href="javascript:void(0);" (click)="goBack()" class="alert-link">go Back</a>
+  </div>
+</div>

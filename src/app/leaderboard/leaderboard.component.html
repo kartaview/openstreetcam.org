@@ -1,0 +1,43 @@
+<div class="global-page-size">
+  <div class="leaderboard-page">
+    <ul class="nav nav-fill mb-3">
+      <li class="nav-item mobile-column">
+        <a class="nav-link nav-bar-item daily" [class.active]="leaderboardPeriod=='day'" (click)="switchToDaily($event)">Daily</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-bar-item weekly" [class.active]="leaderboardPeriod=='week'" (click)="switchToWeekly($event)">Weekly</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-bar-item monthly" [class.active]="leaderboardPeriod=='month'" (click)="switchToMonthly($event)">Monthly</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link nav-bar-item all-time" [class.active]="leaderboardPeriod=='all-time'" (click)="switchToAllTime($event)">All time</a>
+      </li>
+    </ul>
+    <h1>Leaderboard</h1>
+    <osc-loading *ngIf="isLoading && !errorFound" title="Loading data..."></osc-loading>
+    <osc-error *ngIf="errorFound" title="Leaderboard cannot be loaded..." (reload)="getLeaderboardData()"></osc-error>
+    <osc-error *ngIf="!isLoading && !errorFound && leaderboardUsers.length==0" title="No data was found!" (reload)="getLeaderboardData()"
+      level="warning"></osc-error>
+    <table *ngIf="!isLoading && !errorFound && leaderboardUsers.length>0">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>User</th>
+          <th class="mobile-column">Level</th>
+          <th class="mobile-column">Distance</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tr *ngFor="let user of leaderboardUsers; let i = index" [routerLink]="['/user',user.username]">
+        <td>{{i+1}}</td>
+        <td class="username-column">
+          <a>{{user.fullName}}</a>
+        </td>
+        <td class="mobile-column">{{user.level}}</td>
+        <td class="distance-column mobile-column">{{user.totalDistance | floatNumberDraw}} km</td>
+        <td class="points-column">{{user.totalUserPoints | integerNumberDraw}}</td>
+      </tr>
+    </table>
+  </div>
+</div>

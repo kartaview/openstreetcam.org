@@ -1,0 +1,56 @@
+<div class="modal-content modal-design-v2">
+  <div class="modal-header">
+    <h4 class="modal-title">Create new sign</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+        <label for="signTitle" [class.input-error]="signTitleError">Display name</label>
+        <input class="form-control" type="text" id="signTitle" [(ngModel)]="signTitle" [ngModelOptions]="{standalone: true}"
+          placeholder="Ex. Speed Limit 200">
+        <div class="form-input-description">Will be displayed in the traffic signs list.</div>
+      </div>
+      <div class="form-group">
+        <label for="signInternalName" [class.input-error]="signInternalNameError">Internal name</label>
+        <input class="form-control" type="text" id="signInternalName" [(ngModel)]="signInternalName" [ngModelOptions]="{standalone: true}"
+          placeholder="SPEED_LIMIT_US_30">
+        <div class="form-input-description" [class.input-error]="signInternalNameRegExError">Needs to be upper-case,
+          without special characters and unique across al signs.</div>
+      </div>
+      <div class="form-group">
+        <label for="signCategory">Category</label>
+        <select class="form-control" type="text" id="signCategory" [(ngModel)]="signCategory" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let category of signsList.categories;let i=index" [value]="category">{{category}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="signRegion">Region</label>
+        <select class="form-control" type="text" id="signRegion" [(ngModel)]="signRegion" [ngModelOptions]="{standalone: true}">
+          <option *ngFor="let region of signsList.regionsArrayEnabled" [value]="region.name">{{region.title}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="signDescription">Description</label>
+        <textarea class="form-control" id="signDescription" [(ngModel)]="signDescription" rows="3" placeholder="Optional"
+          [ngModelOptions]="{standalone: true}"></textarea>
+      </div>
+      <div *ngIf="signTitleError || signInternalNameError || signInternalNameRegExError" class="input-error">All fields
+        are required.</div>
+      <div *ngIf="submitError" class="input-error">Couldn't add the traffic sign. Please try later.</div>
+      <div *ngIf="signTitleErrorDetails.length>0" class="input-error">Server response: {{signTitleErrorDetails}}</div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="row w-100">
+      <div class="col">
+        <button type="button" class="btn btn-submit w-100" (click)="submitModal()">
+          <span *ngIf="!submitInProgress">Create & Save</span>
+          <span *ngIf="submitInProgress" class="fa fa-spinner fa-spin"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="search-box-wrapper">
+  <div class="input-group">
+    <input type="text" class="form-control" [disabled]="isLoading" [(ngModel)]="searchString"
+      (keypress)="textBoxKeyPress($event)" placeholder="Search places..." #searchBox>
+    <span class="input-group-btn search-box-buttons">
+      <div class="row">
+        <div class="col-auto">
+          <button *ngIf="searchString.length>0 && !isLoading" class="btn btn-default clear" type="button"
+            (click)="clearSearchText()">
+            <span class="fa fa-close"></span>
+          </button>
+        </div>
+        <div class="col-auto">
+          <button *ngIf="!isLoading" class="btn btn-default" type="button" (click)="submitSearch()">
+            <span class="fa fa-search"></span>
+          </button>
+        </div>
+      </div>
+    </span>
+    <span class="input-group-btn" *ngIf="isLoading">
+      <span class="search-box-loading"></span>
+    </span>
+  </div>
+  <ul class="search-result list-group" [hidden]="_results.length==0">
+    <li class="list-group-item" [class.selected]="i==resultSelection" *ngFor="let resultItem of _results; let i = index"
+      (click)="selectResult(resultItem.data)" [innerHTML]="resultItem.html"></li>
+  </ul>
+  <ul *ngIf="resultsErrorType===1" class="search-result list-group">
+    <li class="search-box-results-error">
+      <div class="search-box-error-title">Location not found</div>
+      <div class="search-box-error-description">Suggestions:</div>
+      <ul class="search-box-error-description-list">
+        <li>Make sure that all words are spelled correctly.</li>
+        <li>Try different keywords.</li>
+        <li>Try fewer keywords.</li>
+      </ul>
+    </li>
+
+  </ul>
+  <ul *ngIf="resultsErrorType===2" class="search-result list-group">
+    <li class="search-box-results-error">
+      <div class="search-box-error-title">Something went wrong</div>
+      <div class="search-box-error-description">Please wait a few moments and try again</div>
+    </li>
+  </ul>
+  <ul *ngIf="resultsErrorType===3" class="search-result list-group">
+    <li class="search-box-results-error">
+      <div class="search-box-error-title">Empty search text</div>
+      <div class="search-box-error-description">Please type at least 1 character!</div>
+    </li>
+  </ul>
+</div>

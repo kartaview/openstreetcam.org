@@ -1,0 +1,84 @@
+<div class="home-map-wrapper">
+  <div class="home-map-container" [class.logged-in]="auth.loggedIn">
+    <osc-map #mapComponent [lat]="initialLat" [lng]="initialLng" [zoom]="initialZoom" [elementId]="'map'"
+      [locationControl]="true" [searchBoxControl]="true" (onPan)="updateBrowserAddress($event)"
+      (onClick)="onMapClick($event)" [markers]="mapMarkers" (onMapEvent)="onMapEvent($event)" class="map-container-root"
+      [baseTilesEnabled]="mapLayers.baseTilesEnabled" [baseTilesUrl]="mapLayers.baseTilesUrl"
+      [baseTilesType]="mapLayers.baseTilesType" [baseTilesToken]="mapLayers.baseTilesToken"
+      [coverageTilesEnabled]="mapLayers.coverageTilesEnabled" [coverageTilesType]="mapLayers.coverageTilesType"
+      [coverageTilesUrl]="mapLayers.coverageTilesUrl">
+    </osc-map>
+    <osc-home-map-filters *ngIf="auth.loggedIn && mapFiltersEnabled" class="home-map-filters"
+      (onFiltersUpdate)="onFiltersUpdate($event)">
+
+    </osc-home-map-filters>
+    <div *ngIf="!nearBySequencesVisible" id='FOOTER_SECTION' class="footer-section">
+      <div class="mobile-row">
+        <div class="row">
+          <div class="col-auto text-left pl-3">
+            <div class="dropup-wrapper">
+              <div class="icon" (click)="switchLeftDropdown()">Terms & conditions
+                <em class="fa fa-caret-up"></em>
+              </div>
+              <div *ngIf="footerLeftDropdown" class="dropup" (click)="hideDropdown()">
+                <a class="terms" [routerLink]="['/terms']">Terms & conditions</a>
+                <a class="privacy" [routerLink]="['/privacy-policy']">Privacy Policy</a>
+                <a class="feedback" target="_blank"
+                  href="https://github.com/openstreetview/openstreetview.org/issues">Feedback</a>
+                <a *ngIf="auth.loggedIn" (click)="showDeleteAccountModal()">
+                  <em class="fa fa-trash" aria-hidden='true'></em> Delete account</a>
+              </div>
+            </div>
+          </div>
+          <div class="col text-right pr-3">
+            <div class="dropup-wrapper">
+              <div class="icon" (click)="switchRightDropdown()">Scout
+                <em class="fa fa-caret-up"></em>
+              </div>
+              <div *ngIf="footerRightDropdown" class="dropup" (click)="hideDropdown()">
+                <a href="https://www.facebook.com/openstreetcam" target="_blank">
+                  <em class="fa fa-facebook" aria-hidden="true"></em>&nbsp;</a>
+                <a href="https://twitter.com/openstreetcam" target="_blank">
+                  <em class="fa fa-twitter" aria-hidden="true"></em>&nbsp;</a>
+                <a href="http://developer.skobbler.com/" target="_blank">Scout</a>
+                <a href="http://www.leafletjs.com" target="_blank">Leaflet</a>
+                <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <span class="hidden-xs pull-left">
+          <a class="terms" [routerLink]="['/terms']">Terms & conditions</a>
+          <span class="separator">&#124;</span>
+          <a class="privacy" [routerLink]="['/privacy-policy']">Privacy Policy</a>
+          <span class="separator">&#124;</span>
+          <a class="feedback" target="_blank"
+            href="https://github.com/openstreetview/openstreetview.org/issues">Feedback</a>
+          <span *ngIf="auth.isLoggedIn()" class="separator">&#124;</span>
+          <a *ngIf="auth.loggedIn" (click)="showDeleteAccountModal()">
+            <em class="fa fa-trash" aria-hidden='true'></em> Delete account</a>
+        </span>
+        <span class="hidden-xs pull-right credits">
+          <a href="https://www.facebook.com/openstreetcam" target="_blank">
+            <em class="fa fa-facebook" aria-hidden="true"></em>&nbsp;</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="https://twitter.com/openstreetcam" target="_blank">
+            <em class="fa fa-twitter" aria-hidden="true"></em>&nbsp;</a>&nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp;
+          <a href="http://developer.skobbler.com/" target="_blank">Scout</a> &nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp;
+          <a href="http://www.leafletjs.com" target="_blank">Leaflet</a> &nbsp;&nbsp;&nbsp;&#124;&nbsp;&nbsp;&nbsp;
+          <a href="http://www.openstreetmap.org" target="_blank">OpenStreetMap</a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <osc-home-nearby-tracks *ngIf="!nearbyPhotosV2 && nearBySequencesVisible" [class.float-near-by]="true"
+    [sequences]="nearBySequencesData" [isLoading]="nearBySequencesLoading" [errorFound]="nearBySequencesError"
+    (onClose)="closeNearbySequences()"></osc-home-nearby-tracks>
+  <osc-home-nearby-tracks-v2 *ngIf="nearbyPhotosV2 && nearBySequencesVisible && !nearBySequencesError"
+    [class.float-near-by]="true" [photos]="nearByPhotosData" [isLoading]="nearBySequencesLoading"
+    [errorFound]="nearBySequencesError" (onClose)="closeNearbySequences()"></osc-home-nearby-tracks-v2>
+  <div *ngIf="nearbyPhotosV2 && nearBySequencesLoading" class="footer-loading">
+    <div class="loading"></div>
+  </div>
+</div>

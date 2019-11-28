@@ -1,0 +1,29 @@
+:host {
+  flex: 1;
+}
+
+:host.dark-theme {
+  background-color: #1b1c1f;
+  color: white;
+  /*  -webkit-flex: 2;
+  -ms-flex: 2;*/
+  flex: 2;
+}
+
+:host.lightgray-theme {
+  background-color: #f5f5f5;
+  /*  -webkit-flex: 2;
+  -ms-flex: 2;*/
+  flex: 2;
+}
+
+.maintenance-message {
+  position: fixed;
+  right: 50px;
+  bottom: 40px;
+  z-index: 1000;
+}
+
+.maintenance-message .alert-dismissible .close {
+  padding: 8px 10px;
+}

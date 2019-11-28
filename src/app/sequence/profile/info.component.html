@@ -1,0 +1,62 @@
+<div *ngIf="sequenceData" class="row statistics">
+  <div class="col">
+    <div class="track-details-count">{{sequenceData.countActivePhotos | integerNumberDraw}}</div>
+    <div class="track-details-type">Photos</div>
+  </div>
+  <div class="col">
+    <div class="track-details-count">{{sequenceData.distance?(sequenceData.distance | floatNumberDraw): 'invalid'}}
+      <span class="small-count">km</span>
+    </div>
+    <div class="track-details-type">Distance</div>
+  </div>
+</div>
+<div class="row statistics">
+  <div *ngIf="uploadHistory!=null" class="col">
+    <div class="track-details-count">
+      {{uploadHistory!=null && uploadHistory.points?(uploadHistory.points.total | integerNumberDraw): 'invalid'}}</div>
+    <div class="track-details-type">Points</div>
+  </div>
+  <div *ngIf="photosIterator.currentStats.detectionsCount>0" class="col">
+    <div class="track-details-count"> {{photosIterator.currentStats.detectionsCount | integerNumberDraw}}
+    </div>
+    <div class="track-details-type">Traffic signs</div>
+  </div>
+</div>
+<div *ngIf="sequenceData" class="track-details-wrapper">
+  <div class="section-subtitle">Track details</div>
+  <div class="row track-details">
+    <div class="col label">Contributed by:</div>
+    <div class="col details">{{sequenceData.username}}</div>
+  </div>
+  <div class="row track-details">
+    <div class="col label">{{currentPhoto && currentPhoto.shotDate?'Recorded at':'Uploaded at'}}:</div>
+    <div class="col details">
+      {{currentPhoto && currentPhoto.shotDate?(currentPhoto.shotDate|date:'dd MMMM y HH:mm'):sequenceData.dateAdded}}
+    </div>
+  </div>
+  <div *ngIf="currentPhoto" class="row track-details">
+    <div class="col label">Coordinate:</div>
+    <div class="col details">{{currentPhoto.lat}}, {{currentPhoto.lng}}</div>
+  </div>
+  <div class="row track-details">
+    <div class="col label">Platform:</div>
+    <div class="col details">{{sequenceData.platformName || 'Unclear'}}</div>
+  </div>
+  <div class="row track-details">
+    <div class="col label">OBD:</div>
+    <div class="col details">
+      <div class="obd-status" [class.available]="sequenceData.obdInfo==1"
+        [class.not-available]="sequenceData.obdInfo!=1"></div>
+    </div>
+  </div>
+</div>
+<div *ngIf="segmentationToolEnabled" class="tab-wrapper-updown">
+  <div *ngIf="currentPhoto" class="row title-wrapper">
+    <div class="col">
+      <div class="section-subtitle">Segmentation Tool</div>
+    </div>
+    <div class="col">
+      <div (click)="openSegmentationTool(currentPhoto.id)" class="section-button">Open</div>
+    </div>
+  </div>
+</div>

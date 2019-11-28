@@ -1,0 +1,58 @@
+.modal-title,
+.modal-header .modal-title {
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  text-align: left;
+  color: #ebecf0;
+  text-transform: uppercase;
+}
+
+.modal-header {
+  border-bottom: none;
+  padding-bottom: 7px;
+}
+
+.modal-body {
+  padding: 8px 15px 15px;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+  color: white;
+}
+
+.modal-body .form-check label {
+  line-height: 1;
+}
+
+.modal-footer {
+  background-color: #2d2f33;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: none;
+}
+
+.modal-footer .col {
+  padding: 0 7px;
+}
+
+.modal-footer .row {
+  margin: 0;
+}
+
+.modal-footer .btn {
+  border-radius: 2px;
+  border: none;
+  text-transform: uppercase;
+  color: #ebecf0;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.modal-footer .btn.btn-secondary {
+  background-color: #5e626b;
+}
+
+.modal-footer .btn.btn-success {
+  background-color: #1daa63;
+}

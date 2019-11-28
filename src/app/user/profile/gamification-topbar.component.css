@@ -1,0 +1,87 @@
+.top-header {
+  background: #019ed3;
+  padding-bottom: 20px;
+}
+
+ul {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+
+ul li {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+ul li span {
+  line-height: normal;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 12px;
+  opacity: .7;
+}
+
+ul span+span {
+  display: block;
+  font-size: 22px;
+  opacity: 1;
+}
+
+h1 {
+  margin-top: 10px;
+  color: #fff;
+  font-size: 34px;
+}
+
+
+
+@keyframes load {
+  0% {
+    stroke-dashoffset: 252px;
+  }
+}
+
+.gauge-fill {
+  animation: load 1s;
+  transition: stroke-dashoffset 1s linear;
+}
+
+.gamification-level {
+  height: 100px;
+  width: 130px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.gamification-level span {
+  position: absolute;
+  font-size: 11px;
+  top: 50%;
+  margin-top: -30px;
+  left: 50%;
+  margin-left: -15px;
+}
+
+.gamification-level:after {
+  position: absolute;
+  display: block;
+  height: 60px;
+  width: 60px;
+  left: 50%;
+  top: 50%;
+  content: attr(data-pct);
+  margin-top: -25px;
+  margin-left: -30px;
+  border-radius: 100%;
+  line-height: 60px;
+  font-size: 45px;
+  color: white;
+  text-align: center;
+}

@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-auto">
+    <a *ngIf="sequenceData!=null" class="go-back" [routerLink]="['/user',sequenceData.username]">
+      <span class="fa fa-times icon"></span>
+    </a>
+    <a *ngIf="sequenceData==null" class="go-back" [routerLink]="['/']">
+      <span class="fa fa-times icon"></span>
+    </a>
+  </div>
+  <div class="col-auto track-id-column">
+    <div class="top-subtitle">Track ID</div>
+    <div class="top-title">{{photosIterator.currentStats.sequenceId}}</div>
+  </div>
+  <div class="col track-id-column">
+    <div *ngIf="sequenceData!=null">
+      <div class="top-subtitle">Started from</div>
+      <div class="top-title">{{sequenceData!=null ? sequenceData.address : 'Unknown'}}</div>
+    </div>
+  </div>
+  <!--<div class="col track-address-column">
+    <div>
+      <span class="top-subtitle">From: </span>
+      <span class="top-subtitle-white">{{sequenceData!=null ? sequenceData.address : 'Unknown'}}</span>
+    </div>
+    <div>
+      <span class="top-subtitle">To: </span>
+      <span class="top-subtitle-white"> {{sequenceData!=null ? sequenceData.address : 'Unknown'}}</span>
+    </div>
+  </div>-->
+  <div class="col-auto user-account-column">
+    <osc-navbar-account-block></osc-navbar-account-block>
+  </div>

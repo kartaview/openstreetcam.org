@@ -1,0 +1,316 @@
+/* Reset */
+
+html,
+body,
+div {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+}
+
+img {
+  outline: none;
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+/* Box-sizing border-box */
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* Set up a default font and some padding to provide breathing room */
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1em;
+  min-width: 320px;
+  /*  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;*/
+}
+
+p {
+  font-weight: 400;
+  letter-spacing: .01em;
+  line-height: 20px;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+ul {
+  margin: 10px 0 0;
+  padding: 0 0 0 20px;
+}
+
+li {
+  font-weight: 400;
+}
+
+input {
+  font-size: 14px;
+}
+
+button {
+  border-style: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.flexbox-viewport {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/* encapsulate the various syntax in helper clases */
+
+/* inspired by http://infrequently.org/2009/08/css-3-progress/ */
+
+.flexbox-parent {
+  display: flex;
+  flex-flow: column;
+}
+
+/* items flex/expand vertically */
+
+.flexbox-vbox {
+  /* current syntax */
+  /*  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;*/
+  display: flex;
+  /*  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  -ms-flex-direction: column;*/
+  flex-direction: column;
+}
+
+/* items flex/expand horizontally */
+
+.flexbox-hbox {
+  /* current syntax */
+  /*  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;*/
+  display: flex;
+  /*  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;*/
+  flex-direction: row;
+}
+
+.flexbox-space-between {
+  /* current syntax */
+  /*  -webkit-justify-content: space-between;
+  -moz-justify-content: space-between;
+  -ms-justify-content: space-between;*/
+  justify-content: space-between;
+}
+
+/* I went with a fixed height header & footer because it's a common case.
+  This could easily be altered to flex proportionally with the page.
+*/
+
+.flexbox-header,
+.flexbox-footer {
+  height: 100px;
+}
+
+.flexbox-main {
+  /* current syntax */
+  /*  -webkit-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;*/
+  flex: 1;
+}
+
+.flexbox-content {
+  /* current syntax */
+  /*  -webkit-flex: 5;
+  -moz-flex: 5;
+  -ms-flex: 5;*/
+  flex: 5;
+}
+
+.flexbox-aside,
+.flexbox-nav {
+  /* previous syntax */
+  /*  -webkit-box-flex: 1;
+     -moz-box-flex: 1;
+      -ms-box-flex: 1;
+          box-flex: 1;*/
+  /* current syntax */
+  /*  -webkit-flex: 1;
+     -moz-flex: 1;
+      -ms-flex: 1;
+          flex: 1;*/
+  flex-basis: auto;
+  /* default value */
+  flex-grow: initial;
+}
+
+.fade.in {
+  opacity: 1;
+}
+
+.modal.in .modal-dialog {
+  transform: translate(0, 0);
+}
+
+.modal-backdrop.in {
+  opacity: .5;
+}
+
+.modal-content {
+  background-color: #313338;
+}
+
+.modal-content .modal-title,
+.modal-content .modal-header .modal-title {
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  text-align: left;
+  color: #ebecf0;
+  text-transform: uppercase;
+}
+
+.modal-content .modal-header {
+  border-bottom: none;
+  padding-bottom: 7px;
+}
+
+.modal-content .modal-body {
+  padding: 8px 15px 15px;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+  color: white;
+}
+
+.modal-content .modal-body .form-check label {
+  line-height: 1;
+}
+
+.modal-content .modal-footer {
+  background-color: #2d2f33;
+  padding-left: 8px;
+  padding-right: 8px;
+  border: none;
+}
+
+.modal-content .modal-footer .col {
+  padding: 0 7px;
+}
+
+.modal-content .modal-footer .row {
+  margin: 0;
+}
+
+.modal-content .modal-footer .btn {
+  border-radius: 2px;
+  border: none;
+  text-transform: uppercase;
+  color: #ebecf0;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.modal-content .modal-footer .btn.btn-secondary {
+  background-color: #5e626b;
+}
+
+.modal-content .modal-footer .btn.btn-success {
+  background-color: #1daa63;
+}
+
+.modal-content .modal-footer .btn.btn-danger {
+  background-color: #e9214c;
+}
+
+.global-page-size {
+  max-width: 1170px;
+  margin: 20px auto;
+}
+
+.home-map-wrapper .leaflet-bottom {
+  bottom: 38px;
+}
+
+.popover {
+  background: #101012;
+}
+
+.popover-header {
+  background-color: #101012;
+  font-size: 13px;
+  line-height: 1.85;
+  text-align: center;
+  color: #ebecf0;
+  border-bottom: none;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  padding-bottom: 0;
+}
+
+.popover-body {
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: center;
+  color: #8b919e;
+  background-color: #101012;
+  max-width: 170px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.bs-popover-auto[x-placement^=right] .arrow::after,
+.bs-popover-right .arrow::after {
+  border-right-color: #101012;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.ps__rail-y {
+  opacity: .9 !important;
+  background: none !important;
+  width: 10px !important;
+  margin-right: 3px;
+}
+
+.ps__rail-y>.ps__thumb-y {
+  max-width: 6px;
+}
+
+.ps__rail-x {
+  opacity: .9 !important;
+  background: none !important;
+  height: 6px;
+}
+
+.ps__rail-x>.ps__thumb-x {
+  max-height: 6px;
+}

@@ -1,0 +1,104 @@
+<div *ngIf="quickSelection.length>0">
+  <div class="section-subtitle pl-3">Quick selection</div>
+
+  <div class="add-sign-quickselection">
+    <div *ngFor="let sign of quickSelection; let signIndex = index" class="sign-wrapper">
+      <div *ngIf="sign.region==addSignFlowSelectedRegion" class="sign" [class.selected]="addSignFlowSelectedSign && sign.internalName===addSignFlowSelectedSign.internalName"
+        (click)="switchToSignQuickSelection(sign);">
+        <div class="sign-image" [style.background-image]="'url('+(sign | roadSignUrl)+')'" [title]="sign.description?sign.description:sign.name"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="addSignSearchEnabled" class="add-sign-search-wrapper">
+  <div class="add-sign-search">
+    <div class="input-group">
+      <input type="text" class="form-control" id="search-sign-type" [disabled]="addSignSearchLoading" [(ngModel)]="addSignSearchText"
+        (keypress)="textBoxKeyPress($event)" placeholder="Find sign" #searchBox>
+      <span class="input-group-btn search-box-buttons">
+        <div class="row">
+          <div class="col-auto">
+            <button *ngIf="addSignSearchText.length>0 && !addSignSearchLoading" class="btn btn-default clear" type="button"
+              (click)="clearSearchText()">
+              <span class="fa fa-close"></span>
+            </button>
+          </div>
+        </div>
+      </span>
+      <span class="input-group-btn" *ngIf="addSignSearchLoading">
+        <span class="search-box-loading"></span>
+      </span>
+    </div>
+  </div>
+</div>
+<div *ngIf="addSignSearchStarted">
+  <div class="add-sign-category-content">
+    <div class="row">
+      <div class="col">
+        <div *ngFor="let sign of signsList.allSigns | searchSign:addSignSearchTextTags:addSignFlowSelectedRegion" class="sign-wrapper">
+          <div class="sign" [class.selected]="addSignFlowSelectedSign && sign.internalName===addSignFlowSelectedSign.internalName"
+            (click)="switchToSignSearch(sign);" [title]="sign.description?sign.description:sign.name">
+            <div class="sign-image" [style.background-image]="'url('+(sign | roadSignUrl)+')'"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!addSignSearchStarted">
+  <div class="section-subtitle pl-3">Signs list<span *ngIf="categoryName"> &gt; {{categoryName}}</span></div>
+  <div *ngIf="signsList && signsList.regionsArray">
+    <div class="row add-sign-regions">
+      <div *ngFor="let signRegion of signsList.regionsArray" class="col-auto" [class.disabled]="!signRegion.enabled"
+        [class.selected]="signRegion.name===addSignFlowSelectedRegion" (click)="switchToSignRegionUI(signRegion)">
+        <span>{{signRegion.title}}</span>
+      </div>
+    </div>
+    <div *ngFor="let signRegion of signsList.regionsArray">
+      <div *ngIf="signRegion.name===addSignFlowSelectedRegion" class="add-sign-categories">
+        <div *ngFor="let signCategory of signsList.regions[signRegion.name].ALL">
+          <div *ngIf="addSignFlowSelectedCategory===null" class="row add-sign-category" (click)="switchToSignCategory(signCategory.type);">
+            <div class="col pl-3">
+              {{signCategory.name}}
+            </div>
+            <div class="col-auto pr-3">
+              <em class="fa fa-angle-right"></em>
+            </div>
+          </div>
+          <div [hidden]="addSignFlowSelectedCategory!==signCategory.type" class="add-sign-category-content">
+            <div class="row">
+              <div class="col-auto add-sign-category-back-wrapper">
+                <div class="add-sign-category-back" (click)="switchToSignCategory(null);">
+                  <em class="fa fa-arrow-left"></em>
+                </div>
+              </div>
+              <div class="col">
+                <div *ngFor="let sign of signCategory.signs; let signIndex = index" class="sign-wrapper">
+                  <div class="sign" [class.selected]="addSignFlowSelectedSign && sign.internalName===addSignFlowSelectedSign.internalName"
+                    (click)="switchToSign(sign);" [title]="sign.description?sign.description:sign.name">
+                    <div class="sign-image" [style.background-image]="'url('+(sign | roadSignUrl)+')'"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="add-sign-buttons">
+    <div class="row">
+      <div class="col">
+        <div class="add-sign-button cancel" (click)="cancelSign();">
+          <span>Cancel (ESC)</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="add-sign-button save" [class.disabled]="addSignFlowSelectedSign===null" [class.loading]="addSignFlowSaving"
+          (click)="saveSign();">
+          <span>Save (ENTER)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

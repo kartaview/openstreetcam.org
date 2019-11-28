@@ -1,0 +1,27 @@
+<osc-navbar [preventHide]="true" [forceBlueBackground]="true" [showLogout]="auth.isLoggedIn() && userData && userData.id === auth.getUserId() ? true : false"></osc-navbar>
+<div *ngIf="!isLoading && !errorFound">
+  <osc-user-gamification-topbar [userData]="userData" [hidden]="!userData || userData.type=='driver' || userData.type=='qa'"></osc-user-gamification-topbar>
+  <osc-user-driver-topbar [userData]="userData" [hidden]="!userData || !(userData.type=='driver' || userData.type=='qa')"></osc-user-driver-topbar>
+  <osc-user-topbar-common *ngIf="userData" [userData]="userData"></osc-user-topbar-common>
+  <div class="col-md-12 header">
+    <div class="row">
+      <div class="col-xs-12 col-md-3 text-center-xs">
+        <h2>Uploaded tracks</h2>
+      </div>
+      <div class="col-xs-12 col-md-3 text-center">
+        <span class="upload">{{ userSequencesStatus.uploading || 0}} tracks uploading</span>
+      </div>
+      <div class="col-xs-12 col-md-3 text-center">
+        <span class="processing">{{ userSequencesStatus.processing || 0}} tracks processing</span>
+      </div>
+    </div>
+  </div>
+  <osc-user-sequences-list [userSequences]="userSequences" (sequencesScrollDown)="onScroll()"> </osc-user-sequences-list>
+  <osc-loading *ngIf="userSequencesPaginationLoading && !userSequencesPaginationError" title="Loading more sequences..."></osc-loading>
+  <osc-error *ngIf="userSequencesPaginationError" title="Cannot load more sequences!" (reload)="onScroll()"></osc-error>
+  <osc-error *ngIf="!userSequencesHasMorePages && userSequencesPage>1" title="No more data!" level="warning" [backButtonEnabled]="false"></osc-error>
+</div>
+
+
+<osc-loading *ngIf="isLoading && !errorFound" [title]="loadingMessage"></osc-loading>
+<osc-error *ngIf="errorFound" [title]="errorMessage" (reload)="getUserData()"></osc-error>

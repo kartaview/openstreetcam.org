@@ -1,0 +1,90 @@
+<form>
+  <div *ngIf="mapFilters.loggedUserEnabled" class="form-group">
+    <div class="form-check">
+      <input #myTracks type="checkbox" class="form-check-input" id="my-tracks"
+        (click)="switchMyTracks(myTracks.checked)">
+      <label class="form-check-label" for="my-tracks">My tracks only</label>
+    </div>
+  </div>
+
+  <!--<div *ngIf="mapFilters.sequenceTypeEnabled" class="form-group">
+    <label for="sequence-type">Sequence type</label>
+    <select class="form-control form-control-sm" id="sequence-type" [(ngModel)]="mapFilters.sequenceType"
+      [ngModelOptions]="{standalone: true}" (change)="switchSequenceType($event)">
+      <option value="" [selected]="mapFilters.sequenceType == ''">All</option>
+      <option value="photo" [selected]="mapFilters.sequenceType == 'vdb'">Photo</option>
+      <option value="video" [selected]="mapFilters.sequenceType == 'vdb'">Video</option>
+      <option value="vdb" [selected]="mapFilters.sequenceType == 'vdb'">Waylens</option>
+    </select>
+  </div>-->
+
+  <div *ngIf="mapFilters.platformEnabled" class="form-group">
+    <label for="platform">Platform</label>
+    <select class="form-control form-control-sm" id="platform" [(ngModel)]="mapFilters.platform"
+      [ngModelOptions]="{standalone: true}" (change)="switchPlatform($event)">
+      <option value="" [selected]="mapFilters.platform == ''">All</option>
+      <option value="ios" [selected]="mapFilters.platform == 'ios'">iPhone</option>
+      <option value="android" [selected]="mapFilters.platform == 'android'">Android</option>
+      <option value="waylens" [selected]="mapFilters.platform == 'waylens'">Waylens</option>
+      <option value="gopro" [selected]="mapFilters.platform == 'gopro'">GoPro</option>
+      <option value="other" [selected]="mapFilters.platform == 'other'">Other</option>
+    </select>
+  </div>
+
+  <div *ngIf="mapFilters.fieldOfViewEnabled" class="form-group">
+    <label for="field-of-view">Field of view</label>
+    <select class="form-control form-control-sm" id="field-of-view" [(ngModel)]="mapFilters.fieldOfView"
+      [ngModelOptions]="{standalone: true}" (change)="switchFieldOfView($event)">
+      <option value="" [selected]="mapFilters.fieldOfView == ''">All</option>
+      <option value="plane" [selected]="mapFilters.fieldOfView == 'plane'">Plane</option>
+      <option value="180" [selected]="mapFilters.fieldOfView == '180'">180</option>
+      <option value="360" [selected]="mapFilters.fieldOfView == '360'">360</option>
+    </select>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div *ngIf="mapFilters.startDateEnabled" class="form-group">
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="enable-startDate" (click)="enableStartDate()"
+              [(ngModel)]="mapFilters.startDateApplied" [ngModelOptions]="{standalone: true}">
+            <label class="form-check-label" for="enable-startDate">Start date</label>
+          </div>
+        </div>
+        <div *ngIf="mapFilters.startDateApplied" class="input-group">
+          <input ngbDatepicker class="form-control form-date-input" placeholder="yyyy-mm-dd" format="yyyy-mm-dd"
+            name="startDate" [(ngModel)]="mapFilters.startDateStruct" #startDate="ngbDatepicker"
+            (ngModelChange)="switchStartDate($event)">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary fa fa-calendar" (click)="startDate.toggle()"
+              type="button"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div *ngIf="mapFilters.endDateEnabled" class="form-group">
+        <div class="form-group">
+          <div class="form-check">
+            <input type="checkbox" class="form-check-input" id="enable-endDate" (click)="enableEndDate()"
+              [(ngModel)]="mapFilters.endDateApplied" [ngModelOptions]="{standalone: true}">
+            <label class="form-check-label" for="enable-endDate">End date</label>
+          </div>
+        </div>
+        <div *ngIf="mapFilters.endDateApplied" class="input-group">
+          <input ngbDatepicker class="form-control form-date-input" placeholder="yyyy-mm-dd" name="endDate"
+            [(ngModel)]="mapFilters.endDateStruct" ngbDatepicker #endDate="ngbDatepicker"
+            (ngModelChange)="switchEndDate($event)">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary fa fa-calendar" (click)="endDate.toggle()" type="button"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <button type="submit" class="btn btn-success" (click)="updateFilters()" [class.btn-secondary]="updateButtonDisabled"
+    [class.btn-success]="!updateButtonDisabled" [disabled]="updateButtonDisabled">Update</button>
+
+</form>

@@ -1,0 +1,174 @@
+.row,
+.col,
+.col-auto {
+  margin: 0;
+  padding: 0;
+}
+
+.section-subtitle {
+  font-size: 13px;
+  font-weight: bold;
+  color: #8b919e;
+  text-transform: uppercase;
+}
+
+.add-sign-regions {
+  border-bottom: 1px solid #2d2e33;
+}
+
+.add-sign-regions .col-auto {
+  font-size: 13px;
+  color: #bdbdbe;
+  line-height: 33px;
+  padding: 0 12px;
+}
+
+.add-sign-regions .col-auto span {
+  display: block;
+  height: 100%;
+  cursor: pointer;
+}
+
+.add-sign-regions .col-auto.selected span {
+  color: #ebecf0;
+  border-bottom: 1px solid #ebecf0;
+}
+
+.add-sign-regions .col-auto.disabled {
+  color: #5e626b;
+}
+
+.add-sign-regions .col-auto.disabled span {
+  cursor: default;
+}
+
+.add-sign-categories {
+  padding: 7px 0;
+  background: #3d3f45;
+}
+
+.add-sign-category {
+  font-size: 14px;
+  line-height: 40px;
+  color: #bdbdbe;
+  background-color: #3d3f45;
+  cursor: pointer;
+}
+
+.add-sign-category:hover {
+  color: #ebecf0;
+  background-color: #43464d;
+}
+
+.add-sign-category-content {
+  padding: 0 7px;
+}
+
+.add-sign-category-back-wrapper {
+  padding: 7px;
+}
+
+.add-sign-category-back {
+  font-size: 14px;
+  color: #ebecf0;
+  padding: 12px;
+  border-radius: 2px;
+  background-color: #383a40;
+  cursor: pointer;
+}
+
+.sign-wrapper {
+  padding: 7px;
+  display: inline-block;
+}
+
+.sign {
+  padding: 5px;
+  cursor: pointer;
+  background-color: #28292e;
+  border-radius: 2px;
+}
+
+.sign.selected,
+.sign:hover {
+  background-color: #ebecf0;
+}
+
+.sign-image {
+  width: 43px;
+  height: 43px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
+}
+
+.add-sign-buttons {
+  padding: 15px;
+}
+
+.add-sign-buttons .col:first-child {
+  padding-right: 15px;
+}
+
+.add-sign-button {
+  line-height: 38px;
+  border-radius: 2px;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.add-sign-button span {
+  font-size: 11px;
+  font-weight: bold;
+  text-align: left;
+  color: #ffffff;
+}
+
+.add-sign-button.cancel {
+  background-color: #5e626b;
+}
+
+.add-sign-button.save {
+  background-color: #1daa63;
+}
+
+.add-sign-button.disabled {
+  background-color: #5e626b;
+  cursor: no-drop;
+}
+
+.add-sign-quickselection {
+  padding: 0 10px;
+}
+
+.add-sign-quickselection .sign-image {
+  width: 28px;
+  height: 28px;
+}
+
+.add-sign-search-wrapper {
+  padding: 10px 15px;
+}
+
+.add-sign-search {
+  border-radius: 3px;
+  background-color: rgba(254, 255, 255, 0.2);
+}
+
+.add-sign-search input {
+  border: none;
+  background: none;
+  color: rgba(255, 255, 255, 1);
+  font-size: 13px;
+  line-height: 27px;
+}
+
+.add-sign-search input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.search-box-buttons .btn{
+  border:none;
+  background: none;
+}

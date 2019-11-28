@@ -1,0 +1,27 @@
+<div class="container-fluid total-info">
+  <div class="row" id="userInfo">
+    <div class="total col-xs-12 px-2">
+      <span>Photos:</span>
+      <span class="total-value">{{userData.totalPhotos | integerNumberDraw}}</span>
+    </div>
+
+    <div class="total col-xs-12 px-2">
+      <span>Tracks:</span>
+      <span class="total-value">{{userData.totalTracks | integerNumberDraw}}</span>
+    </div>
+
+    <div class="total col-xs-12 px-2">
+      <span>Distance:</span>
+      <span class="total-value">{{userData.totalDistance | floatNumberDraw}} km</span>
+    </div>
+
+    <div class="total col-xs-12 px-2">
+      <span>Distance with OBD:</span>
+      <span class="total-value">{{userData.obdDistance | floatNumberDraw}} km</span>
+    </div>
+    <div *ngIf="userData.totalWaylensDistance>0" class="total col-xs-12 px-2">
+      <span>Distance with Waylens:</span>
+      <span class="total-value">{{userData.totalWaylensDistance | floatNumberDraw}} km</span>
+    </div>
+  </div>
+</div>

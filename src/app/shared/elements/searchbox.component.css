@@ -1,0 +1,112 @@
+.row,
+.col-auto {
+  padding: 0;
+  margin: 0;
+}
+
+.search-box-wrapper .search-box-loading {
+  width: 40px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url('/assets/images/search-loading.gif');
+  background-size: contain;
+  display: inline-block;
+  margin: 9px 0;
+}
+
+.search-box-wrapper ::ng-deep .search-box-results-error {
+  border-top: 1px solid #e9214c;
+  padding: 12px 12px 0 12px;
+  margin: 0;
+}
+
+.search-box-wrapper ::ng-deep .search-box-results-error:hover {
+  background: white;
+  cursor: default;
+}
+
+.search-box-wrapper ::ng-deep .search-box-error-title {
+  color: #e9214c;
+  font-weight: 600;
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+
+.search-box-wrapper ::ng-deep .search-box-error-description {
+  color: #6e707b;
+  font-size: 14px;
+  font-weight: 300;
+  padding-bottom: 10px;
+}
+
+.search-box-wrapper ::ng-deep .search-box-error-description-list {
+  color: #6e707b;
+  font-size: 14px;
+  font-weight: 300;
+  list-style-type: disc;
+  padding-left: 16px;
+}
+
+.search-box-wrapper ::ng-deep .search-box-error-description-list li {
+  padding-bottom: 10px;
+}
+
+.search-box-wrapper ::ng-deep .search-box-error-description-list li:hover {
+  background: white;
+  color: #6e707b;
+  cursor: default;
+}
+
+input {
+  border: none;
+}
+
+.search-box-buttons .btn {
+  background: #fff;
+}
+
+.search-box-buttons button:focus {
+  box-shadow: none;
+}
+
+.search-box-buttons .btn.clear {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #fff;
+}
+
+.search-result {
+  margin: 0;
+}
+
+.search-result.list-group {
+  border: none;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.search-result.list-group li {
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  font-weight: 300;
+  cursor: pointer;
+  margin-top: 0;
+}
+
+.search-result.list-group li.selected,
+.search-result.list-group li.selected:hover {
+  background-color: #4285f4;
+  color: #fff;
+}
+
+.search-result.list-group li:hover {
+  background-color: #f5f9ff;
+  color: #1b1c1f;
+}

@@ -1,0 +1,63 @@
+:host {
+  position: relative;
+}
+
+:host,
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.map-my-location {
+  box-sizing: border-box;
+  width: 34px;
+  height: 34px;
+  border: 2px solid rgba(0, 0, 0, .2);
+  border-radius: 4px;
+  position: absolute;
+  right: 10px;
+  bottom: 126px;
+  cursor: pointer;
+  z-index: 401;
+}
+
+.map-my-location-wrapper {
+  border-radius: 4px;
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.map-my-location .map-my-location-icon {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url('/assets/images/location-default.svg');
+  width: 24px;
+  height: 24px;
+  margin: 3px 3px 3px 3px;
+}
+
+.map-my-location.location-loading .map-my-location-icon {
+  background-image: url('/assets/images/location-loading.gif');
+}
+
+.map-my-location.active .map-my-location-icon {
+  background-image: url('/assets/images/location-active.svg');
+}
+
+.map-search-box {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 401;
+  width: 340px;
+  min-height: 20px;
+  border-radius: 2px;
+  box-shadow: 1px 1px 3px #888888;
+  background: #fff;
+}
+

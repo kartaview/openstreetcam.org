@@ -1,0 +1,29 @@
+<div class="section-subtitle pl-3">Subcomponents list</div>
+<div *ngIf="signComponentsList && signComponentsList.length>0">
+  <div class="signs-wrapper">
+    <div *ngFor="let sign of signComponentsList; let signIndex = index" class="sign-wrapper">
+      <div class="sign" [class.selected]="addSignFlowSelectedSign && sign.internalName===addSignFlowSelectedSign.internalName"
+        (click)="switchToSign(sign);" [title]="sign.description?sign.description:sign.name">
+        <div class="sign-image" [style.background-image]="'url('+(sign | roadSignUrl)+')'"></div>
+      </div>
+    </div>
+  </div>
+  <div class="add-sign-buttons">
+    <div class="row">
+      <div class="col">
+        <div class="add-sign-button cancel" (click)="cancelSign();">
+          <span>Cancel (ESC)</span>
+        </div>
+      </div>
+      <div class="col">
+        <div class="add-sign-button save" [class.disabled]="addSignFlowSelectedSign===null" [class.loading]="addSignFlowSaving"
+          (click)="saveSign();">
+          <span>Save (ENTER)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!(signComponentsList && signComponentsList.length>0)">
+  No components found!
+</div>

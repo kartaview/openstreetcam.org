@@ -1,0 +1,51 @@
+<nav *ngIf="windowWidth<=900" class="mobile-nav navbar navbar-toggleable-md navbar-full" [class.navbar-inverse]="blueBackground" [class.navbar-light]="!blueBackground && !forceBlueBackground"
+  [class.navbar-dark]="blueBackground || forceBlueBackground">
+  <a *ngIf="!blueBackground && !forceBlueBackground" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">
+    <img alt="OSC logo" [routerLink]="['/']" src="/assets/images/osc-logo.png" class="logo-button" />
+  </a>
+  <a *ngIf="blueBackground || forceBlueBackground" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">
+    <img alt="OSC logo" [routerLink]="['/']" src="/assets/images/osc-logo-white-small.svg" class="small-logo-button" />
+  </a>
+  <button class="navbar-toggler navbar-toggleable-xs navbar-toggler-right" type="button" data-toggle="collapse" [attr.data-target]="'#oscTopBarMenu'+uniqueId" [attr.aria-controls]="'oscTopBarMenu'+uniqueId"
+    aria-expanded="false" aria-label="Toggle navigation" (clickOutside)="closeMenu($event)">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" [id]="'oscTopBarMenu'+uniqueId" #navBarMobile>
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a *ngIf="blueBackground || forceBlueBackground" [routerLink]="['/']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+      </li>
+      <li class="nav-item">
+        <a [routerLink]="['/leaderboard']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Leaderboard</a>
+      </li>
+      <li class="nav-item">
+        <a (click)="showGetAppModal()" href="javascript:void(0);">Get the App</a>
+      </li>
+      <li class="nav-item">
+        <a href="http://blog.improve-osm.org/en/" target="_blank">Blog</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a href="https://goo.gl/forms/cMQszjdy2c6rbFDL2" target="_blank">Beta</a>
+      </li> -->
+      <li class="nav-item">
+        <osc-navbar-account-block [mobile]="true" [switchToLogout]="showLogout"></osc-navbar-account-block>
+      </li>
+    </ul>
+  </div>
+</nav>
+<nav *ngIf="windowWidth>900">
+  <a *ngIf="!blueBackground && !forceBlueBackground" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">
+    <img alt="OSC logo" [routerLink]="['/']" src="/assets/images/osc-logo.png" class="logo-button" />
+  </a>
+  <a *ngIf="blueBackground || forceBlueBackground" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">
+    <img alt="OSC logo" [routerLink]="['/']" src="/assets/images/osc-logo-white-small.svg" class="small-logo-button" />
+  </a>
+  <a *ngIf="blueBackground || forceBlueBackground" [routerLink]="['/']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+  <a *ngIf="(blueBackground || forceBlueBackground) && !processedTracks" href="javascript:void(0);" class="profile active">Profile</a>
+  <a [routerLink]="['/leaderboard']" [routerLinkActive]="['router-link-active']" [routerLinkActiveOptions]="{exact:true}">Leaderboard</a>
+  <a (click)="showGetAppModal()" href="javascript:void(0);">Get the App</a>
+  <a href="http://blog.improve-osm.org/en/" target="_blank">Blog</a>
+  <!-- <a href="https://goo.gl/forms/cMQszjdy2c6rbFDL2" target="_blank">Beta</a> -->
+  <osc-navbar-account-block class="right-button account-wrapper" [switchToLogout]="showLogout"></osc-navbar-account-block>
+</nav>

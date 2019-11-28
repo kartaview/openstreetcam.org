@@ -1,0 +1,25 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Login</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div *ngIf="showDescription">You must sign in first.</div>
+    <osc-error *ngIf="errorFound" title="Authentication failed!" [backButtonEnabled]="backButtonEnabled"></osc-error>
+    <p *ngIf="!showDescription">Sign in with:</p>
+    <a class="social-login-button openstreetmap" href="javascript:void(0)" (click)="signIn('openstreetmap')">
+      <span class="social-login-button-icon"></span>
+      <span class="social-login-button-text">OpenStreetMap</span>
+    </a>
+    <a class="social-login-button facebook" href="javascript:void(0)" (click)="signIn('facebook')">
+      <span class="social-login-button-icon"></span>
+      <span class="social-login-button-text">Facebook</span>
+    </a>
+    <a class="social-login-button google" href="javascript:void(0)" (click)="signIn('google')">
+      <span class="social-login-button-icon"></span>
+      <span class="social-login-button-text">Google</span>
+    </a>
+  </div>
+</div>

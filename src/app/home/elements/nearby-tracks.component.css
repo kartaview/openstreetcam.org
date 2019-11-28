@@ -1,0 +1,179 @@
+:host {
+  color: #fff;
+}
+
+:host ::ng-deep .loading-overlay .rotating-plane-spinner {
+  background-color: #eee;
+}
+
+.near-by-tracks-wrapper {
+  /*transition: height 1s ease-in-out;*/
+  width: 100%;
+  background-color: #333;
+  overflow: hidden;
+}
+
+:host.float-near-by .near-by-tracks-wrapper {
+  z-index: 1001;
+  position: absolute;
+  bottom: 0;
+}
+
+.near-by-tracks-wrapper.data-available {
+  height: 50%;
+  max-height: 210px;
+  min-height: 200px;
+}
+
+.near-by-tracks-header {
+  box-sizing: border-box;
+  background: #3b3e47;
+  color: #b3b5bf;
+  font-size: 14px;
+  padding: 5px 10px 5px 0;
+  height: 36px;
+}
+
+.near-by-tracks-header .row,
+.near-by-tracks-header .col,
+.near-by-tracks-header .col-auto {
+  margin: 0;
+  padding: 0;
+}
+
+.near-by-tracks-header .close-btn {
+  padding: 0 10px 0 10px;
+  border-right: 1px solid #b3b5bf;
+  cursor: pointer;
+  font-size: 24px;
+  z-index: 100;
+}
+
+.near-by-tracks-header .close-btn:hover em {
+  color: #fff;
+}
+
+.near-by-tracks-header .title {
+  padding: 5px 0 5px 10px;
+  float: left;
+}
+
+.near-by-tracks-inner {
+  height: 100%;
+  overflow: hidden;
+}
+
+.arrow-wrapper {
+  position: relative;
+  width: 50px;
+}
+
+.next,
+.previous {
+  position: absolute;
+  font-size: 5rem;
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+  /*padding: 0 5px;*/
+  cursor: pointer;
+}
+
+.next em,
+.previous em {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  opacity: .2;
+}
+
+.tracks-wrapper {
+  overflow: hidden;
+}
+
+.tracks-wrapper .row {
+  margin: 0;
+  transition: margin 1s ease-out;
+}
+
+.card {
+  border-color: transparent;
+  border-radius: 0;
+  padding: 0 15px 5px;
+  margin: 0;
+  background: none;
+  overflow: hidden;
+  float: left;
+}
+
+.card-text {
+  font-size: 9px;
+  line-height: 13px;
+}
+
+.card-text.location {
+  height: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+
+/** HACK UNTIL WE FIND A SOLUTION **/
+
+.card-text.location .location-inner {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  max-height: 100%;
+  font-size: 9px;
+  line-height: 13px;
+}
+
+.card-block {
+  padding: 0;
+}
+
+.image-thumb {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  flex: 1;
+  background-color: #28292c;
+  background-image: linear-gradient(45deg, #212225 25%, transparent 25%, transparent 75%, #212225 75%, #212225), linear-gradient(45deg, #212225 25%, transparent 25%, transparent 75%, #212225 75%, #212225);
+  background-size: 20px 20px;
+  background-position: 0 0, 10px 10px;
+  border: 1px solid rgb(49, 51, 59);
+  border-radius: 2px;
+  width: 180px;
+  height: 120px;
+}
+
+.image-thumb:hover {
+  border-color: rgb(135, 225, 255);
+}
+
+.image-thumb img {
+  height: 100%;
+}
+
+.image-thumb img {
+  /*max-width: calc(100% - 5px);*/
+  opacity: 0;
+}
+
+.image-thumb .img-replacement {
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+em {
+  font-style: normal;
+  color: #6e707b;
+}
