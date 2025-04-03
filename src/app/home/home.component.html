@@ -24,7 +24,7 @@
                 <a class="terms" [routerLink]="['/terms']">Terms & conditions</a>
                 <a class="privacy" [routerLink]="['/privacy-policy']">Privacy Policy</a>
                 <a class="feedback" target="_blank"
-                  href="https://github.com/openstreetview/openstreetview.org/issues">Feedback</a>
+                  href="https://github.com/kartaview/openstreetview.org/issues">Feedback</a>
                 <a *ngIf="auth.loggedIn" (click)="showDeleteAccountModal()">
                   <em class="fa fa-trash" aria-hidden='true'></em> Delete account</a>
               </div>
@@ -55,7 +55,7 @@
           <a class="privacy" [routerLink]="['/privacy-policy']">Privacy Policy</a>
           <span class="separator">&#124;</span>
           <a class="feedback" target="_blank"
-            href="https://github.com/openstreetview/openstreetview.org/issues">Feedback</a>
+            href="https://github.com/kartaview/openstreetview.org/issues">Feedback</a>
           <span *ngIf="auth.isLoggedIn()" class="separator">&#124;</span>
           <a *ngIf="auth.loggedIn" (click)="showDeleteAccountModal()">
             <em class="fa fa-trash" aria-hidden='true'></em> Delete account</a>
