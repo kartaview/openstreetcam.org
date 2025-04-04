@@ -45,7 +45,7 @@
     "rxjs": "6.5.2",
     "rxjs-compat": "6.5.2",
     "tether": "1.4.6",
-    "three": "0.104.0",
+    "three": "0.137.0",
     "zone.js": "0.9.1"
   },
   "devDependencies": {
